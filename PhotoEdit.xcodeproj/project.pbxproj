@@ -1,0 +1,688 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B32AB9891D09ADC6007CA9CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9881D09ADC6007CA9CB /* main.m */; };
+		B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */; };
+		B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9901D09ADC6007CA9CB /* Main.storyboard */; };
+		B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9931D09ADC6007CA9CB /* Assets.xcassets */; };
+		B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */; };
+		B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */; };
+		B32AB9AD1D09ADC6007CA9CB /* PhotoEditUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9AC1D09ADC6007CA9CB /* PhotoEditUITests.m */; };
+		B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9BD1D09AE67007CA9CB /* PhotosCVC.m */; };
+		B32AB9C11D09B233007CA9CB /* PhotosCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9C01D09B233007CA9CB /* PhotosCVCell.m */; };
+		B32AB9C51D09BA10007CA9CB /* EditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9C41D09BA10007CA9CB /* EditVC.m */; };
+		B32AB9C81D09C04C007CA9CB /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9C71D09C04C007CA9CB /* SettingsTVC.m */; };
+		B32AB9EE1D0A9E41007CA9CB /* DRColorPicker+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9CC1D0A9E41007CA9CB /* DRColorPicker+UIColor.m */; };
+		B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9CD1D0A9E41007CA9CB /* DRColorPicker.bundle */; };
+		B32AB9F01D0A9E41007CA9CB /* DRColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9CF1D0A9E41007CA9CB /* DRColorPicker.m */; };
+		B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9D11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m */; };
+		B32AB9F21D0A9E41007CA9CB /* DRColorPickerColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9D31D0A9E41007CA9CB /* DRColorPickerColor.m */; };
+		B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9D51D0A9E41007CA9CB /* DRColorPickerColorView.m */; };
+		B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9D71D0A9E41007CA9CB /* DRColorPickerGridView.m */; };
+		B32AB9F51D0A9E41007CA9CB /* DRColorPickerGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9D91D0A9E41007CA9CB /* DRColorPickerGridViewCell.m */; };
+		B32AB9F61D0A9E41007CA9CB /* DRColorPickerGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9DB1D0A9E41007CA9CB /* DRColorPickerGridViewController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		B32AB9F71D0A9E41007CA9CB /* DRColorPickerHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9DD1D0A9E41007CA9CB /* DRColorPickerHomeView.m */; };
+		B32AB9F81D0A9E41007CA9CB /* DRColorPickerHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9DF1D0A9E41007CA9CB /* DRColorPickerHomeViewController.m */; };
+		B32AB9F91D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E11D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m */; };
+		B32AB9FA1D0A9E41007CA9CB /* DRColorPickerHueView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E31D0A9E41007CA9CB /* DRColorPickerHueView.m */; };
+		B32AB9FB1D0A9E41007CA9CB /* DRColorPickerHueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E51D0A9E41007CA9CB /* DRColorPickerHueViewController.m */; };
+		B32AB9FC1D0A9E41007CA9CB /* DRColorPickerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E71D0A9E41007CA9CB /* DRColorPickerStore.m */; };
+		B32AB9FD1D0A9E41007CA9CB /* DRColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E91D0A9E41007CA9CB /* DRColorPickerViewController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */; };
+		B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B32AB99E1D09ADC6007CA9CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B32AB97C1D09ADC6007CA9CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B32AB9831D09ADC6007CA9CB;
+			remoteInfo = PhotoEdit;
+		};
+		B32AB9A91D09ADC6007CA9CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B32AB97C1D09ADC6007CA9CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B32AB9831D09ADC6007CA9CB;
+			remoteInfo = PhotoEdit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB9881D09ADC6007CA9CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B32AB9911D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B32AB9931D09ADC6007CA9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B32AB9961D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32AB99D1D09ADC6007CA9CB /* PhotoEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditTests.m; sourceTree = "<group>"; };
+		B32AB9A31D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32AB9A81D09ADC6007CA9CB /* PhotoEditUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEditUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB9AC1D09ADC6007CA9CB /* PhotoEditUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditUITests.m; sourceTree = "<group>"; };
+		B32AB9AE1D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32AB9BC1D09AE67007CA9CB /* PhotosCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCVC.h; sourceTree = "<group>"; };
+		B32AB9BD1D09AE67007CA9CB /* PhotosCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCVC.m; sourceTree = "<group>"; };
+		B32AB9BF1D09B233007CA9CB /* PhotosCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCVCell.h; sourceTree = "<group>"; };
+		B32AB9C01D09B233007CA9CB /* PhotosCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCVCell.m; sourceTree = "<group>"; };
+		B32AB9C31D09BA10007CA9CB /* EditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVC.h; sourceTree = "<group>"; };
+		B32AB9C41D09BA10007CA9CB /* EditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVC.m; sourceTree = "<group>"; };
+		B32AB9C61D09C04C007CA9CB /* SettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTVC.h; sourceTree = "<group>"; };
+		B32AB9C71D09C04C007CA9CB /* SettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTVC.m; sourceTree = "<group>"; };
+		B32AB9CB1D0A9E41007CA9CB /* DRColorPicker+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DRColorPicker+UIColor.h"; sourceTree = "<group>"; };
+		B32AB9CC1D0A9E41007CA9CB /* DRColorPicker+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DRColorPicker+UIColor.m"; sourceTree = "<group>"; };
+		B32AB9CD1D0A9E41007CA9CB /* DRColorPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DRColorPicker.bundle; sourceTree = "<group>"; };
+		B32AB9CE1D0A9E41007CA9CB /* DRColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPicker.h; sourceTree = "<group>"; };
+		B32AB9CF1D0A9E41007CA9CB /* DRColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPicker.m; sourceTree = "<group>"; };
+		B32AB9D01D0A9E41007CA9CB /* DRColorPickerBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerBaseViewController.h; sourceTree = "<group>"; };
+		B32AB9D11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerBaseViewController.m; sourceTree = "<group>"; };
+		B32AB9D21D0A9E41007CA9CB /* DRColorPickerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerColor.h; sourceTree = "<group>"; };
+		B32AB9D31D0A9E41007CA9CB /* DRColorPickerColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerColor.m; sourceTree = "<group>"; };
+		B32AB9D41D0A9E41007CA9CB /* DRColorPickerColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerColorView.h; sourceTree = "<group>"; };
+		B32AB9D51D0A9E41007CA9CB /* DRColorPickerColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerColorView.m; sourceTree = "<group>"; };
+		B32AB9D61D0A9E41007CA9CB /* DRColorPickerGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerGridView.h; sourceTree = "<group>"; };
+		B32AB9D71D0A9E41007CA9CB /* DRColorPickerGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerGridView.m; sourceTree = "<group>"; };
+		B32AB9D81D0A9E41007CA9CB /* DRColorPickerGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerGridViewCell.h; sourceTree = "<group>"; };
+		B32AB9D91D0A9E41007CA9CB /* DRColorPickerGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerGridViewCell.m; sourceTree = "<group>"; };
+		B32AB9DA1D0A9E41007CA9CB /* DRColorPickerGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerGridViewController.h; sourceTree = "<group>"; };
+		B32AB9DB1D0A9E41007CA9CB /* DRColorPickerGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerGridViewController.m; sourceTree = "<group>"; };
+		B32AB9DC1D0A9E41007CA9CB /* DRColorPickerHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerHomeView.h; sourceTree = "<group>"; };
+		B32AB9DD1D0A9E41007CA9CB /* DRColorPickerHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerHomeView.m; sourceTree = "<group>"; };
+		B32AB9DE1D0A9E41007CA9CB /* DRColorPickerHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerHomeViewController.h; sourceTree = "<group>"; };
+		B32AB9DF1D0A9E41007CA9CB /* DRColorPickerHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerHomeViewController.m; sourceTree = "<group>"; };
+		B32AB9E01D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerHorizontalCollectionViewLayout.h; sourceTree = "<group>"; };
+		B32AB9E11D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerHorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
+		B32AB9E21D0A9E41007CA9CB /* DRColorPickerHueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerHueView.h; sourceTree = "<group>"; };
+		B32AB9E31D0A9E41007CA9CB /* DRColorPickerHueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerHueView.m; sourceTree = "<group>"; };
+		B32AB9E41D0A9E41007CA9CB /* DRColorPickerHueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerHueViewController.h; sourceTree = "<group>"; };
+		B32AB9E51D0A9E41007CA9CB /* DRColorPickerHueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerHueViewController.m; sourceTree = "<group>"; };
+		B32AB9E61D0A9E41007CA9CB /* DRColorPickerStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerStore.h; sourceTree = "<group>"; };
+		B32AB9E71D0A9E41007CA9CB /* DRColorPickerStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerStore.m; sourceTree = "<group>"; };
+		B32AB9E81D0A9E41007CA9CB /* DRColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerViewController.h; sourceTree = "<group>"; };
+		B32AB9E91D0A9E41007CA9CB /* DRColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerViewController.m; sourceTree = "<group>"; };
+		B32AB9EA1D0A9E41007CA9CB /* DRColorPickerWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerWheelView.h; sourceTree = "<group>"; };
+		B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerWheelView.m; sourceTree = "<group>"; };
+		B32AB9EC1D0A9E41007CA9CB /* DRColorPickerWheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerWheelViewController.h; sourceTree = "<group>"; };
+		B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerWheelViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B32AB9811D09ADC6007CA9CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB99A1D09ADC6007CA9CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB9A51D09ADC6007CA9CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B32AB97B1D09ADC6007CA9CB = {
+			isa = PBXGroup;
+			children = (
+				B32AB9861D09ADC6007CA9CB /* PhotoEdit */,
+				B32AB9A01D09ADC6007CA9CB /* PhotoEditTests */,
+				B32AB9AB1D09ADC6007CA9CB /* PhotoEditUITests */,
+				B32AB9851D09ADC6007CA9CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B32AB9851D09ADC6007CA9CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */,
+				B32AB99D1D09ADC6007CA9CB /* PhotoEditTests.xctest */,
+				B32AB9A81D09ADC6007CA9CB /* PhotoEditUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B32AB9861D09ADC6007CA9CB /* PhotoEdit */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9BB1D09ADEC007CA9CB /* AppDelegate */,
+				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
+				B32AB9C21D09B23B007CA9CB /* Views */,
+				B32AB9901D09ADC6007CA9CB /* Main.storyboard */,
+				B32AB9C91D0A9E41007CA9CB /* External */,
+				B32AB9871D09ADC6007CA9CB /* Supporting Files */,
+			);
+			path = PhotoEdit;
+			sourceTree = "<group>";
+		};
+		B32AB9871D09ADC6007CA9CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9931D09ADC6007CA9CB /* Assets.xcassets */,
+				B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */,
+				B32AB9981D09ADC6007CA9CB /* Info.plist */,
+				B32AB9881D09ADC6007CA9CB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B32AB9A01D09ADC6007CA9CB /* PhotoEditTests */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */,
+				B32AB9A31D09ADC6007CA9CB /* Info.plist */,
+			);
+			path = PhotoEditTests;
+			sourceTree = "<group>";
+		};
+		B32AB9AB1D09ADC6007CA9CB /* PhotoEditUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9AC1D09ADC6007CA9CB /* PhotoEditUITests.m */,
+				B32AB9AE1D09ADC6007CA9CB /* Info.plist */,
+			);
+			path = PhotoEditUITests;
+			sourceTree = "<group>";
+		};
+		B32AB9BA1D09ADDA007CA9CB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9BC1D09AE67007CA9CB /* PhotosCVC.h */,
+				B32AB9BD1D09AE67007CA9CB /* PhotosCVC.m */,
+				B32AB9C31D09BA10007CA9CB /* EditVC.h */,
+				B32AB9C41D09BA10007CA9CB /* EditVC.m */,
+				B32AB9C61D09C04C007CA9CB /* SettingsTVC.h */,
+				B32AB9C71D09C04C007CA9CB /* SettingsTVC.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B32AB9BB1D09ADEC007CA9CB /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */,
+				B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		B32AB9C21D09B23B007CA9CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9BF1D09B233007CA9CB /* PhotosCVCell.h */,
+				B32AB9C01D09B233007CA9CB /* PhotosCVCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B32AB9C91D0A9E41007CA9CB /* External */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9CA1D0A9E41007CA9CB /* DRColorPicker */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		B32AB9CA1D0A9E41007CA9CB /* DRColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B32AB9CB1D0A9E41007CA9CB /* DRColorPicker+UIColor.h */,
+				B32AB9CC1D0A9E41007CA9CB /* DRColorPicker+UIColor.m */,
+				B32AB9CD1D0A9E41007CA9CB /* DRColorPicker.bundle */,
+				B32AB9CE1D0A9E41007CA9CB /* DRColorPicker.h */,
+				B32AB9CF1D0A9E41007CA9CB /* DRColorPicker.m */,
+				B32AB9D01D0A9E41007CA9CB /* DRColorPickerBaseViewController.h */,
+				B32AB9D11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m */,
+				B32AB9D21D0A9E41007CA9CB /* DRColorPickerColor.h */,
+				B32AB9D31D0A9E41007CA9CB /* DRColorPickerColor.m */,
+				B32AB9D41D0A9E41007CA9CB /* DRColorPickerColorView.h */,
+				B32AB9D51D0A9E41007CA9CB /* DRColorPickerColorView.m */,
+				B32AB9D61D0A9E41007CA9CB /* DRColorPickerGridView.h */,
+				B32AB9D71D0A9E41007CA9CB /* DRColorPickerGridView.m */,
+				B32AB9D81D0A9E41007CA9CB /* DRColorPickerGridViewCell.h */,
+				B32AB9D91D0A9E41007CA9CB /* DRColorPickerGridViewCell.m */,
+				B32AB9DA1D0A9E41007CA9CB /* DRColorPickerGridViewController.h */,
+				B32AB9DB1D0A9E41007CA9CB /* DRColorPickerGridViewController.m */,
+				B32AB9DC1D0A9E41007CA9CB /* DRColorPickerHomeView.h */,
+				B32AB9DD1D0A9E41007CA9CB /* DRColorPickerHomeView.m */,
+				B32AB9DE1D0A9E41007CA9CB /* DRColorPickerHomeViewController.h */,
+				B32AB9DF1D0A9E41007CA9CB /* DRColorPickerHomeViewController.m */,
+				B32AB9E01D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.h */,
+				B32AB9E11D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m */,
+				B32AB9E21D0A9E41007CA9CB /* DRColorPickerHueView.h */,
+				B32AB9E31D0A9E41007CA9CB /* DRColorPickerHueView.m */,
+				B32AB9E41D0A9E41007CA9CB /* DRColorPickerHueViewController.h */,
+				B32AB9E51D0A9E41007CA9CB /* DRColorPickerHueViewController.m */,
+				B32AB9E61D0A9E41007CA9CB /* DRColorPickerStore.h */,
+				B32AB9E71D0A9E41007CA9CB /* DRColorPickerStore.m */,
+				B32AB9E81D0A9E41007CA9CB /* DRColorPickerViewController.h */,
+				B32AB9E91D0A9E41007CA9CB /* DRColorPickerViewController.m */,
+				B32AB9EA1D0A9E41007CA9CB /* DRColorPickerWheelView.h */,
+				B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */,
+				B32AB9EC1D0A9E41007CA9CB /* DRColorPickerWheelViewController.h */,
+				B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */,
+			);
+			path = DRColorPicker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B32AB9831D09ADC6007CA9CB /* PhotoEdit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEdit" */;
+			buildPhases = (
+				B32AB9801D09ADC6007CA9CB /* Sources */,
+				B32AB9811D09ADC6007CA9CB /* Frameworks */,
+				B32AB9821D09ADC6007CA9CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoEdit;
+			productName = PhotoEdit;
+			productReference = B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B32AB99C1D09ADC6007CA9CB /* PhotoEditTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditTests" */;
+			buildPhases = (
+				B32AB9991D09ADC6007CA9CB /* Sources */,
+				B32AB99A1D09ADC6007CA9CB /* Frameworks */,
+				B32AB99B1D09ADC6007CA9CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32AB99F1D09ADC6007CA9CB /* PBXTargetDependency */,
+			);
+			name = PhotoEditTests;
+			productName = PhotoEditTests;
+			productReference = B32AB99D1D09ADC6007CA9CB /* PhotoEditTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B32AB9A71D09ADC6007CA9CB /* PhotoEditUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditUITests" */;
+			buildPhases = (
+				B32AB9A41D09ADC6007CA9CB /* Sources */,
+				B32AB9A51D09ADC6007CA9CB /* Frameworks */,
+				B32AB9A61D09ADC6007CA9CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32AB9AA1D09ADC6007CA9CB /* PBXTargetDependency */,
+			);
+			name = PhotoEditUITests;
+			productName = PhotoEditUITests;
+			productReference = B32AB9A81D09ADC6007CA9CB /* PhotoEditUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B32AB97C1D09ADC6007CA9CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Feghal;
+				TargetAttributes = {
+					B32AB9831D09ADC6007CA9CB = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					B32AB99C1D09ADC6007CA9CB = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B32AB9831D09ADC6007CA9CB;
+					};
+					B32AB9A71D09ADC6007CA9CB = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B32AB9831D09ADC6007CA9CB;
+					};
+				};
+			};
+			buildConfigurationList = B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "PhotoEdit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B32AB97B1D09ADC6007CA9CB;
+			productRefGroup = B32AB9851D09ADC6007CA9CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B32AB9831D09ADC6007CA9CB /* PhotoEdit */,
+				B32AB99C1D09ADC6007CA9CB /* PhotoEditTests */,
+				B32AB9A71D09ADC6007CA9CB /* PhotoEditUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B32AB9821D09ADC6007CA9CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */,
+				B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */,
+				B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */,
+				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB99B1D09ADC6007CA9CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB9A61D09ADC6007CA9CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B32AB9801D09ADC6007CA9CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */,
+				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
+				B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */,
+				B32AB9F51D0A9E41007CA9CB /* DRColorPickerGridViewCell.m in Sources */,
+				B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */,
+				B32AB9F81D0A9E41007CA9CB /* DRColorPickerHomeViewController.m in Sources */,
+				B32AB9FD1D0A9E41007CA9CB /* DRColorPickerViewController.m in Sources */,
+				B32AB9C81D09C04C007CA9CB /* SettingsTVC.m in Sources */,
+				B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */,
+				B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */,
+				B32AB9891D09ADC6007CA9CB /* main.m in Sources */,
+				B32AB9FA1D0A9E41007CA9CB /* DRColorPickerHueView.m in Sources */,
+				B32AB9FB1D0A9E41007CA9CB /* DRColorPickerHueViewController.m in Sources */,
+				B32AB9F21D0A9E41007CA9CB /* DRColorPickerColor.m in Sources */,
+				B32AB9C51D09BA10007CA9CB /* EditVC.m in Sources */,
+				B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */,
+				B32AB9F01D0A9E41007CA9CB /* DRColorPicker.m in Sources */,
+				B32AB9EE1D0A9E41007CA9CB /* DRColorPicker+UIColor.m in Sources */,
+				B32AB9FC1D0A9E41007CA9CB /* DRColorPickerStore.m in Sources */,
+				B32AB9F61D0A9E41007CA9CB /* DRColorPickerGridViewController.m in Sources */,
+				B32AB9F91D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m in Sources */,
+				B32AB9F71D0A9E41007CA9CB /* DRColorPickerHomeView.m in Sources */,
+				B32AB9C11D09B233007CA9CB /* PhotosCVCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB9991D09ADC6007CA9CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32AB9A41D09ADC6007CA9CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32AB9AD1D09ADC6007CA9CB /* PhotoEditUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B32AB99F1D09ADC6007CA9CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B32AB9831D09ADC6007CA9CB /* PhotoEdit */;
+			targetProxy = B32AB99E1D09ADC6007CA9CB /* PBXContainerItemProxy */;
+		};
+		B32AB9AA1D09ADC6007CA9CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B32AB9831D09ADC6007CA9CB /* PhotoEdit */;
+			targetProxy = B32AB9A91D09ADC6007CA9CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B32AB9901D09ADC6007CA9CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32AB9911D09ADC6007CA9CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32AB9961D09ADC6007CA9CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B32AB9AF1D09ADC6007CA9CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B32AB9B01D09ADC6007CA9CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B32AB9B21D09ADC6007CA9CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PhotoEdit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B32AB9B31D09ADC6007CA9CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PhotoEdit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B32AB9B51D09ADC6007CA9CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PhotoEditTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoEdit.app/PhotoEdit";
+			};
+			name = Debug;
+		};
+		B32AB9B61D09ADC6007CA9CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PhotoEditTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoEdit.app/PhotoEdit";
+			};
+			name = Release;
+		};
+		B32AB9B81D09ADC6007CA9CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PhotoEditUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PhotoEdit;
+			};
+			name = Debug;
+		};
+		B32AB9B91D09ADC6007CA9CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PhotoEditUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PhotoEdit;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "PhotoEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32AB9AF1D09ADC6007CA9CB /* Debug */,
+				B32AB9B01D09ADC6007CA9CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32AB9B21D09ADC6007CA9CB /* Debug */,
+				B32AB9B31D09ADC6007CA9CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32AB9B51D09ADC6007CA9CB /* Debug */,
+				B32AB9B61D09ADC6007CA9CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32AB9B81D09ADC6007CA9CB /* Debug */,
+				B32AB9B91D09ADC6007CA9CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B32AB97C1D09ADC6007CA9CB /* Project object */;
+}
