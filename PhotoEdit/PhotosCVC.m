@@ -23,6 +23,7 @@
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
+    self.navigationController.toolbarHidden = NO;
     [super viewDidLoad];
     self.photos = [NSMutableArray new];
 }

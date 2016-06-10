@@ -9,11 +9,15 @@
         <!--Navigation Controller-->
         <scene sceneID="WC4-UA-J95">
             <objects>
-                <navigationController id="bYu-em-yaE" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="bYu-em-yaE" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eal-fZ-e23">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="0Xh-zn-5lY">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="hLL-Xf-8Pw" kind="relationship" relationship="rootViewController" id="TPs-lT-8sp"/>
                     </connections>

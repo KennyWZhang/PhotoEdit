@@ -23,15 +23,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.toolbarHidden = YES;
     [self.imageView setUserInteractionEnabled:YES];
     self.imageView.image = self.photo;
     UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTapped)];
-     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                     target:self
-                                                                     action:@selector(share)];
+    UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                           target:self
+                                                                           action:@selector(share)];
     self.navigationItem.rightBarButtonItems = @[settings,share];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self.imageView addGestureRecognizer:tap];
+    UIBarButtonItem *bbtnBack = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(goBack)];
+    [self.navigationItem setLeftBarButtonItem:bbtnBack];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -42,6 +49,13 @@
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        
+    }
+    [super viewWillDisappear:animated];
 }
 
 ///------------
@@ -55,13 +69,35 @@
 #pragma mark - Actions -
 
 - (IBAction)saveTapped:(UIBarButtonItem *)sender {
-
     UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
     [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self removeSubviewsFromImageView];
     self.imageView.image = image;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text added sucsessfull, you can add another one, just tap on photo " preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:done];
+    [self.navigationController presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (void)goBack {
+    if(self.imageView.image != self.photo) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        [alert addAction:save];
+        [alert addAction:dismiss];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)share {
