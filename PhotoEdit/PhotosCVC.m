@@ -24,10 +24,9 @@
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
-    [self.navigationController setToolbarHidden:YES];
+    [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.navigationController.toolbar setHidden: YES];
-    [super viewDidLoad];
     self.photos = [NSMutableArray new];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"Photos"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Photos"];
@@ -37,8 +36,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
     for(int i = 0; i < self.photos.count; i++) {
-        if([self.photos[i] isEqual:self.imageToReplace]) {
+        if([self.photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
             self.photos[i] = self.generatedImage;
         }
     }

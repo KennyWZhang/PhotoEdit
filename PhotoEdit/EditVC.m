@@ -28,8 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.navigationController.toolbarHidden = YES;
+    self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];;
     [self.imageView setUserInteractionEnabled:YES];
     self.imageView.image = self.photo;
     UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTapped)];
@@ -46,7 +48,7 @@
     self.navigationItem.rightBarButtonItems = @[settings,share,add];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self.imageView addGestureRecognizer:tap];
-
+    
     [self.navigationItem setLeftBarButtonItem:bbtnBack];
 }
 
@@ -61,12 +63,6 @@
     self.imageView.backgroundColor = self.text[@"backround"];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
-        
-    }
-    [super viewWillDisappear:animated];
-}
 
 ///------------
 
@@ -84,7 +80,6 @@
 #pragma mark - Actions -
 
 - (IBAction)fixTapped:(UIBarButtonItem *)sender {
-    self.imageToReplace = self.imageView.image;
     if(!self.doublePhoto) {
         UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
         [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -97,14 +92,11 @@
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        UIToolbar *toolBar = self.view.subviews[1];
-        [toolBar setHidden:YES];
-
+        //[self.imageView.gestureRecognizers[0] addTarget:self action:@selector(tapped:)];
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO,0);
         [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        [toolBar setHidden:NO];
         [self removeSubviewsFromImageView];
         self.imageView.image = image;
         for(UIImageView *view in self.view.subviews) {
@@ -121,8 +113,14 @@
         UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
+        [self.imageView removeFromSuperview];
         CGRect frame = self.view.frame;
         self.imageView.frame = frame;
+        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
+        [self.view addSubview:self.imageView];
+        self.doublePhoto = NO;
     }
 }
 
@@ -143,6 +141,18 @@
         [alert addAction:dismiss];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
+        if(self.imageView.subviews.count > 0 || self.view.subviews.count > 3) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You don't fixed your changes,do you wan't dissmis all changes ?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"dissmis" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                return ;
+            }];
+            [alert addAction:cancel];
+            [alert addAction:dismiss];
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+        }
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
@@ -262,7 +272,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [self.imageView addGestureRecognizer:panOriginal];
     [self.view addSubview:addedImageView];
     [self removeSubviewsFromImageView];
-    [self.imageView.gestureRecognizers[0] removeTarget:self action:@selector(tapped:)];
+    //[self.imageView.gestureRecognizers[0] removeTarget:self action:@selector(tapped:)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self.view addGestureRecognizer:tap];
     self.doublePhoto = YES;

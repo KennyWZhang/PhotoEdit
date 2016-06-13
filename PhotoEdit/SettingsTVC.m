@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.toolbar setHidden:YES];
     self.text = [NSMutableDictionary new];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
@@ -52,6 +53,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        [self.navigationController.toolbar setHidden:NO];
         self.text[@"size"] = self.textField.text;
         self.text[@"color"] = self.colorButton.backgroundColor;
         self.text[@"backround"] = self.backroundColorButton.backgroundColor;
