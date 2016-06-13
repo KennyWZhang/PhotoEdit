@@ -39,13 +39,14 @@
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addTapped)];
-    self.navigationItem.rightBarButtonItems = @[settings,share,add];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
-    [self.imageView addGestureRecognizer:tap];
     UIBarButtonItem *bbtnBack = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(goBack)];
+    self.navigationItem.rightBarButtonItems = @[settings,share,add];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    [self.imageView addGestureRecognizer:tap];
+
     [self.navigationItem setLeftBarButtonItem:bbtnBack];
 }
 
@@ -236,6 +237,7 @@
 }
 
 - (void)returnTapped:(UITextField *)sender {
+    [sender sizeToFit];
     [sender resignFirstResponder];
 }
 

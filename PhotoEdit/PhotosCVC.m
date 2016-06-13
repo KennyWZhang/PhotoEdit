@@ -24,8 +24,9 @@
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
+    [self.navigationController setToolbarHidden:YES];
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.navigationController.toolbarHidden = NO;
+    [self.navigationController.toolbar setHidden: YES];
     [super viewDidLoad];
     self.photos = [NSMutableArray new];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"Photos"]) {
@@ -52,7 +53,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (IBAction)editButtontapped:(UIBarButtonItem *)sender {
     self.showDelete = !self.showDelete;
     if(self.collectionView.backgroundColor == [UIColor whiteColor]) {
-        self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:60.f/255.f blue:10.f/255.f alpha:1];
+        self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
     } else {
         self.collectionView.backgroundColor = [UIColor whiteColor];
     }
