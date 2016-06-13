@@ -36,6 +36,7 @@
 		B32AB9FD1D0A9E41007CA9CB /* DRColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9E91D0A9E41007CA9CB /* DRColorPickerViewController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */; };
 		B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */; };
+		B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA011D0E98D3007CA9CB /* dismiss.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerWheelView.m; sourceTree = "<group>"; };
 		B32AB9EC1D0A9E41007CA9CB /* DRColorPickerWheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerWheelViewController.h; sourceTree = "<group>"; };
 		B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerWheelViewController.m; sourceTree = "<group>"; };
+		B32ABA011D0E98D3007CA9CB /* dismiss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dismiss.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		B32AB9871D09ADC6007CA9CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B32ABA001D0E98D3007CA9CB /* Photos */,
 				B32AB9931D09ADC6007CA9CB /* Assets.xcassets */,
 				B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */,
 				B32AB9981D09ADC6007CA9CB /* Info.plist */,
@@ -283,6 +286,14 @@
 			path = DRColorPicker;
 			sourceTree = "<group>";
 		};
+		B32ABA001D0E98D3007CA9CB /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */,
+				B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */,
 				B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */,
 				B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */,
 				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,

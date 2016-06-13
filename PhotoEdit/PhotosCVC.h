@@ -10,4 +10,7 @@
 
 @interface PhotosCVC : UICollectionViewController
 
+@property (strong, nonatomic) UIImage *imageToReplace;
+@property (strong, nonatomic) UIImage *generatedImage;
+
 @end

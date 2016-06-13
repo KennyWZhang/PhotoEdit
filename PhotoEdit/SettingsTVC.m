@@ -19,6 +19,7 @@
 @property (strong, nonatomic) DRColorPickerColor *color;
 @property (weak, nonatomic) DRColorPickerViewController *colorPickerVC;
 @property (strong, nonatomic) NSMutableDictionary *text;
+
 @end
 
 @implementation SettingsTVC
@@ -28,8 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.text = [NSMutableDictionary new];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"])
-    {
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
         self.segment.selectedSegmentIndex = [self.text[@"style"] intValue];

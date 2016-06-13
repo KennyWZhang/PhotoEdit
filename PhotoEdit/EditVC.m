@@ -8,12 +8,14 @@
 
 #import "EditVC.h"
 
+#import "PhotosCVC.h"
 #import "SettingsTVC.h"
 
 @interface EditVC ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
+@property (strong, nonatomic) UIImage *imageToReplace;
 
 @end
 
@@ -23,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationController.toolbarHidden = YES;
     [self.imageView setUserInteractionEnabled:YES];
     self.imageView.image = self.photo;
@@ -41,7 +43,7 @@
     [self.navigationItem setLeftBarButtonItem:bbtnBack];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"])
     {
@@ -69,6 +71,7 @@
 #pragma mark - Actions -
 
 - (IBAction)saveTapped:(UIBarButtonItem *)sender {
+    self.imageToReplace = self.imageView.image;
     UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
     [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -84,12 +87,15 @@
 
 - (void)goBack {
     if(self.imageView.image != self.photo) {
+        PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
+        pcvc.imageToReplace = self.imageToReplace;
+        pcvc.generatedImage = self.imageView.image;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
-        UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Only Here" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }];
         [alert addAction:save];
@@ -110,9 +116,9 @@
 - (void)tapped:(UITapGestureRecognizer *)gesture {
     [self removeSubviewsFromImageView];
     CGPoint point = [gesture locationInView:gesture.view];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(point.x, point.y, gesture.view.frame.size.width, 100)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(point.x, point.y, gesture.view.frame.size.width -50, 100)];
     [textField setBorderStyle:UITextBorderStyleNone];
-    textField.placeholder = @"Type you text here";
+    textField.placeholder = @"Type here";
     textField.backgroundColor = [UIColor clearColor];
     if(self.text) {
         textField.tintColor = self.text[@"color"];
@@ -126,8 +132,19 @@
     [gesture.view addSubview:textField];
     [textField becomeFirstResponder];
     [textField addTarget:self action:@selector(returnTapped:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
+    [textField addGestureRecognizer:rot];
     [textField addGestureRecognizer:pan];
+}
+
+- (void)rotate:(UIRotationGestureRecognizer *)gesture {
+    CGFloat initialRotation = atan2f(gesture.view.transform.b , gesture.view.transform.a );
+    NSLog(@"%f",initialRotation);
+    CGFloat newRotation = initialRotation + gesture.rotation ;
+    gesture.view.transform = CGAffineTransformMakeRotation(newRotation);
+    [gesture setRotation:0];
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gesture {
@@ -135,9 +152,14 @@
     if (gesture.state == UIGestureRecognizerStateBegan) {
         originalCenter = gesture.view.center;
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
-        CGPoint translate = [gesture translationInView:gesture.view];
+        CGPoint translate = [gesture translationInView:[gesture.view superview]];
         gesture.view.center = CGPointMake(originalCenter.x + translate.x , originalCenter.y + translate.y );
     }
+}
+
+- (void)textChanged:(UITextField *)sender {
+    
+    [sender sizeToFit];
 }
 
 - (void)returnTapped:(UITextField *)sender {

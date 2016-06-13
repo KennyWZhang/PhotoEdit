@@ -51,16 +51,27 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vr4-4r-FLr">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                         </imageView>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dismiss.png" translatesAutoresizingMaskIntoConstraints="NO" id="nUT-q6-7Fq">
+                                            <rect key="frame" x="83" y="8" width="29" height="27"/>
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="29" id="BJb-7H-SWF"/>
+                                                <constraint firstAttribute="height" constant="27" id="dje-Wa-ed3"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="height" secondItem="bEA-Wt-res" secondAttribute="height" id="2dE-Z5-Elu"/>
-                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="centerX" secondItem="bEA-Wt-res" secondAttribute="centerX" id="FZI-S3-Fdy"/>
-                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="width" secondItem="bEA-Wt-res" secondAttribute="width" id="OrB-1k-G8d"/>
-                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="centerY" secondItem="bEA-Wt-res" secondAttribute="centerY" id="xx6-MX-XUS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vr4-4r-FLr" secondAttribute="bottom" id="0ry-GX-mz6"/>
+                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="top" secondItem="nUT-q6-7Fq" secondAttribute="top" constant="-8" id="Crs-fw-cLw"/>
+                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="leading" secondItem="bEA-Wt-res" secondAttribute="leading" id="GGk-IL-9m0"/>
+                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="trailing" secondItem="nUT-q6-7Fq" secondAttribute="trailing" constant="8" id="Kzf-AW-BhV"/>
+                                    <constraint firstAttribute="trailing" secondItem="nUT-q6-7Fq" secondAttribute="trailing" constant="8" id="Mtj-eZ-NzG"/>
+                                    <constraint firstItem="Vr4-4r-FLr" firstAttribute="top" secondItem="bEA-Wt-res" secondAttribute="top" id="xuO-Ui-5yi"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="deleteImageView" destination="nUT-q6-7Fq" id="i8k-9e-pRe"/>
                                     <outlet property="imageView" destination="Vr4-4r-FLr" id="bqG-PB-7OU"/>
                                 </connections>
                             </collectionViewCell>
@@ -71,6 +82,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="d8E-Te-7y1">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="qDC-yh-OIw">
+                            <connections>
+                                <action selector="editButtontapped:" destination="hLL-Xf-8Pw" id="jYb-bm-mH6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Uij-pb-ia6">
                             <connections>
                                 <action selector="addButtonTapped:" destination="hLL-Xf-8Pw" id="6fY-5Y-09x"/>
@@ -99,6 +115,9 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ckh-9e-ea2">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="qEH-8k-hFf"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem title="Fix" id="M45-J2-bEK">
                                         <connections>
@@ -256,4 +275,7 @@
             <point key="canvasLocation" x="944" y="399"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dismiss.png" width="32" height="32"/>
+    </resources>
 </document>
