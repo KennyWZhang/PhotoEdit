@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *colorButton;
+@property (strong, nonatomic) IBOutlet UIButton *backroundColorButton;
 @property (strong, nonatomic) DRColorPickerColor *color;
 @property (weak, nonatomic) DRColorPickerViewController *colorPickerVC;
 @property (strong, nonatomic) NSMutableDictionary *text;
@@ -40,6 +41,7 @@
         }
         self.textField.text = self.text[@"size"];
         self.colorButton.backgroundColor = self.text[@"color"];
+        self.backroundColorButton.backgroundColor = self.text[@"backround"];
     }
     self.stepper.minimumValue = 5;
     self.stepper.maximumValue = 40;
@@ -52,6 +54,7 @@
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         self.text[@"size"] = self.textField.text;
         self.text[@"color"] = self.colorButton.backgroundColor;
+        self.text[@"backround"] = self.backroundColorButton.backgroundColor;
         self.text[@"style"] = [NSString stringWithFormat:@"%ld",(long)self.segment.selectedSegmentIndex];
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.text];
@@ -105,8 +108,12 @@
     };
     vc.rootViewController.colorSelectedBlock = ^(DRColorPickerColor* color, DRColorPickerBaseViewController* vc)
     {
-        self.color = color;
-        self.colorButton.backgroundColor = color.rgbColor;
+        if (sender.tag == 0) {
+            self.color = color;
+            self.colorButton.backgroundColor = color.rgbColor;
+        } else {
+            self.backroundColorButton.backgroundColor = color.rgbColor;
+        }
     };
     [self presentViewController:vc animated:YES completion:nil];
 }

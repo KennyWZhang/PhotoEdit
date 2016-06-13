@@ -33,7 +33,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="L3Y-MD-kFD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="ahE-qu-e8c">
                             <size key="itemSize" width="120" height="120"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -121,7 +121,7 @@
                                 <items>
                                     <barButtonItem title="Fix" id="M45-J2-bEK">
                                         <connections>
-                                            <action selector="saveTapped:" destination="5BB-nk-wdM" id="iJA-kG-XcI"/>
+                                            <action selector="fixTapped:" destination="5BB-nk-wdM" id="hEf-pu-doM"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -139,6 +139,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fixButton" destination="M45-J2-bEK" id="lQT-ZA-HX1"/>
                         <outlet property="imageView" destination="sVf-MH-tpN" id="kQa-eZ-FIy"/>
                     </connections>
                 </viewController>
@@ -165,7 +166,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDE-ej-ucc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="27"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="colorButton:" destination="pFt-gj-1oy" eventType="touchUpInside" id="uDp-jx-0S7"/>
@@ -174,9 +175,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EDE-ej-ucc" firstAttribute="centerX" secondItem="6ES-UL-98G" secondAttribute="centerX" id="4IQ-eY-GGk"/>
-                                                <constraint firstItem="EDE-ej-ucc" firstAttribute="width" secondItem="6ES-UL-98G" secondAttribute="width" id="H1f-ps-FFT"/>
+                                                <constraint firstItem="EDE-ej-ucc" firstAttribute="width" secondItem="6ES-UL-98G" secondAttribute="width" constant="-16" id="H1f-ps-FFT"/>
                                                 <constraint firstItem="EDE-ej-ucc" firstAttribute="centerY" secondItem="6ES-UL-98G" secondAttribute="centerY" id="ixv-f1-IK5"/>
-                                                <constraint firstItem="EDE-ej-ucc" firstAttribute="height" secondItem="6ES-UL-98G" secondAttribute="height" id="jUB-Sx-SfE"/>
+                                                <constraint firstItem="EDE-ej-ucc" firstAttribute="height" secondItem="6ES-UL-98G" secondAttribute="height" constant="-16" id="jUB-Sx-SfE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -257,6 +258,33 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Backround" id="iRQ-rl-F41">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="P2c-no-IA4">
+                                        <rect key="frame" x="0.0" y="284" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2c-no-IA4" id="cgf-5A-Zpy">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUB-Sc-nZU">
+                                                    <rect key="frame" x="8" y="7" width="584" height="28"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="colorButton:" destination="pFt-gj-1oy" eventType="touchUpInside" id="2ol-wF-abH"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nUB-Sc-nZU" firstAttribute="centerY" secondItem="cgf-5A-Zpy" secondAttribute="centerY" id="KLc-c1-WH1"/>
+                                                <constraint firstItem="nUB-Sc-nZU" firstAttribute="centerX" secondItem="cgf-5A-Zpy" secondAttribute="centerX" id="Rob-4j-gxI"/>
+                                                <constraint firstItem="nUB-Sc-nZU" firstAttribute="height" secondItem="cgf-5A-Zpy" secondAttribute="height" constant="-15" id="V9d-J5-C6a"/>
+                                                <constraint firstItem="nUB-Sc-nZU" firstAttribute="width" secondItem="cgf-5A-Zpy" secondAttribute="width" constant="-16" id="afk-zm-itD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="pFt-gj-1oy" id="Erz-q0-opV"/>
@@ -264,6 +292,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="backroundColorButton" destination="nUB-Sc-nZU" id="d9H-E1-CXD"/>
                         <outlet property="colorButton" destination="EDE-ej-ucc" id="Ima-Br-cUu"/>
                         <outlet property="segment" destination="Pec-g5-2O4" id="VQW-TL-58M"/>
                         <outlet property="stepper" destination="JxE-2M-HJY" id="LfR-aE-s7x"/>

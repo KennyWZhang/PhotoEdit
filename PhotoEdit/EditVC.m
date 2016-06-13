@@ -11,11 +11,14 @@
 #import "PhotosCVC.h"
 #import "SettingsTVC.h"
 
-@interface EditVC ()
+@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
 @property (strong, nonatomic) UIImage *imageToReplace;
+@property (assign, nonatomic) CGFloat lastScale;
+@property (assign, nonatomic) BOOL doublePhoto;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *fixButton;
 
 @end
 
@@ -33,7 +36,10 @@
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                            target:self
                                                                            action:@selector(share)];
-    self.navigationItem.rightBarButtonItems = @[settings,share];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addTapped)];
+    self.navigationItem.rightBarButtonItems = @[settings,share,add];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self.imageView addGestureRecognizer:tap];
     UIBarButtonItem *bbtnBack = [[UIBarButtonItem alloc] initWithTitle:@"Done"
@@ -45,12 +51,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"])
-    {
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
         self.text = [NSMutableDictionary new];
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
     }
+    self.view.backgroundColor = self.text[@"backround"];
+    self.imageView.backgroundColor = self.text[@"backround"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,23 +73,56 @@
     for(UITextField *textField in self.imageView.subviews) {
         [textField removeFromSuperview];
     }
+    for(UIView *textField in self.view.subviews) {
+        if([textField isKindOfClass:[UITextField class]]) {
+            [textField removeFromSuperview];
+        }
+    }
 }
 
 #pragma mark - Actions -
 
-- (IBAction)saveTapped:(UIBarButtonItem *)sender {
+- (IBAction)fixTapped:(UIBarButtonItem *)sender {
     self.imageToReplace = self.imageView.image;
-    UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
-    [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self removeSubviewsFromImageView];
-    self.imageView.image = image;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text added sucsessfull, you can add another one, just tap on photo " preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:done];
-    [self.navigationController presentViewController:alert animated:YES completion:nil];
-    
+    if(!self.doublePhoto) {
+        UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
+        [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [self removeSubviewsFromImageView];
+        self.imageView.image = image;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text added sucsessfull, you can add another one, just tap on photo " preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:done];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+    } else {
+        UIToolbar *toolBar = self.view.subviews[1];
+        [toolBar setHidden:YES];
+
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO,0);
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [toolBar setHidden:NO];
+        [self removeSubviewsFromImageView];
+        self.imageView.image = image;
+        for(UIImageView *view in self.view.subviews) {
+            if ([view isKindOfClass:[UIImageView class]] && ![view isEqual:self.imageView]) {
+                [view removeFromSuperview];
+            }
+        }
+        for(UIGestureRecognizer *gesture in self.imageView.gestureRecognizers) {
+            if(![gesture isKindOfClass:[UITapGestureRecognizer class]]) {
+                [self.imageView removeGestureRecognizer:gesture];
+            }
+        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text and Photos added sucsessfull " preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:done];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+        CGRect frame = self.view.frame;
+        self.imageView.frame = frame;
+    }
 }
 
 - (void)goBack {
@@ -113,6 +153,19 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
+- (void)settingsTapped {
+    SettingsTVC *stvc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingsTVC"];
+    
+    [self.navigationController pushViewController:stvc animated:YES];
+}
+
+- (void)addTapped {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
 - (void)tapped:(UITapGestureRecognizer *)gesture {
     [self removeSubviewsFromImageView];
     CGPoint point = [gesture locationInView:gesture.view];
@@ -141,7 +194,6 @@
 
 - (void)rotate:(UIRotationGestureRecognizer *)gesture {
     CGFloat initialRotation = atan2f(gesture.view.transform.b , gesture.view.transform.a );
-    NSLog(@"%f",initialRotation);
     CGFloat newRotation = initialRotation + gesture.rotation ;
     gesture.view.transform = CGAffineTransformMakeRotation(newRotation);
     [gesture setRotation:0];
@@ -157,8 +209,29 @@
     }
 }
 
-- (void)textChanged:(UITextField *)sender {
+- (void)resizeImageView:(UIPinchGestureRecognizer *)gesture {
     
+    if([gesture state] == UIGestureRecognizerStateBegan) {
+        self.lastScale = [gesture scale];
+    }
+    if ([gesture state] == UIGestureRecognizerStateBegan ||
+        [gesture state] == UIGestureRecognizerStateChanged) {
+        CGFloat currentScale = [[[gesture view].layer valueForKeyPath:@"transform.scale"] floatValue];
+        
+        const CGFloat kMaxScale = 3.0;
+        const CGFloat kMinScale = 0.3;
+        
+        CGFloat newScale = 1 -  (self.lastScale - [gesture scale]);
+        newScale = MIN(newScale, kMaxScale / currentScale);
+        newScale = MAX(newScale, kMinScale / currentScale);
+        CGAffineTransform transform = CGAffineTransformScale([[gesture view] transform], newScale, newScale);
+        [gesture view].transform = transform;
+        
+        self.lastScale = [gesture scale];
+    }
+}
+
+- (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];
 }
 
@@ -166,10 +239,32 @@
     [sender resignFirstResponder];
 }
 
-- (void)settingsTapped {
-    SettingsTVC *stvc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingsTVC"];
+#pragma mark <UIImagePickerControllerDelegate>
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, 100, 100)];
+    [addedImageView setUserInteractionEnabled:YES];
+    addedImageView.image = pickedImage;
+    addedImageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    [self.navigationController pushViewController:stvc animated:YES];
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
+    UIPinchGestureRecognizer *pinchOriginal = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    UIPanGestureRecognizer *panOriginal = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    
+    [addedImageView addGestureRecognizer:pinch];
+    [self.imageView addGestureRecognizer:pinchOriginal];
+    [addedImageView addGestureRecognizer:pan];
+    [self.imageView addGestureRecognizer:panOriginal];
+    [self.view addSubview:addedImageView];
+    [self removeSubviewsFromImageView];
+    [self.imageView.gestureRecognizers[0] removeTarget:self action:@selector(tapped:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    [self.view addGestureRecognizer:tap];
+    self.doublePhoto = YES;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
