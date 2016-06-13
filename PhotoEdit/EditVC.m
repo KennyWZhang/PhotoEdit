@@ -18,7 +18,6 @@
 @property (strong, nonatomic) UIImage *imageToReplace;
 @property (assign, nonatomic) CGFloat lastScale;
 @property (assign, nonatomic) BOOL doublePhoto;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *fixButton;
 
 @end
 
@@ -229,7 +228,7 @@
         [gesture state] == UIGestureRecognizerStateChanged) {
         CGFloat currentScale = [[[gesture view].layer valueForKeyPath:@"transform.scale"] floatValue];
         
-        const CGFloat kMaxScale = 3.0;
+        const CGFloat kMaxScale = 10.0;
         const CGFloat kMinScale = 0.3;
         
         CGFloat newScale = 1 -  (self.lastScale - [gesture scale]);
@@ -265,15 +264,15 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIPinchGestureRecognizer *pinchOriginal = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIPanGestureRecognizer *panOriginal = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     
+
     [addedImageView addGestureRecognizer:pinch];
     [self.imageView addGestureRecognizer:pinchOriginal];
     [addedImageView addGestureRecognizer:pan];
     [self.imageView addGestureRecognizer:panOriginal];
     [self.view addSubview:addedImageView];
-    [self removeSubviewsFromImageView];
-    //[self.imageView.gestureRecognizers[0] removeTarget:self action:@selector(tapped:)];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    //[self removeSubviewsFromImageView];
     [self.view addGestureRecognizer:tap];
     self.doublePhoto = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];

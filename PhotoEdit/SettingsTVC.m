@@ -104,12 +104,10 @@
     vc.rootViewController.importImage = DRColorPickerImage(@"images/light/drcolorpicker-import-light.png");
     
     self.colorPickerVC = vc;
-    vc.rootViewController.dismissBlock = ^(BOOL cancel)
-    {
+    vc.rootViewController.dismissBlock = ^(BOOL cancel) {
         [self dismissViewControllerAnimated:YES completion:nil];
     };
-    vc.rootViewController.colorSelectedBlock = ^(DRColorPickerColor* color, DRColorPickerBaseViewController* vc)
-    {
+    vc.rootViewController.colorSelectedBlock = ^(DRColorPickerColor* color, DRColorPickerBaseViewController* vc) {
         if (sender.tag == 0) {
             self.color = color;
             self.colorButton.backgroundColor = color.rgbColor;
