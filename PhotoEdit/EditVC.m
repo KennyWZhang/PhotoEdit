@@ -58,10 +58,16 @@
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
     }
-    self.view.backgroundColor = self.text[@"backround"];
-    self.imageView.backgroundColor = self.text[@"backround"];
+    if(self.text) {
+        self.view.backgroundColor = self.text[@"backround"];
+        self.imageView.backgroundColor = self.text[@"backround"];
+    }
 }
 
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+}
 
 ///------------
 
@@ -91,7 +97,6 @@
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        //[self.imageView.gestureRecognizers[0] addTarget:self action:@selector(tapped:)];
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO,0);
         [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -266,13 +271,12 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIPanGestureRecognizer *panOriginal = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     
-
+    
     [addedImageView addGestureRecognizer:pinch];
     [self.imageView addGestureRecognizer:pinchOriginal];
     [addedImageView addGestureRecognizer:pan];
     [self.imageView addGestureRecognizer:panOriginal];
     [self.view addSubview:addedImageView];
-    //[self removeSubviewsFromImageView];
     [self.view addGestureRecognizer:tap];
     self.doublePhoto = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];

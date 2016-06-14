@@ -28,10 +28,8 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.navigationController.toolbar setHidden: YES];
     self.photos = [NSMutableArray new];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"Photos"]) {
-        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Photos"];
-        self.photos = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
-    }
+    [self loadImages];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -42,11 +40,7 @@ static NSString * const reuseIdentifier = @"Cell";
             self.photos[i] = self.generatedImage;
         }
     }
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.photos];
-    [prefs setObject:data forKey:@"Photos"];
-    [prefs synchronize];
-    
+    [self saveImages];
     [self.collectionView reloadData];
 }
 
@@ -65,6 +59,43 @@ static NSString * const reuseIdentifier = @"Cell";
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)saveImages {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    for (NSString *filename in fileArray)  {
+        
+        [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
+    }
+    
+    int i = 0;
+    for(UIImage *image in self.photos) {
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i++];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
+        NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+        [data writeToFile:imagePath atomically:YES];
+    }
+}
+
+- (void)loadImages {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:documentsDirectory error:NULL];
+    for (NSString *fileName in docFiles) {
+        if([fileName hasSuffix:@".jpeg"]) {
+            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+            NSData *imgData = [NSData dataWithContentsOfFile:fullPath];
+            UIImage *loadedImage = [[UIImage alloc] initWithData:imgData];
+            if(loadedImage) {
+                [self.photos addObject:loadedImage];
+            }
+        }
+    }
 }
 
 #pragma mark <UIImagePickerControllerDelegate>
@@ -120,11 +151,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if(self.showDelete) {
         [self.photos removeObjectAtIndex:indexPath.row];
+        [self saveImages];
         [self.collectionView reloadData];
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.photos];
-        [prefs setObject:data forKey:@"Photos"];
-        [prefs synchronize];
     } else {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];
         evc.photo = self.photos[indexPath.row];
