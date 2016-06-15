@@ -23,6 +23,8 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+#pragma mark - ViewController Lifecycle -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -44,6 +46,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
 }
 
+#pragma mark - Actions -
+
 - (IBAction)editButtontapped:(UIBarButtonItem *)sender {
     self.showDelete = !self.showDelete;
     if(self.collectionView.backgroundColor == [UIColor whiteColor]) {
@@ -61,24 +65,32 @@ static NSString * const reuseIdentifier = @"Cell";
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+/// - saving images into directory -
+
 - (void)saveImages {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-    for (NSString *filename in fileArray)  {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
-        [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
-    }
-    
-    int i = 0;
-    for(UIImage *image in self.photos) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i++];
-        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-        NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
-        [data writeToFile:imagePath atomically:YES];
-    }
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSFileManager *fileMgr = [NSFileManager defaultManager];
+        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
+        for (NSString *filename in fileArray)  {
+            
+            [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
+        }
+        
+        int i = 0;
+        for(UIImage *image in self.photos) {
+            NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i++];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
+            NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+            [data writeToFile:imagePath atomically:YES];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+    });
 }
 
 - (void)loadImages {
@@ -98,31 +110,15 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
-#pragma mark <UIImagePickerControllerDelegate>
+#pragma mark - UIImagePickerControllerDelegate -
 
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    for(UIImage *image in self.photos) {
-        if([UIImagePNGRepresentation(pickedImage) isEqualToData:UIImagePNGRepresentation(image)]) {
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Erorr"
-                                                                           message:@"This photo allways exist , please add another one"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-            [alert addAction:done];
-            [self.navigationController presentViewController:alert animated:YES completion:nil];
-            return;
-        }
-    }
     [self.photos addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
-    [self.collectionView reloadData];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollectionViewDataSource -
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.photos.count;
@@ -135,18 +131,36 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     if(self.showDelete) {
         [cell.deleteImageView setHidden:NO];
-        [UIView transitionWithView:cell.deleteImageView duration:0.1 options:UIViewAnimationOptionRepeat animations:^{
-            cell.deleteImageView.frame = CGRectMake(cell.deleteImageView.frame.origin.x + 3, cell.deleteImageView.frame.origin.y + 3, cell.deleteImageView.frame.size.width, cell.deleteImageView.frame.size.height);
-        }completion:nil];
+        CGRect dFrame = cell.deleteImageView.frame;
+        [UIView transitionWithView:cell.deleteImageView duration:0.15 options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
+            cell.deleteImageView.frame = CGRectMake(dFrame.origin.x, dFrame.origin.y , dFrame.size.width + 3,dFrame.size.height + 3);
+            cell.deleteImageView.frame = CGRectMake(dFrame.origin.x , dFrame.origin.y , dFrame.size.width - 3, dFrame.size.height - 3);
+        }completion:^(BOOL finished) {
+            if(finished) {
+                cell.deleteImageView.frame = dFrame;
+            }
+        }];
+        CGRect frame = cell.imageView.frame;
+        [UIView transitionWithView:cell.imageView duration:0.5 options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
+            cell.imageView.frame = CGRectMake(frame.origin.x , frame.origin.y, frame.size.width + 8, frame.size.height + 8);
+            cell.imageView.frame = CGRectMake(frame.origin.x , frame.origin.y, frame.size.width - 8, frame.size.height - 8);
+        } completion:^(BOOL finished) {
+            if(finished) {
+                cell.imageView.frame = frame;
+            }
+        }];
+        cell.deleteImageView.frame = dFrame;
+        cell.imageView.frame = frame;
     } else {
+        [cell.deleteImageView.layer removeAllAnimations];
         [cell.deleteImageView setHidden:YES];
-        cell.deleteImageView.frame = CGRectMake(cell.deleteImageView.frame.origin.x - 3, cell.deleteImageView.frame.origin.y - 3, cell.deleteImageView.frame.size.width, cell.deleteImageView.frame.size.height);
+        [cell.imageView.layer removeAllAnimations];
     }
     
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate -
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if(self.showDelete) {

@@ -11,7 +11,7 @@
 #import "PhotosCVC.h"
 #import "SettingsTVC.h"
 
-@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
@@ -26,6 +26,9 @@
 #pragma mark - ViewController lifecycle -
 
 - (void)viewDidLoad {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [super viewDidLoad];
     self.imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -62,11 +65,6 @@
         self.view.backgroundColor = self.text[@"backround"];
         self.imageView.backgroundColor = self.text[@"backround"];
     }
-}
-
--(void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
 }
 
 ///------------
@@ -117,13 +115,8 @@
         UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
-        [self.imageView removeFromSuperview];
-        CGRect frame = self.view.frame;
+        CGRect frame = self.view.bounds;
         self.imageView.frame = frame;
-        self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
-        [self.view addSubview:self.imageView];
         self.doublePhoto = NO;
     }
 }
@@ -136,10 +129,14 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }];
         UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Only Here" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }];
         [alert addAction:save];
         [alert addAction:dismiss];
@@ -148,7 +145,9 @@
         if(self.imageView.subviews.count > 0 || self.view.subviews.count > 3) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You don't fixed your changes,do you wan't dissmis all changes ?" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"dissmis" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 return ;
@@ -156,14 +155,19 @@
             [alert addAction:cancel];
             [alert addAction:dismiss];
             [self.navigationController presentViewController:alert animated:YES completion:nil];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
         }
-        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
 - (void)share {
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
     NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
+    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
+        activityViewController.popoverPresentationController.sourceView =
+        self.view;
+    }
     activityViewController.excludedActivityTypes = excludedActivities;
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
@@ -181,10 +185,13 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+#pragma mark - gesture recognizer selectors -
+
 - (void)tapped:(UITapGestureRecognizer *)gesture {
     [self removeSubviewsFromImageView];
+    
     CGPoint point = [gesture locationInView:gesture.view];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(point.x, point.y, gesture.view.frame.size.width -50, 100)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(point.x, point.y, gesture.view.frame.size.width - 50, 100)];
     [textField setBorderStyle:UITextBorderStyleNone];
     textField.placeholder = @"Type here";
     textField.backgroundColor = [UIColor clearColor];
@@ -197,7 +204,6 @@
             textField.font = [UIFont boldSystemFontOfSize:[self.text[@"size"] intValue]];
         }
     }
-    [gesture.view addSubview:textField];
     [textField becomeFirstResponder];
     [textField addTarget:self action:@selector(returnTapped:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -205,27 +211,35 @@
     UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
     [textField addGestureRecognizer:rot];
     [textField addGestureRecognizer:pan];
+    [gesture.view addSubview:textField];
 }
 
 - (void)rotate:(UIRotationGestureRecognizer *)gesture {
-    CGFloat initialRotation = atan2f(gesture.view.transform.b , gesture.view.transform.a );
-    CGFloat newRotation = initialRotation + gesture.rotation ;
-    gesture.view.transform = CGAffineTransformMakeRotation(newRotation);
+    [gesture view].transform = CGAffineTransformRotate([[gesture view] transform],
+                                                       [gesture rotation]);
     [gesture setRotation:0];
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gesture {
     static CGPoint originalCenter;
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        originalCenter = gesture.view.center;
+        if([gesture.view isEqual:self.imageView]) {
+            originalCenter = self.imageView.center;
+        } else {
+            originalCenter = gesture.view.center;
+        }
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
-        CGPoint translate = [gesture translationInView:[gesture.view superview]];
-        gesture.view.center = CGPointMake(originalCenter.x + translate.x , originalCenter.y + translate.y );
+        if([gesture.view isEqual:self.imageView]) {
+            CGPoint translate = [gesture translationInView:[self.imageView superview]];
+            self.imageView.center = CGPointMake(originalCenter.x + translate.x , originalCenter.y + translate.y );
+        } else {
+            CGPoint translate = [gesture translationInView:[gesture.view superview]];
+            gesture.view.center = CGPointMake(originalCenter.x + translate.x , originalCenter.y + translate.y );
+        }
     }
 }
 
 - (void)resizeImageView:(UIPinchGestureRecognizer *)gesture {
-    
     if([gesture state] == UIGestureRecognizerStateBegan) {
         self.lastScale = [gesture scale];
     }
@@ -241,10 +255,11 @@
         newScale = MAX(newScale, kMinScale / currentScale);
         CGAffineTransform transform = CGAffineTransformScale([[gesture view] transform], newScale, newScale);
         [gesture view].transform = transform;
-        
         self.lastScale = [gesture scale];
     }
 }
+
+///------------///
 
 - (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];
@@ -255,12 +270,19 @@
     [sender resignFirstResponder];
 }
 
-#pragma mark <UIImagePickerControllerDelegate>
+#pragma mark - UIGestureRecognizer delegate -
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+#pragma mark - UIImagePickerControllerDelegate -
 
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, 100, 100)];
+    UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 2, self.view.frame.size.width / 2)];
+    
     [addedImageView setUserInteractionEnabled:YES];
     addedImageView.image = pickedImage;
     addedImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -269,16 +291,36 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIPinchGestureRecognizer *pinchOriginal = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIPanGestureRecognizer *panOriginal = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
+    UIRotationGestureRecognizer *rotOriginal = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    NSArray *gestures = @[pan,panOriginal,pinch,pinchOriginal];
     
+    for(UIGestureRecognizer *gesture in gestures) {
+        gesture.delegate = self;
+    }
     
+    [pan setMaximumNumberOfTouches:1];
+    [panOriginal setMaximumNumberOfTouches:1];
+    
+    for (UIGestureRecognizer *recognizer in self.imageView.gestureRecognizers) {
+        [self.imageView removeGestureRecognizer:recognizer];
+    }
     [addedImageView addGestureRecognizer:pinch];
     [self.imageView addGestureRecognizer:pinchOriginal];
     [addedImageView addGestureRecognizer:pan];
     [self.imageView addGestureRecognizer:panOriginal];
+    [addedImageView addGestureRecognizer:rot];
+    [self.imageView addGestureRecognizer:rotOriginal];
     [self.view addSubview:addedImageView];
     [self.view addGestureRecognizer:tap];
     self.doublePhoto = YES;
+    [self.imageView removeConstraints:self.imageView.constraints];
+    [self.view removeConstraints:self.view.constraints];
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.view.translatesAutoresizingMaskIntoConstraints = YES;
+    self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

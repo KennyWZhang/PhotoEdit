@@ -96,7 +96,7 @@
     
     DRColorPickerViewController* vc = [DRColorPickerViewController newColorPickerWithColor:self.color];
     vc.modalPresentationStyle = UIModalPresentationFormSheet;
-    vc.rootViewController.showAlphaSlider = YES; // default is YES, set to NO to hide the alpha slider
+    vc.rootViewController.showAlphaSlider = YES; 
     vc.rootViewController.addToFavoritesImage = DRColorPickerImage(@"images/light/drcolorpicker-addtofavorites-light.png");
     vc.rootViewController.favoritesImage = DRColorPickerImage(@"images/light/drcolorpicker-favorites-light.png");
     vc.rootViewController.hueImage = DRColorPickerImage(@"images/light/drcolorpicker-hue-v3-light.png");
