@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSMutableArray * photos;
 @property (assign, nonatomic) BOOL showDelete;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
 @end
 
@@ -34,8 +35,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES];
     for(int i = 0; i < self.photos.count; i++) {
         if([self.photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
@@ -68,15 +69,17 @@ static NSString * const reuseIdentifier = @"Cell";
 /// - saving images into directory -
 
 - (void)saveImages {
+    UIView *opacityView = [[UIView alloc] initWithFrame:self.collectionView.frame];
+    opacityView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.6];
+    [self.collectionView addSubview:opacityView];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
+        [self.addButton setEnabled:NO];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSFileManager *fileMgr = [NSFileManager defaultManager];
         NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
         for (NSString *filename in fileArray)  {
-            
             [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
         }
         
@@ -88,7 +91,8 @@ static NSString * const reuseIdentifier = @"Cell";
             [data writeToFile:imagePath atomically:YES];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self.addButton setEnabled:YES];
+            [opacityView removeFromSuperview];
         });
     });
 }
@@ -110,6 +114,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
 }
 
+
 #pragma mark - UIImagePickerControllerDelegate -
 
 -(void)imagePickerController:(UIImagePickerController *)picker
@@ -126,10 +131,13 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotosCVCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [cell setExclusiveTouch:YES];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.imageView.image = self.photos[indexPath.row];
     
     if(self.showDelete) {
+        [cell.deleteImageView.layer removeAllAnimations];
+        [cell.imageView.layer removeAllAnimations];
         [cell.deleteImageView setHidden:NO];
         CGRect dFrame = cell.deleteImageView.frame;
         [UIView transitionWithView:cell.deleteImageView duration:0.15 options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
@@ -166,7 +174,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if(self.showDelete) {
         [self.photos removeObjectAtIndex:indexPath.row];
         [self saveImages];
-        [self.collectionView reloadData];
+        [collectionView reloadData];
     } else {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];
         evc.photo = self.photos[indexPath.row];

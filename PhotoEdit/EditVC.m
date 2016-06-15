@@ -120,6 +120,9 @@
         self.doublePhoto = NO;
     }
 }
+- (IBAction)removeTextTapped:(UIBarButtonItem *)sender {
+    [self removeSubviewsFromImageView];
+}
 
 - (void)goBack {
     if(self.imageView.image != self.photo) {
