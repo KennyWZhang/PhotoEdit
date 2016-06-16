@@ -14,6 +14,7 @@
 
 @interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) NSMutableArray * photos;
 @property (assign, nonatomic) BOOL showDelete;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
@@ -52,8 +53,10 @@ static NSString * const reuseIdentifier = @"Cell";
 - (IBAction)editButtontapped:(UIBarButtonItem *)sender {
     self.showDelete = !self.showDelete;
     if(self.collectionView.backgroundColor == [UIColor whiteColor]) {
+        [self.editButton setTitle: @"Cancel"];
         self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
     } else {
+        [self.editButton setTitle: @"Edit"];
         self.collectionView.backgroundColor = [UIColor whiteColor];
     }
     [self.collectionView reloadData];

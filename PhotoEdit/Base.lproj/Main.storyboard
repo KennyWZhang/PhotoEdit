@@ -87,7 +87,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Mm" id="d8E-Te-7y1">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="qDC-yh-OIw">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="qDC-yh-OIw">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="editButtontapped:" destination="hLL-Xf-8Pw" id="jYb-bm-mH6"/>
@@ -102,6 +102,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Uij-pb-ia6" id="dij-oT-4Tf"/>
+                        <outlet property="editButton" destination="qDC-yh-OIw" id="yUL-8W-I30"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jp-2G-LdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,20 +117,32 @@
                         <viewControllerLayoutGuide type="top" id="cEr-J1-HXD"/>
                         <viewControllerLayoutGuide type="bottom" id="nZa-Gt-XfC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GDw-LI-TnK">
+                    <view key="view" contentMode="scaleToFill" id="GDw-LI-TnK" userLabel="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sVf-MH-tpN">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sa2-zY-6NC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sVf-MH-tpN">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sVf-MH-tpN" firstAttribute="centerX" secondItem="sa2-zY-6NC" secondAttribute="centerX" id="2P9-Hp-lTJ"/>
+                                    <constraint firstItem="sVf-MH-tpN" firstAttribute="height" secondItem="sa2-zY-6NC" secondAttribute="height" id="3Xw-m5-Ign"/>
+                                    <constraint firstItem="sVf-MH-tpN" firstAttribute="centerY" secondItem="sa2-zY-6NC" secondAttribute="centerY" id="XvT-pP-xsP"/>
+                                    <constraint firstItem="sVf-MH-tpN" firstAttribute="width" secondItem="sa2-zY-6NC" secondAttribute="width" id="mvG-SY-vgg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sVf-MH-tpN" firstAttribute="width" secondItem="GDw-LI-TnK" secondAttribute="width" id="3oQ-aJ-NeG"/>
-                            <constraint firstItem="sVf-MH-tpN" firstAttribute="height" secondItem="GDw-LI-TnK" secondAttribute="height" id="JFo-Hw-dHF"/>
-                            <constraint firstItem="sVf-MH-tpN" firstAttribute="centerY" secondItem="GDw-LI-TnK" secondAttribute="centerY" id="Ldk-pA-uB5"/>
-                            <constraint firstItem="sVf-MH-tpN" firstAttribute="centerX" secondItem="GDw-LI-TnK" secondAttribute="centerX" id="PYL-yG-RKJ"/>
+                            <constraint firstItem="sa2-zY-6NC" firstAttribute="centerX" secondItem="GDw-LI-TnK" secondAttribute="centerX" id="4ux-L9-XDN"/>
+                            <constraint firstItem="sa2-zY-6NC" firstAttribute="centerY" secondItem="GDw-LI-TnK" secondAttribute="centerY" id="VUw-G1-kF1"/>
+                            <constraint firstItem="sa2-zY-6NC" firstAttribute="height" secondItem="GDw-LI-TnK" secondAttribute="height" id="woZ-dM-hA4"/>
+                            <constraint firstItem="sa2-zY-6NC" firstAttribute="width" secondItem="GDw-LI-TnK" secondAttribute="width" id="zXI-sH-Faz"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -152,6 +165,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="sVf-MH-tpN" id="kQa-eZ-FIy"/>
+                        <outlet property="wView" destination="sa2-zY-6NC" id="8og-Rl-iLq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SWM-vX-IiG" userLabel="First Responder" sceneMemberID="firstResponder"/>

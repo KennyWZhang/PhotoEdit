@@ -13,6 +13,8 @@
 
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added becouse of (posible)backround
+                                                                                                 //opacity
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
 @property (strong, nonatomic) UIImage *imageToReplace;
@@ -62,7 +64,7 @@
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
     }
     if(self.text) {
-        self.view.backgroundColor = self.text[@"backround"];
+        self.wView.backgroundColor = self.text[@"backround"];
         self.imageView.backgroundColor = self.text[@"backround"];
     }
 }
@@ -73,7 +75,7 @@
     for(UITextField *textField in self.imageView.subviews) {
         [textField removeFromSuperview];
     }
-    for(UIView *textField in self.view.subviews) {
+    for(UIView *textField in self.wView.subviews) {
         if([textField isKindOfClass:[UITextField class]]) {
             [textField removeFromSuperview];
         }
@@ -84,39 +86,37 @@
 
 - (IBAction)fixTapped:(UIBarButtonItem *)sender {
     if(!self.doublePhoto) {
-        UIGraphicsBeginImageContextWithOptions(self.imageView.bounds.size, NO,0);
-        [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIGraphicsBeginImageContextWithOptions(self.wView.bounds.size, NO,0);
+        [self.wView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        [self removeSubviewsFromImageView];
         self.imageView.image = image;
+        [self removeSubviewsFromImageView];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text added sucsessfull, you can add another one, just tap on photo " preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO,0);
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIGraphicsBeginImageContextWithOptions(self.wView.bounds.size, NO,0);
+        [self.wView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         [self removeSubviewsFromImageView];
-        self.imageView.image = image;
-        for(UIImageView *view in self.view.subviews) {
-            if ([view isKindOfClass:[UIImageView class]] && ![view isEqual:self.imageView]) {
+        for(UIImageView *view in self.wView.subviews) {
+            if ([view isKindOfClass:[UIImageView class]]) {
                 [view removeFromSuperview];
-            }
-        }
-        for(UIGestureRecognizer *gesture in self.imageView.gestureRecognizers) {
-            if(![gesture isKindOfClass:[UITapGestureRecognizer class]]) {
-                [self.imageView removeGestureRecognizer:gesture];
             }
         }
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text and Photos added sucsessfull " preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:done];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
-        CGRect frame = self.view.bounds;
-        self.imageView.frame = frame;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.wView.bounds];
+        imageView.image =image;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.userInteractionEnabled = YES;
+        self.imageView = imageView;
+        [self.wView addSubview:self.imageView];
         self.doublePhoto = NO;
     }
 }
@@ -145,7 +145,7 @@
         [alert addAction:dismiss];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        if(self.imageView.subviews.count > 0 || self.view.subviews.count > 3) {
+        if(self.imageView.subviews.count > 0 || self.wView.subviews.count > 3) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You don't fixed your changes,do you wan't dissmis all changes ?" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"dissmis" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -169,7 +169,7 @@
     NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
     if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
         activityViewController.popoverPresentationController.sourceView =
-        self.view;
+        self.wView;
     }
     activityViewController.excludedActivityTypes = excludedActivities;
     [self presentViewController:activityViewController animated:YES completion:nil];
@@ -264,6 +264,9 @@
 
 ///------------///
 
+- (void)addGestureToImageView {
+}
+
 - (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];
 }
@@ -284,7 +287,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 2, self.view.frame.size.width / 2)];
+    UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.wView.frame.size.width / 2, self.wView.frame.size.width / 2)];
     
     [addedImageView setUserInteractionEnabled:YES];
     addedImageView.image = pickedImage;
@@ -315,13 +318,13 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [self.imageView addGestureRecognizer:panOriginal];
     [addedImageView addGestureRecognizer:rot];
     [self.imageView addGestureRecognizer:rotOriginal];
-    [self.view addSubview:addedImageView];
-    [self.view addGestureRecognizer:tap];
+    [self.wView addSubview:addedImageView];
+    [self.wView addGestureRecognizer:tap];
     self.doublePhoto = YES;
     [self.imageView removeConstraints:self.imageView.constraints];
-    [self.view removeConstraints:self.view.constraints];
+    [self.wView removeConstraints:self.wView.constraints];
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view.translatesAutoresizingMaskIntoConstraints = YES;
+    self.wView.translatesAutoresizingMaskIntoConstraints = YES;
     self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
