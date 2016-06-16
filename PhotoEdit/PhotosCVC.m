@@ -22,6 +22,7 @@
 @property (assign, nonatomic) int rewriteIndex;
 @property (assign, nonatomic) BOOL add;
 @property (assign, nonatomic) BOOL firstAppear;
+@property (assign, nonatomic) BOOL deleteTapped;
 
 @end
 
@@ -77,7 +78,10 @@ static NSString * const reuseIdentifier = @"Cell";
         [self.editButton setTitle: @"Cancel"];
         self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
     } else {
-        [self saveImages];
+        if(self.deleteTapped) {
+            [self saveImages];
+            self.deleteTapped = NO;
+        }
         self.navigationItem.rightBarButtonItem = self.addButton;
         [self.editButton setTitle: @"Edit"];
         self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -92,7 +96,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-/// - saving images into directory -
+/// - saving images into directory and load -
 
 - (void)saveImages {
     UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];
@@ -233,6 +237,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if(self.showDelete) {
+        self.deleteTapped = YES;
         [self.photos removeObjectAtIndex:indexPath.row];
         [collectionView reloadData];
     } else {

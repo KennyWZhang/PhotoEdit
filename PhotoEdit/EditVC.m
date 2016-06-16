@@ -266,9 +266,6 @@
 
 ///------------///
 
-- (void)addGestureToImageView {
-}
-
 - (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];
 }
@@ -307,7 +304,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     for(UIGestureRecognizer *gesture in gestures) {
         gesture.delegate = self;
     }
-    
     [pan setMaximumNumberOfTouches:1];
     [panOriginal setMaximumNumberOfTouches:1];
     

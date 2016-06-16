@@ -39,6 +39,11 @@
 		B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA011D0E98D3007CA9CB /* dismiss.png */; };
 		B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */; };
 		B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */; };
+		B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA0D1D12DC8E007CA9CB /* info.png */; };
+		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
+		B32ABA151D12E978007CA9CB /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA121D12E978007CA9CB /* test.jpeg */; };
+		B32ABA161D12E978007CA9CB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA131D12E978007CA9CB /* test.png */; };
+		B32ABA171D12E978007CA9CB /* Unknown-person.gif in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA141D12E978007CA9CB /* Unknown-person.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +126,12 @@
 		B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDatePickerActionSheet.m; sourceTree = "<group>"; };
 		B32ABA091D12AA3E007CA9CB /* LGPickerActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPickerActionSheet.h; sourceTree = "<group>"; };
 		B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGPickerActionSheet.m; sourceTree = "<group>"; };
+		B32ABA0D1D12DC8E007CA9CB /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageVC.h; sourceTree = "<group>"; };
+		B32ABA101D12E04D007CA9CB /* HelpPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageVC.m; sourceTree = "<group>"; };
+		B32ABA121D12E978007CA9CB /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
+		B32ABA131D12E978007CA9CB /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		B32ABA141D12E978007CA9CB /* Unknown-person.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Unknown-person.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +231,8 @@
 				B32AB9C41D09BA10007CA9CB /* EditVC.m */,
 				B32AB9C61D09C04C007CA9CB /* SettingsTVC.h */,
 				B32AB9C71D09C04C007CA9CB /* SettingsTVC.m */,
+				B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */,
+				B32ABA101D12E04D007CA9CB /* HelpPageVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -296,6 +309,10 @@
 		B32ABA001D0E98D3007CA9CB /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				B32ABA121D12E978007CA9CB /* test.jpeg */,
+				B32ABA131D12E978007CA9CB /* test.png */,
+				B32ABA141D12E978007CA9CB /* Unknown-person.gif */,
+				B32ABA0D1D12DC8E007CA9CB /* info.png */,
 				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
 			);
 			path = Photos;
@@ -415,11 +432,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32ABA151D12E978007CA9CB /* test.jpeg in Resources */,
 				B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */,
 				B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */,
+				B32ABA161D12E978007CA9CB /* test.png in Resources */,
 				B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */,
 				B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */,
 				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,
+				B32ABA171D12E978007CA9CB /* Unknown-person.gif in Resources */,
+				B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */,
 				B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */,
 				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
 				B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */,
