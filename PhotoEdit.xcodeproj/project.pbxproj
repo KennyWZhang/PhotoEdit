@@ -37,6 +37,8 @@
 		B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9EB1D0A9E41007CA9CB /* DRColorPickerWheelView.m */; };
 		B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */; };
 		B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA011D0E98D3007CA9CB /* dismiss.png */; };
+		B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */; };
+		B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,10 @@
 		B32AB9EC1D0A9E41007CA9CB /* DRColorPickerWheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRColorPickerWheelViewController.h; sourceTree = "<group>"; };
 		B32AB9ED1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRColorPickerWheelViewController.m; sourceTree = "<group>"; };
 		B32ABA011D0E98D3007CA9CB /* dismiss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dismiss.png; sourceTree = "<group>"; };
+		B32ABA071D12AA3E007CA9CB /* LGDatePickerActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDatePickerActionSheet.h; sourceTree = "<group>"; };
+		B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDatePickerActionSheet.m; sourceTree = "<group>"; };
+		B32ABA091D12AA3E007CA9CB /* LGPickerActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPickerActionSheet.h; sourceTree = "<group>"; };
+		B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGPickerActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +245,7 @@
 		B32AB9C91D0A9E41007CA9CB /* External */ = {
 			isa = PBXGroup;
 			children = (
+				B32ABA061D12AA3E007CA9CB /* LGPickerView */,
 				B32AB9CA1D0A9E41007CA9CB /* DRColorPicker */,
 			);
 			path = External;
@@ -292,6 +299,17 @@
 				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
 			);
 			path = Photos;
+			sourceTree = "<group>";
+		};
+		B32ABA061D12AA3E007CA9CB /* LGPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				B32ABA071D12AA3E007CA9CB /* LGDatePickerActionSheet.h */,
+				B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */,
+				B32ABA091D12AA3E007CA9CB /* LGPickerActionSheet.h */,
+				B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */,
+			);
+			path = LGPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +446,7 @@
 			files = (
 				B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */,
 				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
+				B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */,
 				B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */,
 				B32AB9F51D0A9E41007CA9CB /* DRColorPickerGridViewCell.m in Sources */,
 				B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */,
@@ -438,6 +457,7 @@
 				B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */,
 				B32AB9891D09ADC6007CA9CB /* main.m in Sources */,
 				B32AB9FA1D0A9E41007CA9CB /* DRColorPickerHueView.m in Sources */,
+				B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */,
 				B32AB9FB1D0A9E41007CA9CB /* DRColorPickerHueViewController.m in Sources */,
 				B32AB9F21D0A9E41007CA9CB /* DRColorPickerColor.m in Sources */,
 				B32AB9C51D09BA10007CA9CB /* EditVC.m in Sources */,

@@ -201,10 +201,10 @@
     if(self.text) {
         textField.tintColor = self.text[@"color"];
         textField.textColor = self.text[@"color"];
-        if([self.text[@"style"] intValue] == 0) {
+        if([self.text[@"style"]  isEqualToString:@"Default"]) {
             textField.font = [UIFont systemFontOfSize:[self.text[@"size"] intValue]];
         } else {
-            textField.font = [UIFont boldSystemFontOfSize:[self.text[@"size"] intValue]];
+            textField.font = [UIFont fontWithName:self.text[@"style"] size:[self.text[@"size"] intValue]];
         }
     }
     [textField becomeFirstResponder];
@@ -212,8 +212,10 @@
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeView:)];
     [textField addGestureRecognizer:rot];
     [textField addGestureRecognizer:pan];
+    [textField addGestureRecognizer:pinch];
     [gesture.view addSubview:textField];
 }
 
@@ -242,7 +244,7 @@
     }
 }
 
-- (void)resizeImageView:(UIPinchGestureRecognizer *)gesture {
+- (void)resizeView:(UIPinchGestureRecognizer *)gesture {
     if([gesture state] == UIGestureRecognizerStateBegan) {
         self.lastScale = [gesture scale];
     }
@@ -293,8 +295,8 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     addedImageView.image = pickedImage;
     addedImageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
-    UIPinchGestureRecognizer *pinchOriginal = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeImageView:)];
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeView:)];
+    UIPinchGestureRecognizer *pinchOriginal = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeView:)];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIPanGestureRecognizer *panOriginal = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];

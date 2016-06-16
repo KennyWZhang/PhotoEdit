@@ -9,10 +9,11 @@
 #import "SettingsTVC.h"
 
 #import "DRColorPicker.h"
+#import "LGPickerActionSheet.h"
 
-@interface SettingsTVC ()
+@interface SettingsTVC () <LGPickerActionSheetDelegate>
 
-@property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
+@property (strong, nonatomic) IBOutlet UIButton *fontButton;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *colorButton;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) DRColorPickerColor *color;
 @property (weak, nonatomic) DRColorPickerViewController *colorPickerVC;
 @property (strong, nonatomic) NSMutableDictionary *text;
+@property (strong, nonatomic) NSMutableArray *fontNames;
 
 @end
 
@@ -29,17 +31,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.fontNames = [[NSMutableArray alloc]init];
+    NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
+    NSArray *fontNames;
+    NSInteger indFamily, indFont;
+    [self.fontNames addObject:@"Default"];
+    for (indFamily=0; indFamily<[familyNames count]; ++indFamily)
+    {
+        fontNames = [[NSArray alloc] initWithArray:
+                     [UIFont fontNamesForFamilyName:
+                      [familyNames objectAtIndex:indFamily]]];
+        for (indFont=0; indFont<[fontNames count]; ++indFont)
+        {
+              [self.fontNames addObject:[fontNames objectAtIndex:indFont]];
+        }
+    }
     [self.navigationController.toolbar setHidden:YES];
     self.text = [NSMutableDictionary new];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
-        self.segment.selectedSegmentIndex = [self.text[@"style"] intValue];
-        if (self.segment.selectedSegmentIndex == 0) {
-            self.textField.font = [UIFont systemFontOfSize:[self.text[@"size"]intValue]];
+        if([self.text[@"style"] isEqualToString:@"Default"]) {
+            self.fontButton.titleLabel.font = [UIFont systemFontOfSize:15];
         } else {
-            self.textField.font = [UIFont boldSystemFontOfSize:[self.text[@"size"]intValue]];
+            self.fontButton.titleLabel.font = [UIFont fontWithName:self.text[@"style"] size:15];
         }
+        [self.fontButton setTitle:self.text[@"style"] forState:UIControlStateNormal];
+        self.textField.font = [UIFont systemFontOfSize:[self.text[@"size"] intValue]];
         self.textField.text = self.text[@"size"];
         self.colorButton.backgroundColor = self.text[@"color"];
         self.backroundColorButton.backgroundColor = self.text[@"backround"];
@@ -57,31 +75,41 @@
         self.text[@"size"] = self.textField.text;
         self.text[@"color"] = self.colorButton.backgroundColor;
         self.text[@"backround"] = self.backroundColorButton.backgroundColor;
-        self.text[@"style"] = [NSString stringWithFormat:@"%ld",(long)self.segment.selectedSegmentIndex];
+        self.text[@"style"] = self.fontButton.titleLabel.text;
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.text];
         [prefs setObject:data forKey:@"text"];
         [prefs synchronize];
     }
 }
+/*------------------------------------------------*/
+#pragma mark - LGPickerActionSheetDelegate methods
+/*------------------------------------------------*/
 
-#pragma mark - Actions -
-
-- (IBAction)segmentChanged:(UISegmentedControl *)sender {
-    if(sender.selectedSegmentIndex == 0) {
-        self.textField.font = [UIFont systemFontOfSize:[self.textField.text intValue]];
-    } else {
-        self.textField.font = [UIFont boldSystemFontOfSize:[self.textField.text intValue]];
+- (IBAction)pickerTapped:(UIButton *)sender {
+    if(self.fontNames)
+    {
+        LGPickerActionSheet *pickerView = [[LGPickerActionSheet alloc]
+                                           initWithData:@[self.fontNames]
+                                           cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                           okButtonTitle:NSLocalizedString(@"Done", nil)];
+        pickerView.delegate = self;
+        [pickerView show];
     }
 }
 
+- (void)pickerActionSheetDone:(NSArray *)selectedRows fromData:(NSArray *)data
+{
+    [self.fontButton setTitle: data[0][[selectedRows[0] intValue]] forState:UIControlStateNormal];
+    self.fontButton.titleLabel.font = [UIFont fontWithName:data[0][[selectedRows[0] intValue]]
+                                                      size:15];
+}
+
+#pragma mark - Actions -
+
 - (IBAction)stepperTapped:(UIStepper *)sender {
     self.textField.text = [NSString stringWithFormat:@"%d", (int)[sender value]];
-    if (self.segment.selectedSegmentIndex == 0) {
-        self.textField.font = [UIFont systemFontOfSize:(int)[sender value]];
-    } else {
-        self.textField.font = [UIFont boldSystemFontOfSize:(int)[sender value]];
-    }
+    self.textField.font = [UIFont systemFontOfSize:(int)[sender value]];
 }
 
 - (IBAction)colorButton:(UIButton *)sender {
