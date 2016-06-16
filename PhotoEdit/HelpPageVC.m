@@ -19,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *bbtnBack = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(goBack)];
+    [self.navigationItem setLeftBarButtonItem:bbtnBack];
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     
@@ -31,6 +36,10 @@
 
 - (IBAction)pageChanged:(UIPageControl *)sender {
     [self changePages];
+}
+
+- (void)goBack {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)handleSwipe:(UISwipeGestureRecognizer *)gesture {
@@ -73,7 +82,6 @@
             [self changePages];
         }
     }];
-
 }
 
 @end

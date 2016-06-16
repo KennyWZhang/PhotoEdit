@@ -10,7 +10,7 @@
 
 #import "PhotosCVCell.h"
 #import "EditVC.h"
-
+#import "HelpPageVC.h"
 
 @interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -23,6 +23,7 @@
 @property (assign, nonatomic) BOOL add;
 @property (assign, nonatomic) BOOL firstAppear;
 @property (assign, nonatomic) BOOL deleteTapped;
+@property (assign,nonatomic) BOOL notFirstTimeinApp;
 
 @end
 
@@ -34,12 +35,26 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"firstTime"]) {
+        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstTime"];
+        self.notFirstTimeinApp = [[NSKeyedUnarchiver unarchiveObjectWithData:data] boolValue];
+    }
+    if(!self.notFirstTimeinApp) {
+        self.notFirstTimeinApp = YES;
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithBool:self.notFirstTimeinApp]];
+        [prefs setObject:userData forKey:@"firstTime"];
+        [prefs synchronize];
+        HelpPageVC *hp = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HelpPageVC"];
+        [self.navigationController pushViewController:hp animated:YES];
+    }
     self.firstAppear = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.navigationController.toolbar setHidden: YES];
     self.photos = [NSMutableArray new];
     [self loadImages];
     [self.collectionView reloadData];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

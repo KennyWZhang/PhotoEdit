@@ -34,7 +34,7 @@
         <!--Help PageVC-->
         <scene sceneID="qvc-Xe-EF5">
             <objects>
-                <viewController id="gbL-GY-Fzd" customClass="HelpPageVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpPageVC" id="gbL-GY-Fzd" customClass="HelpPageVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9aO-Jv-bh8"/>
                         <viewControllerLayoutGuide type="bottom" id="OJo-i8-5Sj"/>
