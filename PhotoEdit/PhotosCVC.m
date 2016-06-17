@@ -35,6 +35,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    for(UIView *temp in self.navigationController.navigationBar.subviews) {
+        [temp setExclusiveTouch:YES];
+    }
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"firstTime"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstTime"];
         self.notFirstTimeinApp = [[NSKeyedUnarchiver unarchiveObjectWithData:data] boolValue];

@@ -67,6 +67,7 @@
                             <constraint firstItem="hS6-XQ-w72" firstAttribute="width" secondItem="boZ-7g-Ra3" secondAttribute="width" id="psb-3e-T6W"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="hS6-XQ-w72" id="EOD-KW-0Jy"/>
@@ -134,17 +135,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Mm" id="d8E-Te-7y1">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="qDC-yh-OIw">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="editButtontapped:" destination="hLL-Xf-8Pw" id="jYb-bm-mH6"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="Uij-pb-ia6">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Edit" id="qDC-yh-OIw">
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="addButtonTapped:" destination="hLL-Xf-8Pw" id="6fY-5Y-09x"/>
+                                    <action selector="editButtontapped:" destination="hLL-Xf-8Pw" id="jYb-bm-mH6"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="info.png" id="vIS-1U-rfi">
@@ -152,8 +147,15 @@
                                     <segue destination="gbL-GY-Fzd" kind="show" id="KFy-YR-Tno"/>
                                 </connections>
                             </barButtonItem>
-                        </rightBarButtonItems>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Uij-pb-ia6">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addButtonTapped:" destination="hLL-Xf-8Pw" id="6fY-5Y-09x"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addButton" destination="Uij-pb-ia6" id="dij-oT-4Tf"/>
                         <outlet property="editButton" destination="qDC-yh-OIw" id="yUL-8W-I30"/>
@@ -216,6 +218,32 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="l1V-ct-hLr">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="WsD-q9-SpR">
+                            <connections>
+                                <action selector="goBack:" destination="5BB-nk-wdM" id="krP-0Q-Sz2"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Settings" id="Ufh-Hj-WYb">
+                                <connections>
+                                    <action selector="settingsTapped:" destination="5BB-nk-wdM" id="VY2-cx-DI7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="hjW-O3-TS3">
+                                <connections>
+                                    <action selector="share:" destination="5BB-nk-wdM" id="tqd-lH-Z0w"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="kbi-KN-3P1">
+                                <connections>
+                                    <action selector="addTapped:" destination="5BB-nk-wdM" id="x6K-YP-hj0"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="sVf-MH-tpN" id="kQa-eZ-FIy"/>
@@ -372,6 +400,7 @@
                             <outlet property="delegate" destination="pFt-gj-1oy" id="Z9v-pX-EEH"/>
                         </connections>
                     </tableView>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="backroundColorButton" destination="nUB-Sc-nZU" id="d9H-E1-CXD"/>
                         <outlet property="colorButton" destination="EDE-ej-ucc" id="Ima-Br-cUu"/>

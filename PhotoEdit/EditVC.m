@@ -38,22 +38,11 @@
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];;
     [self.imageView setUserInteractionEnabled:YES];
     self.imageView.image = self.photo;
-    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsTapped)];
-    UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                           target:self
-                                                                           action:@selector(share)];
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                         target:self
-                                                                         action:@selector(addTapped)];
-    UIBarButtonItem *bbtnBack = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(goBack)];
-    self.navigationItem.rightBarButtonItems = @[settings,share,add];
+    for(UIView *temp in self.navigationController.toolbar.subviews) {
+        [temp setExclusiveTouch:YES];
+    }
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self.imageView addGestureRecognizer:tap];
-    
-    [self.navigationItem setLeftBarButtonItem:bbtnBack];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -124,7 +113,7 @@
     [self removeSubviewsFromImageView];
 }
 
-- (void)goBack {
+- (IBAction)goBack:(UIBarButtonItem *)sender {
     if(self.imageView.image != self.photo) {
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
         pcvc.imageToReplace = self.imageToReplace;
@@ -164,7 +153,7 @@
     }
 }
 
-- (void)share {
+- (IBAction)share:(UIBarButtonItem *)sender {
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
     NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
     if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
@@ -175,13 +164,13 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
-- (void)settingsTapped {
+- (IBAction)settingsTapped:(UIBarButtonItem *)sender {
     SettingsTVC *stvc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingsTVC"];
     
     [self.navigationController pushViewController:stvc animated:YES];
 }
 
-- (void)addTapped {
+- (IBAction)addTapped:(UIBarButtonItem *)sender {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
@@ -217,6 +206,7 @@
     [textField addGestureRecognizer:pan];
     [textField addGestureRecognizer:pinch];
     [gesture.view addSubview:textField];
+    [textField sizeToFit];
 }
 
 - (void)rotate:(UIRotationGestureRecognizer *)gesture {

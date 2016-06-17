@@ -31,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.fontButton setExclusiveTouch:YES];
+    [self.colorButton setExclusiveTouch:YES];
+    [self.backroundColorButton setExclusiveTouch:YES];
     self.fontNames = [[NSMutableArray alloc]init];
     NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
     NSArray *fontNames;
