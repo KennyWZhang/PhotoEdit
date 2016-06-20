@@ -35,6 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.i = (int)self.photos.count;
     for(UIView *temp in self.navigationController.navigationBar.subviews) {
         [temp setExclusiveTouch:YES];
     }
@@ -62,14 +63,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"lastIndex"]) {
-        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastIndex"];
-        self.i = [[NSKeyedUnarchiver unarchiveObjectWithData:data] intValue];
-    }
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"rewriteIndex"]) {
-        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"rewriteIndex"];
-        self.rewriteIndex = [[NSKeyedUnarchiver unarchiveObjectWithData:data] intValue];
-    }
     [self.navigationController setToolbarHidden:YES];
     for(int i = 0; i < self.photos.count; i++) {
         if([self.photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
@@ -77,6 +70,7 @@ static NSString * const reuseIdentifier = @"Cell";
         }
     }
     if(self.add) {
+        self.i = (int)self.photos.count - 1;
         [self addImageToDocuments];
         self.add = NO;
     } else if(!self.firstAppear) {
@@ -140,7 +134,6 @@ static NSString * const reuseIdentifier = @"Cell";
             [data writeToFile:imagePath atomically:YES];
             i++;
         }
-        self.i = i;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.addButton setEnabled:YES];
             [self.editButton setEnabled:YES];
@@ -154,14 +147,10 @@ static NSString * const reuseIdentifier = @"Cell";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", self.i++];
+    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", self.i];
     NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
     NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(self.photos.lastObject, 1.0f)];
     [data writeToFile:imagePath atomically:YES];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.i]];
-    [prefs setObject:userData forKey:@"lastIndex"];
-    [prefs synchronize];
 }
 
 - (void)rewriteImage {
@@ -172,9 +161,9 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
     NSData *data;
     if(self.generatedImage) {
-    data = [NSData dataWithData:UIImageJPEGRepresentation(self.generatedImage, 1.0f)];
+        data = [NSData dataWithData:UIImageJPEGRepresentation(self.generatedImage, 1.0f)];
     } else {
-    data = [NSData dataWithData:UIImageJPEGRepresentation(self.imageToReplace, 1.0f)];
+        data = [NSData dataWithData:UIImageJPEGRepresentation(self.imageToReplace, 1.0f)];
     }
     [data writeToFile:imagePath atomically:YES];
 }
@@ -262,10 +251,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];
         evc.photo = self.photos[indexPath.row];
         self.rewriteIndex = (int)indexPath.row;
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.rewriteIndex]];
-        [prefs setObject:userData forKey:@"rewriteIndex"];
-        [prefs synchronize];
         [self.navigationController pushViewController:evc animated:YES];
     }
     return YES;
