@@ -14,12 +14,14 @@
 
 @interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (strong, nonatomic) NSMutableArray * photos;
-@property (assign, nonatomic) BOOL showDelete;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+
+@property (strong, nonatomic) NSMutableArray * photos;
+
 @property (assign, nonatomic) int i;
 @property (assign, nonatomic) int rewriteIndex;
+@property (assign, nonatomic) BOOL showDelete;
 @property (assign, nonatomic) BOOL add;
 @property (assign, nonatomic) BOOL firstAppear;
 @property (assign, nonatomic) BOOL deleteTapped;

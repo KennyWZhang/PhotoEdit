@@ -14,7 +14,7 @@
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added becouse of (posible)backround
-                                                                                                 //opacity
+//opacity
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
 @property (strong, nonatomic) UIImage *imageToReplace;
@@ -32,17 +32,18 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     [super viewDidLoad];
+    
     self.imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.image = self.photo;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    [self.imageView addGestureRecognizer:tap];
+    
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];;
-    [self.imageView setUserInteractionEnabled:YES];
-    self.imageView.image = self.photo;
     for(UIView *temp in self.navigationController.toolbar.subviews) {
         [temp setExclusiveTouch:YES];
     }
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
-    [self.imageView addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,12 +61,32 @@
 
 ///------------
 
+- (void)addCPMToImage {
+    CGRect frame = self.wView.frame;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - 90, frame.size.height - 20, 90, 20)];
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor grayColor];
+    label.text = @"Made by CPM";
+    [self.wView addSubview:label];
+}
+
+- (void)shareIfFixed {
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
+    NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
+    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
+        activityViewController.popoverPresentationController.sourceView =
+        self.wView;
+    }
+    activityViewController.excludedActivityTypes = excludedActivities;
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
 - (void)removeSubviewsFromImageView {
     for(UITextField *textField in self.imageView.subviews) {
         [textField removeFromSuperview];
     }
     for(UIView *textField in self.wView.subviews) {
-        if([textField isKindOfClass:[UITextField class]]) {
+        if([textField isKindOfClass:[UITextField class]] || [textField isKindOfClass:[UILabel class]]) {
             [textField removeFromSuperview];
         }
     }
@@ -74,34 +95,68 @@
 #pragma mark - Actions -
 
 - (IBAction)fixTapped:(UIBarButtonItem *)sender {
+    [self addCPMToImage];
+    NSString *buttonTitle = @"Done";
+    NSString *buttonMessage;
     if(!self.doublePhoto) {
+        buttonMessage = @"Your Text added sucsessfull, you can add another one, just tap on photo";
+        if(!sender) {
+            buttonMessage = @"Your Text added sucsessfull , Now you can share it !";
+            buttonTitle = @"Share";
+        }
         UIGraphicsBeginImageContextWithOptions(self.wView.bounds.size, NO,0);
         [self.wView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.imageView.image = image;
+        
         [self removeSubviewsFromImageView];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text added sucsessfull, you can add another one, just tap on photo " preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:buttonMessage preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *done = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^
+                               (UIAlertAction * _Nonnull action) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       if(!sender) {
+                                           [self shareIfFixed];
+                                       }
+                                   });
+                               }];
         [alert addAction:done];
+        
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
+        buttonMessage = @"Your Text and Photos added sucsessfull";
+        if(!sender) {
+            buttonMessage = @"Your Text and Photos added sucsessfull , Now you can share it !";
+            buttonTitle = @"Share";
+        }
         UIGraphicsBeginImageContextWithOptions(self.wView.bounds.size, NO,0);
         [self.wView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        
         [self removeSubviewsFromImageView];
+        
         for(UIImageView *view in self.wView.subviews) {
             if ([view isKindOfClass:[UIImageView class]]) {
                 [view removeFromSuperview];
             }
         }
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:@"Your Text and Photos added sucsessfull " preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:buttonMessage preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *done = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^
+                               (UIAlertAction * _Nonnull action) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(!sender) {
+                    [self shareIfFixed];
+                }
+            });
+                               }];
         [alert addAction:done];
+        
         [self.navigationController presentViewController:alert animated:YES completion:nil];
+        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.wView.bounds];
-        imageView.image =image;
+        imageView.image = image;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.userInteractionEnabled = YES;
         self.imageView = imageView;
@@ -109,6 +164,7 @@
         self.doublePhoto = NO;
     }
 }
+
 - (IBAction)removeTextTapped:(UIBarButtonItem *)sender {
     [self removeSubviewsFromImageView];
 }
@@ -118,6 +174,7 @@
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
         pcvc.imageToReplace = self.imageToReplace;
         pcvc.generatedImage = self.imageView.image;
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
@@ -134,7 +191,7 @@
         [alert addAction:dismiss];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        if(self.imageView.subviews.count > 0 || self.wView.subviews.count > 3) {
+        if(self.imageView.subviews.count > 0 || self.wView.subviews.count > 1) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"You don't fixed your changes,do you wan't dissmis all changes ?" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"dissmis" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -154,14 +211,22 @@
 }
 
 - (IBAction)share:(UIBarButtonItem *)sender {
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
-    NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
-    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
-        activityViewController.popoverPresentationController.sourceView =
-        self.wView;
+    if(self.imageView.subviews.count > 0 || self.wView.subviews.count > 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Forgot fix ?" message:@"Prepare to share unfixed content " preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *fixShare = [UIAlertAction actionWithTitle:@"Fix & Share" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self fixTapped:nil];
+            });
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            return ;
+        }];
+        [alert addAction:fixShare];
+        [alert addAction:cancel];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self shareIfFixed];
     }
-    activityViewController.excludedActivityTypes = excludedActivities;
-    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 - (IBAction)settingsTapped:(UIBarButtonItem *)sender {
@@ -183,6 +248,7 @@
     [self removeSubviewsFromImageView];
     
     CGPoint point = [gesture locationInView:gesture.view];
+    
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(point.x, point.y, gesture.view.frame.size.width - 50, 100)];
     [textField setBorderStyle:UITextBorderStyleNone];
     textField.placeholder = @"Type here";
@@ -199,9 +265,11 @@
     [textField becomeFirstResponder];
     [textField addTarget:self action:@selector(returnTapped:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
+    
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIRotationGestureRecognizer *rot = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(rotate:)];
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeView:)];
+    
     [textField addGestureRecognizer:rot];
     [textField addGestureRecognizer:pan];
     [textField addGestureRecognizer:pinch];
@@ -273,8 +341,7 @@
 
 #pragma mark - UIImagePickerControllerDelegate -
 
--(void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImageView *addedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.wView.frame.size.width / 2, self.wView.frame.size.width / 2)];
     
@@ -306,8 +373,10 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     [self.imageView addGestureRecognizer:panOriginal];
     [addedImageView addGestureRecognizer:rot];
     [self.imageView addGestureRecognizer:rotOriginal];
+    
     [self.wView addSubview:addedImageView];
     [self.wView addGestureRecognizer:tap];
+    
     self.doublePhoto = YES;
     [self.imageView removeConstraints:self.imageView.constraints];
     [self.wView removeConstraints:self.wView.constraints];
