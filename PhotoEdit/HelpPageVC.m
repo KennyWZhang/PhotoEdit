@@ -71,7 +71,7 @@
 - (void)changeImagesByDiraction:(BOOL)right {
     [UIView transitionWithView:self.view duration:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
         CGFloat x;
-        if(right){
+        if(right) {
             x = self.imageView.frame.size.width;
         } else {
             x = - self.imageView.frame.size.width;

@@ -49,7 +49,6 @@
               [self.fontNames addObject:[fontNames objectAtIndex:indFont]];
         }
     }
-    [self.navigationController.toolbar setHidden:YES];
     self.text = [NSMutableDictionary new];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
@@ -69,6 +68,7 @@
     self.stepper.maximumValue = 40;
     self.stepper.value = [self.textField.text intValue];
     self.color = [[DRColorPickerColor alloc] initWithColor:UIColor.blueColor];
+    [self.navigationController.toolbar setHidden: YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

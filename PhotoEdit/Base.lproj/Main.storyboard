@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbO-pF-7cZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="-253"/>
+            <point key="canvasLocation" x="280" y="-256"/>
         </scene>
         <!--Mm-->
         <scene sceneID="Cl7-ZZ-lil">
@@ -287,6 +287,7 @@
                                                 <constraint firstItem="EDE-ej-ucc" firstAttribute="height" secondItem="6ES-UL-98G" secondAttribute="height" constant="-16" id="jUB-Sx-SfE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -330,6 +331,7 @@
                                                 <constraint firstItem="7zj-7K-tgp" firstAttribute="centerY" secondItem="JxE-2M-HJY" secondAttribute="centerY" id="gvp-8U-Dq3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ebG-BX-zpL">
                                         <rect key="frame" x="0.0" y="189" width="600" height="44"/>
@@ -364,6 +366,7 @@
                                                 <constraint firstItem="UNn-Wx-1Qq" firstAttribute="centerY" secondItem="mB7-SB-knB" secondAttribute="centerY" id="xl7-40-I5v"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -391,6 +394,7 @@
                                                 <constraint firstItem="nUB-Sc-nZU" firstAttribute="width" secondItem="cgf-5A-Zpy" secondAttribute="width" constant="-16" id="afk-zm-itD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
