@@ -238,7 +238,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
         [cell.deleteImageView setHidden:YES];
         [cell.imageView.layer removeAllAnimations];
     }
-    
     return cell;
 }
 

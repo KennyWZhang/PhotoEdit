@@ -13,7 +13,7 @@
 
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added becouse of (posible)backround
+@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added because of (posible)backround
 //opacity
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSMutableDictionary *text;
@@ -73,7 +73,7 @@
 - (void)shareIfFixed {
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
     NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
-    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
+    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
         activityViewController.popoverPresentationController.sourceView =
         self.wView;
     }
@@ -322,7 +322,7 @@
     }
 }
 
-///------------///
+///------------------------------------///
 
 - (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];
