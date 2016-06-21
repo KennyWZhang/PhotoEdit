@@ -44,6 +44,7 @@
 		B32ABA151D12E978007CA9CB /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA121D12E978007CA9CB /* test.jpeg */; };
 		B32ABA161D12E978007CA9CB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA131D12E978007CA9CB /* test.png */; };
 		B32ABA171D12E978007CA9CB /* Unknown-person.gif in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA141D12E978007CA9CB /* Unknown-person.gif */; };
+		B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		B32ABA121D12E978007CA9CB /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
 		B32ABA131D12E978007CA9CB /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		B32ABA141D12E978007CA9CB /* Unknown-person.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Unknown-person.gif"; sourceTree = "<group>"; };
+		B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLoadImages.h; sourceTree = "<group>"; };
+		B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveLoadImages.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				B32AB9BB1D09ADEC007CA9CB /* AppDelegate */,
-				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
 				B32ABA5B1D192633007CA9CB /* Model */,
+				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
 				B32AB9C21D09B23B007CA9CB /* Views */,
 				B32AB9901D09ADC6007CA9CB /* Main.storyboard */,
 				B32AB9C91D0A9E41007CA9CB /* External */,
@@ -333,6 +336,8 @@
 		B32ABA5B1D192633007CA9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */,
+				B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 			files = (
 				B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */,
 				B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */,
+				B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */,
 				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
 				B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */,
 				B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */,

@@ -242,7 +242,7 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-#pragma mark - gesture recognizer selectors -
+#pragma mark - Gesture Recognizers selectors -
 
 - (void)tapped:(UITapGestureRecognizer *)gesture {
     [self removeSubviewsFromImageView];
@@ -322,7 +322,7 @@
     }
 }
 
-///------------------------------------///
+#pragma mark - textField selectors -
 
 - (void)textChanged:(UITextField *)sender {
     [sender sizeToFit];

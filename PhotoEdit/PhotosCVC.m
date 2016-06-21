@@ -11,6 +11,7 @@
 #import "PhotosCVCell.h"
 #import "EditVC.h"
 #import "HelpPageVC.h"
+#import "SaveLoadImages.h"
 
 @interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -18,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
 @property (strong, nonatomic) NSMutableArray * photos;
-
+@property (strong, nonatomic) SaveLoadImages *sli;
 @property (assign, nonatomic) int i;
 @property (assign, nonatomic) int rewriteIndex;
 @property (assign, nonatomic) BOOL showDelete;
@@ -57,10 +58,13 @@ static NSString * const reuseIdentifier = @"Cell";
     self.firstAppear = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.navigationController.toolbar setHidden: YES];
+    
     self.photos = [NSMutableArray new];
-    [self loadImages];
+    self.sli = [SaveLoadImages new];
+    
+    self.photos = [self.sli loadImages];
     [self.collectionView reloadData];
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -73,10 +77,10 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     if(self.add) {
         self.i = (int)self.photos.count - 1;
-        [self addImageToDocuments];
+        [self.sli addImageToDocuments:self.photos ByIndex:self.i];
         self.add = NO;
     } else if(!self.firstAppear) {
-        [self rewriteImage];
+        [self.sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:self.rewriteIndex];
     }
     self.firstAppear = NO;
     [self.collectionView reloadData];
@@ -93,7 +97,21 @@ static NSString * const reuseIdentifier = @"Cell";
         self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
     } else {
         if(self.deleteTapped) {
-            [self saveImages];
+            UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];
+            opacityView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.6];
+            [self.collectionView addSubview:opacityView];
+            self.collectionView.userInteractionEnabled = NO;
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                [self.editButton setEnabled:NO];
+                [self.addButton setEnabled:NO];
+                [self.sli saveImages:self.photos];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.addButton setEnabled:YES];
+                    [self.editButton setEnabled:YES];
+                    self.collectionView.userInteractionEnabled = YES;
+                    [opacityView removeFromSuperview];
+                });
+            });
             self.deleteTapped = NO;
         }
         self.navigationItem.rightBarButtonItem = self.addButton;
@@ -109,84 +127,6 @@ static NSString * const reuseIdentifier = @"Cell";
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     [self presentViewController:picker animated:YES completion:nil];
 }
-
-/// - saving images into directory and load -
-
-- (void)saveImages {
-    UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];
-    opacityView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.6];
-    [self.collectionView addSubview:opacityView];
-    self.collectionView.userInteractionEnabled = NO;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [self.editButton setEnabled:NO];
-        [self.addButton setEnabled:NO];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSFileManager *fileMgr = [NSFileManager defaultManager];
-        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-        for (NSString *filename in fileArray) {
-            [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
-        }
-        int i = 0;
-        for(UIImage *image in self.photos) {
-            NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
-            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-            NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
-            [data writeToFile:imagePath atomically:YES];
-            i++;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.addButton setEnabled:YES];
-            [self.editButton setEnabled:YES];
-            self.collectionView.userInteractionEnabled = YES;
-            [opacityView removeFromSuperview];
-        });
-    });
-}
-
-- (void)addImageToDocuments {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", self.i];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-    NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(self.photos.lastObject, 1.0f)];
-    [data writeToFile:imagePath atomically:YES];
-}
-
-- (void)rewriteImage {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", self.rewriteIndex];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-    NSData *data;
-    if(self.generatedImage) {
-        data = [NSData dataWithData:UIImageJPEGRepresentation(self.generatedImage, 1.0f)];
-    } else {
-        data = [NSData dataWithData:UIImageJPEGRepresentation(self.imageToReplace, 1.0f)];
-    }
-    [data writeToFile:imagePath atomically:YES];
-}
-
-- (void)loadImages {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:documentsDirectory error:NULL];
-    for (NSString *fileName in docFiles) {
-        if([fileName hasSuffix:@".jpeg"]) {
-            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:fileName];
-            NSData *imgData = [NSData dataWithContentsOfFile:fullPath];
-            UIImage *loadedImage = [[UIImage alloc] initWithData:imgData];
-            if(loadedImage) {
-                [self.photos addObject:loadedImage];
-            }
-        }
-    }
-}
-
 
 #pragma mark - UIImagePickerControllerDelegate -
 
