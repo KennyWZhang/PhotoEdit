@@ -51,8 +51,8 @@ static NSString * const reuseIdentifier = @"Cell";
         NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithBool:notFirstTimeinApp]];
         [prefs setObject:userData forKey:@"firstTime"];
         [prefs synchronize];
-      //  HelpPageVC *hp = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HelpPageVC"];
-     //   [self.navigationController pushViewController:hp animated:YES];
+        HelpPageVC *hp = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HelpPageVC"];
+        [self.navigationController pushViewController:hp animated:YES];
     }
     firstAppear = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
