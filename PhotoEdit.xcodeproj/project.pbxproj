@@ -184,6 +184,7 @@
 			children = (
 				B32AB9BB1D09ADEC007CA9CB /* AppDelegate */,
 				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
+				B32ABA5B1D192633007CA9CB /* Model */,
 				B32AB9C21D09B23B007CA9CB /* Views */,
 				B32AB9901D09ADC6007CA9CB /* Main.storyboard */,
 				B32AB9C91D0A9E41007CA9CB /* External */,
@@ -327,6 +328,13 @@
 				B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */,
 			);
 			path = LGPickerView;
+			sourceTree = "<group>";
+		};
+		B32ABA5B1D192633007CA9CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
