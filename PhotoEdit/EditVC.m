@@ -11,15 +11,15 @@
 #import "PhotosCVC.h"
 #import "SettingsTVC.h"
 
-@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate>
+@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate> {
+    NSMutableDictionary *text;
+    UIImage *imageToReplace;
+    CGFloat lastScale;
+    BOOL doublePhoto;
+}
 
-@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added because of (posible)backround
-//opacity
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) NSMutableDictionary *text;
-@property (strong, nonatomic) UIImage *imageToReplace;
-@property (assign, nonatomic) CGFloat lastScale;
-@property (assign, nonatomic) BOOL doublePhoto;
+@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added because of (posible)backround opacity
 
 @end
 
@@ -33,7 +33,7 @@
     }
     [super viewDidLoad];
     
-    self.imageToReplace = self.photo;
+    imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.image = self.photo;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
@@ -49,13 +49,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
-        self.text = [NSMutableDictionary new];
+        text = [NSMutableDictionary new];
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
-        self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
+        text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
     }
-    if(self.text) {
-        self.wView.backgroundColor = self.text[@"backround"];
-        self.imageView.backgroundColor = self.text[@"backround"];
+    if(text) {
+        self.wView.backgroundColor = text[@"backround"];
+        self.imageView.backgroundColor = text[@"backround"];
     }
 }
 
@@ -98,7 +98,7 @@
     [self addCPMToImage];
     NSString *buttonTitle = @"Done";
     NSString *buttonMessage;
-    if(!self.doublePhoto) {
+    if(!doublePhoto) {
         buttonMessage = @"Your Text added sucsessfull, you can add another one, just tap on photo";
         if(!sender) {
             buttonMessage = @"Your Text added sucsessfull , Now you can share it !";
@@ -145,11 +145,11 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sucsess" message:buttonMessage preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *done = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^
                                (UIAlertAction * _Nonnull action) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if(!sender) {
-                    [self shareIfFixed];
-                }
-            });
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       if(!sender) {
+                                           [self shareIfFixed];
+                                       }
+                                   });
                                }];
         [alert addAction:done];
         
@@ -161,7 +161,7 @@
         imageView.userInteractionEnabled = YES;
         self.imageView = imageView;
         [self.wView addSubview:self.imageView];
-        self.doublePhoto = NO;
+        doublePhoto = NO;
     }
 }
 
@@ -172,7 +172,7 @@
 - (IBAction)goBack:(UIBarButtonItem *)sender {
     if(self.imageView.image != self.photo) {
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
-        pcvc.imageToReplace = self.imageToReplace;
+        pcvc.imageToReplace = imageToReplace;
         pcvc.generatedImage = self.imageView.image;
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
@@ -229,12 +229,6 @@
     }
 }
 
-- (IBAction)settingsTapped:(UIBarButtonItem *)sender {
-    SettingsTVC *stvc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingsTVC"];
-    
-    [self.navigationController pushViewController:stvc animated:YES];
-}
-
 - (IBAction)addTapped:(UIBarButtonItem *)sender {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -253,13 +247,13 @@
     [textField setBorderStyle:UITextBorderStyleNone];
     textField.placeholder = @"Type here";
     textField.backgroundColor = [UIColor clearColor];
-    if(self.text) {
-        textField.tintColor = self.text[@"color"];
-        textField.textColor = self.text[@"color"];
-        if([self.text[@"style"]  isEqualToString:@"Default"]) {
-            textField.font = [UIFont systemFontOfSize:[self.text[@"size"] intValue]];
+    if(text) {
+        textField.tintColor = text[@"color"];
+        textField.textColor = text[@"color"];
+        if([text[@"style"]  isEqualToString:@"Default"]) {
+            textField.font = [UIFont systemFontOfSize:[text[@"size"] intValue]];
         } else {
-            textField.font = [UIFont fontWithName:self.text[@"style"] size:[self.text[@"size"] intValue]];
+            textField.font = [UIFont fontWithName:text[@"style"] size:[text[@"size"] intValue]];
         }
     }
     [textField becomeFirstResponder];
@@ -304,7 +298,7 @@
 
 - (void)resizeView:(UIPinchGestureRecognizer *)gesture {
     if([gesture state] == UIGestureRecognizerStateBegan) {
-        self.lastScale = [gesture scale];
+        lastScale = [gesture scale];
     }
     if ([gesture state] == UIGestureRecognizerStateBegan ||
         [gesture state] == UIGestureRecognizerStateChanged) {
@@ -313,12 +307,12 @@
         const CGFloat kMaxScale = 10.0;
         const CGFloat kMinScale = 0.3;
         
-        CGFloat newScale = 1 -  (self.lastScale - [gesture scale]);
+        CGFloat newScale = 1 -  (lastScale - [gesture scale]);
         newScale = MIN(newScale, kMaxScale / currentScale);
         newScale = MAX(newScale, kMinScale / currentScale);
         CGAffineTransform transform = CGAffineTransformScale([[gesture view] transform], newScale, newScale);
         [gesture view].transform = transform;
-        self.lastScale = [gesture scale];
+        lastScale = [gesture scale];
     }
 }
 
@@ -377,7 +371,7 @@
     [self.wView addSubview:addedImageView];
     [self.wView addGestureRecognizer:tap];
     
-    self.doublePhoto = YES;
+    doublePhoto = YES;
     [self.imageView removeConstraints:self.imageView.constraints];
     [self.wView removeConstraints:self.wView.constraints];
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;

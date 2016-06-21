@@ -227,7 +227,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Settings" id="Ufh-Hj-WYb">
                                 <connections>
-                                    <action selector="settingsTapped:" destination="5BB-nk-wdM" id="VY2-cx-DI7"/>
+                                    <segue destination="pFt-gj-1oy" kind="show" id="kvY-nE-Cx5"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="hjW-O3-TS3">
@@ -266,7 +266,7 @@
                             <tableViewSection headerTitle="Text Color" id="AXk-Wi-vaJ" userLabel="Color">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ylI-8W-wJ6">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylI-8W-wJ6" id="6ES-UL-98G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -294,7 +294,7 @@
                             <tableViewSection headerTitle="Font" footerTitle="Note: You can change font size just pinching text " id="4oa-HP-mfi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="avo-BY-mj1">
-                                        <rect key="frame" x="0.0" y="145" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="209" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="avo-BY-mj1" id="0sW-Uz-j70">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -334,7 +334,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ebG-BX-zpL">
-                                        <rect key="frame" x="0.0" y="189" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="253" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ebG-BX-zpL" id="mB7-SB-knB">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -373,7 +373,7 @@
                             <tableViewSection headerTitle="Backround" id="iRQ-rl-F41">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="P2c-no-IA4">
-                                        <rect key="frame" x="0.0" y="300" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2c-no-IA4" id="cgf-5A-Zpy">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>

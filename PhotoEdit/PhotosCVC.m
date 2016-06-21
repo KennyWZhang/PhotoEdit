@@ -13,20 +13,20 @@
 #import "HelpPageVC.h"
 #import "SaveLoadImages.h"
 
-@interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+    SaveLoadImages *sli;
+    NSMutableArray *photos;
+    int lastIndex;
+    int rewriteIndex;
+    BOOL showDelete;
+    BOOL add;
+    BOOL firstAppear;
+    BOOL deleteTapped;
+    BOOL notFirstTimeinApp;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
-
-@property (strong, nonatomic) NSMutableArray * photos;
-@property (strong, nonatomic) SaveLoadImages *sli;
-@property (assign, nonatomic) int i;
-@property (assign, nonatomic) int rewriteIndex;
-@property (assign, nonatomic) BOOL showDelete;
-@property (assign, nonatomic) BOOL add;
-@property (assign, nonatomic) BOOL firstAppear;
-@property (assign, nonatomic) BOOL deleteTapped;
-@property (assign,nonatomic) BOOL notFirstTimeinApp;
 
 @end
 
@@ -38,31 +38,31 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.i = (int)self.photos.count;
+    lastIndex = (int)photos.count;
     for(UIView *temp in self.navigationController.navigationBar.subviews) {
         [temp setExclusiveTouch:YES];
     }
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"firstTime"]) {
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstTime"];
-        self.notFirstTimeinApp = [[NSKeyedUnarchiver unarchiveObjectWithData:data] boolValue];
+        notFirstTimeinApp = [[NSKeyedUnarchiver unarchiveObjectWithData:data] boolValue];
     }
-    if(!self.notFirstTimeinApp) {
-        self.notFirstTimeinApp = YES;
+    if(!notFirstTimeinApp) {
+        notFirstTimeinApp = YES;
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithBool:self.notFirstTimeinApp]];
+        NSData* userData = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithBool:notFirstTimeinApp]];
         [prefs setObject:userData forKey:@"firstTime"];
         [prefs synchronize];
         HelpPageVC *hp = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HelpPageVC"];
         [self.navigationController pushViewController:hp animated:YES];
     }
-    self.firstAppear = YES;
+    firstAppear = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.navigationController.toolbar setHidden: YES];
     
-    self.photos = [NSMutableArray new];
-    self.sli = [SaveLoadImages new];
+    photos = [NSMutableArray new];
+    sli = [SaveLoadImages new];
     
-    self.photos = [self.sli loadImages];
+    photos = [sli loadImages];
     [self.collectionView reloadData];
     
 }
@@ -70,19 +70,19 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES];
-    for(int i = 0; i < self.photos.count; i++) {
-        if([self.photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
-            self.photos[i] = self.generatedImage;
+    for(int i = 0; i < photos.count; i++) {
+        if([photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
+            photos[i] = self.generatedImage;
         }
     }
-    if(self.add) {
-        self.i = (int)self.photos.count - 1;
-        [self.sli addImageToDocuments:self.photos ByIndex:self.i];
-        self.add = NO;
-    } else if(!self.firstAppear) {
-        [self.sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:self.rewriteIndex];
+    if(add) {
+        lastIndex = (int)photos.count - 1;
+        [sli addImageToDocuments:photos ByIndex:lastIndex];
+        add = NO;
+    } else if(!firstAppear) {
+        [sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:rewriteIndex];
     }
-    self.firstAppear = NO;
+    firstAppear = NO;
     [self.collectionView reloadData];
 }
 
@@ -90,13 +90,13 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - Actions -
 
 - (IBAction)editButtontapped:(UIBarButtonItem *)sender {
-    self.showDelete = !self.showDelete;
+    showDelete = !showDelete;
     if(self.collectionView.backgroundColor == [UIColor whiteColor]) {
         self.navigationItem.rightBarButtonItem = nil;
         [self.editButton setTitle: @"Cancel"];
         self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
     } else {
-        if(self.deleteTapped) {
+        if(deleteTapped) {
             UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];
             opacityView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.6];
             [self.collectionView addSubview:opacityView];
@@ -104,7 +104,7 @@ static NSString * const reuseIdentifier = @"Cell";
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 [self.editButton setEnabled:NO];
                 [self.addButton setEnabled:NO];
-                [self.sli saveImages:self.photos];
+                [sli saveImages:photos];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.addButton setEnabled:YES];
                     [self.editButton setEnabled:YES];
@@ -112,7 +112,7 @@ static NSString * const reuseIdentifier = @"Cell";
                     [opacityView removeFromSuperview];
                 });
             });
-            self.deleteTapped = NO;
+            deleteTapped = NO;
         }
         self.navigationItem.rightBarButtonItem = self.addButton;
         [self.editButton setTitle: @"Edit"];
@@ -132,24 +132,24 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    [self.photos addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    [photos addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    self.add = YES;
+    add = YES;
 }
 
 #pragma mark - UICollectionViewDataSource -
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.photos.count;
+    return photos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotosCVCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     [cell setExclusiveTouch:YES];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.imageView.image = self.photos[indexPath.row];
+    cell.imageView.image = photos[indexPath.row];
     
-    if(self.showDelete) {
+    if(showDelete) {
         [cell.deleteImageView.layer removeAllAnimations];
         [cell.imageView.layer removeAllAnimations];
         [cell.deleteImageView setHidden:NO];
@@ -184,14 +184,14 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 #pragma mark - UICollectionViewDelegate -
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.showDelete) {
-        self.deleteTapped = YES;
-        [self.photos removeObjectAtIndex:indexPath.row];
+    if(showDelete) {
+        deleteTapped = YES;
+        [photos removeObjectAtIndex:indexPath.row];
         [collectionView reloadData];
     } else {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];
-        evc.photo = self.photos[indexPath.row];
-        self.rewriteIndex = (int)indexPath.row;
+        evc.photo = photos[indexPath.row];
+        rewriteIndex = (int)indexPath.row;
         [self.navigationController pushViewController:evc animated:YES];
     }
     return YES;

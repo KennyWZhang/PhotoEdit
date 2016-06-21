@@ -85,9 +85,8 @@
         [prefs synchronize];
     }
 }
-/*------------------------------------------------*/
-#pragma mark - LGPickerActionSheetDelegate methods
-/*------------------------------------------------*/
+
+#pragma mark - LGPickerActionSheetDelegate methods -
 
 - (IBAction)pickerTapped:(UIButton *)sender {
     if(self.fontNames)
