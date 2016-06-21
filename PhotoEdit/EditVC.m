@@ -10,9 +10,10 @@
 
 #import "PhotosCVC.h"
 #import "SettingsTVC.h"
+#import "Text.h"
 
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate> {
-    NSMutableDictionary *text;
+    Text *text;
     UIImage *imageToReplace;
     CGFloat lastScale;
     BOOL doublePhoto;
@@ -31,7 +32,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     [super viewDidLoad];
-    
+    text = [Text new];
     imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.image = self.photo;
@@ -47,14 +48,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
-        text = [NSMutableDictionary new];
-        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
-        text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
-    }
+
+    [text load];
     if(text) {
-        self.wView.backgroundColor = text[@"backround"];
-        self.imageView.backgroundColor = text[@"backround"];
+        self.wView.backgroundColor = text.backround;
+        self.imageView.backgroundColor = text.backround;
     }
 }
 
@@ -247,12 +245,12 @@
     textField.placeholder = @"Type here";
     textField.backgroundColor = [UIColor clearColor];
     if(text) {
-        textField.tintColor = text[@"color"];
-        textField.textColor = text[@"color"];
-        if([text[@"style"]  isEqualToString:@"Default"]) {
-            textField.font = [UIFont systemFontOfSize:[text[@"size"] intValue]];
+        textField.tintColor = text.color;
+        textField.textColor = text.color;
+        if([text.style  isEqualToString:@"Default"]) {
+            textField.font = [UIFont systemFontOfSize:[text.size intValue]];
         } else {
-            textField.font = [UIFont fontWithName:text[@"style"] size:[text[@"size"] intValue]];
+            textField.font = [UIFont fontWithName:text.style size:[text.size intValue]];
         }
     }
     [textField becomeFirstResponder];

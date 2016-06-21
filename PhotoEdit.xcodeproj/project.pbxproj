@@ -47,6 +47,7 @@
 		B32ABA661D194A15007CA9CB /* help3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA611D194A15007CA9CB /* help3.jpeg */; };
 		B32ABA671D194A15007CA9CB /* help4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA621D194A15007CA9CB /* help4.jpeg */; };
 		B32ABA681D194A15007CA9CB /* help5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA631D194A15007CA9CB /* help5.jpeg */; };
+		B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,8 @@
 		B32ABA611D194A15007CA9CB /* help3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help3.jpeg; sourceTree = "<group>"; };
 		B32ABA621D194A15007CA9CB /* help4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help4.jpeg; sourceTree = "<group>"; };
 		B32ABA631D194A15007CA9CB /* help5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpeg; sourceTree = "<group>"; };
+		B32ABA691D196DE5007CA9CB /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
+		B32ABA6A1D196DE5007CA9CB /* Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Text.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +347,8 @@
 			children = (
 				B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */,
 				B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */,
+				B32ABA691D196DE5007CA9CB /* Text.h */,
+				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */,
 				B32AB9F01D0A9E41007CA9CB /* DRColorPicker.m in Sources */,
 				B32AB9EE1D0A9E41007CA9CB /* DRColorPicker+UIColor.m in Sources */,
+				B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */,
 				B32AB9FC1D0A9E41007CA9CB /* DRColorPickerStore.m in Sources */,
 				B32AB9F61D0A9E41007CA9CB /* DRColorPickerGridViewController.m in Sources */,
 				B32AB9F91D0A9E41007CA9CB /* DRColorPickerHorizontalCollectionViewLayout.m in Sources */,

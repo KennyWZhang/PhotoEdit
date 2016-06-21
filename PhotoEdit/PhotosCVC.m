@@ -85,7 +85,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
 }
 
-
 #pragma mark - Actions -
 
 - (IBAction)editButtontapped:(UIBarButtonItem *)sender {

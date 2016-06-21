@@ -10,8 +10,11 @@
 
 #import "DRColorPicker.h"
 #import "LGPickerActionSheet.h"
+#import "Text.h"
 
-@interface SettingsTVC () <LGPickerActionSheetDelegate>
+@interface SettingsTVC () <LGPickerActionSheetDelegate> {
+    Text *text;
+}
 
 @property (strong, nonatomic) IBOutlet UIButton *fontButton;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
@@ -20,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *backroundColorButton;
 @property (strong, nonatomic) DRColorPickerColor *color;
 @property (weak, nonatomic) DRColorPickerViewController *colorPickerVC;
-@property (strong, nonatomic) NSMutableDictionary *text;
+//@property (strong, nonatomic) NSMutableDictionary *text;
 @property (strong, nonatomic) NSMutableArray *fontNames;
 
 @end
@@ -34,7 +37,9 @@
     [self.fontButton setExclusiveTouch:YES];
     [self.colorButton setExclusiveTouch:YES];
     [self.backroundColorButton setExclusiveTouch:YES];
-    self.fontNames = [[NSMutableArray alloc]init];
+    text = [Text new];
+    self.fontNames = [NSMutableArray new];
+    
     NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
     NSArray *fontNames;
     NSInteger indFamily, indFont;
@@ -46,23 +51,26 @@
                       [familyNames objectAtIndex:indFamily]]];
         for (indFont=0; indFont<[fontNames count]; ++indFont)
         {
-              [self.fontNames addObject:[fontNames objectAtIndex:indFont]];
+            [self.fontNames addObject:[fontNames objectAtIndex:indFont]];
         }
     }
-    self.text = [NSMutableDictionary new];
-    if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
-        NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
-        self.text = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
-        if([self.text[@"style"] isEqualToString:@"Default"]) {
-            self.fontButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        } else {
-            self.fontButton.titleLabel.font = [UIFont fontWithName:self.text[@"style"] size:15];
-        }
-        [self.fontButton setTitle:self.text[@"style"] forState:UIControlStateNormal];
-        self.textField.font = [UIFont systemFontOfSize:[self.text[@"size"] intValue]];
-        self.textField.text = self.text[@"size"];
-        self.colorButton.backgroundColor = self.text[@"color"];
-        self.backroundColorButton.backgroundColor = self.text[@"backround"];
+    [text load];
+    if([text.style isEqualToString:@"Default"]) {
+        self.fontButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    } else {
+        self.fontButton.titleLabel.font = [UIFont fontWithName:text.style size:15];
+    }
+    [self.fontButton setTitle:@"Default" forState:UIControlStateNormal];
+    self.textField.font = [UIFont systemFontOfSize:13];
+    self.textField.text = @"13";
+    self.colorButton.backgroundColor = [UIColor blackColor];
+    self.backroundColorButton.backgroundColor = [UIColor whiteColor];
+    if(text.size || text.color || text.backround || text.style) {
+        [self.fontButton setTitle:text.style forState:UIControlStateNormal];
+        self.textField.font = [UIFont systemFontOfSize:[text.size intValue]];
+        self.textField.text = text.size;
+        self.colorButton.backgroundColor = text.color;
+        self.backroundColorButton.backgroundColor = text.backround;
     }
     self.stepper.minimumValue = 5;
     self.stepper.maximumValue = 40;
@@ -75,14 +83,11 @@
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         [self.navigationController.toolbar setHidden:NO];
-        self.text[@"size"] = self.textField.text;
-        self.text[@"color"] = self.colorButton.backgroundColor;
-        self.text[@"backround"] = self.backroundColorButton.backgroundColor;
-        self.text[@"style"] = self.fontButton.titleLabel.text;
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.text];
-        [prefs setObject:data forKey:@"text"];
-        [prefs synchronize];
+        text.size = self.textField.text;
+        text.color = self.colorButton.backgroundColor;
+        text.backround = self.backroundColorButton.backgroundColor;
+        text.style = self.fontButton.titleLabel.text;
+        [text save];
     }
 }
 
@@ -126,7 +131,7 @@
     
     DRColorPickerViewController* vc = [DRColorPickerViewController newColorPickerWithColor:self.color];
     vc.modalPresentationStyle = UIModalPresentationFormSheet;
-    vc.rootViewController.showAlphaSlider = YES; 
+    vc.rootViewController.showAlphaSlider = YES;
     vc.rootViewController.addToFavoritesImage = DRColorPickerImage(@"images/light/drcolorpicker-addtofavorites-light.png");
     vc.rootViewController.favoritesImage = DRColorPickerImage(@"images/light/drcolorpicker-favorites-light.png");
     vc.rootViewController.hueImage = DRColorPickerImage(@"images/light/drcolorpicker-hue-v3-light.png");
