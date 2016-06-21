@@ -40,7 +40,7 @@
     [self.imageView addGestureRecognizer:tap];
     
     self.navigationController.toolbarHidden = NO;
-    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];;
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];
     for(UIView *temp in self.navigationController.toolbar.subviews) {
         [temp setExclusiveTouch:YES];
     }
@@ -48,11 +48,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     [text load];
     if(text) {
         self.wView.backgroundColor = text.backround;
         self.imageView.backgroundColor = text.backround;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // can acsess to navigation bar after
+    //viewDidAppear because of simulated metrics, see .storyboard file for more info
+    [super viewDidAppear:animated];
+    for(UIView *temp in self.navigationController.navigationBar.subviews) {
+        [temp setExclusiveTouch:YES];
     }
 }
 

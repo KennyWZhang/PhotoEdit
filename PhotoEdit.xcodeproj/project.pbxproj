@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B32AB9BB1D09ADEC007CA9CB /* AppDelegate */,
-				B32ABA5B1D192633007CA9CB /* Model */,
+				B32ABA5B1D192633007CA9CB /* Models */,
 				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
 				B32AB9C21D09B23B007CA9CB /* Views */,
 				B32AB9901D09ADC6007CA9CB /* Main.storyboard */,
@@ -342,7 +342,7 @@
 			path = LGPickerView;
 			sourceTree = "<group>";
 		};
-		B32ABA5B1D192633007CA9CB /* Model */ = {
+		B32ABA5B1D192633007CA9CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */,
@@ -350,7 +350,7 @@
 				B32ABA691D196DE5007CA9CB /* Text.h */,
 				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -78,7 +78,7 @@ static NSString * const reuseIdentifier = @"Cell";
         lastIndex = (int)photos.count - 1;
         [sli addImageToDocuments:photos ByIndex:lastIndex];
         add = NO;
-    } else if(!firstAppear) {
+    } else if(!firstAppear && self.imageToReplace) {
         [sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:rewriteIndex];
     }
     firstAppear = NO;
