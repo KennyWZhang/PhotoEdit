@@ -43,14 +43,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jib-nA-JaV">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="jib-nA-JaV">
                                 <rect key="frame" x="0.0" y="563" width="600" height="37"/>
                                 <color key="backgroundColor" red="0.0" green="0.47107014642923151" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="pageChanged:" destination="gbL-GY-Fzd" eventType="valueChanged" id="9rZ-Fm-zMf"/>
                                 </connections>
                             </pageControl>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-XQ-w72">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help1.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-XQ-w72">
                                 <rect key="frame" x="0.0" y="64" width="600" height="499"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -420,7 +420,7 @@
     </scenes>
     <resources>
         <image name="dismiss.png" width="32" height="32"/>
+        <image name="help1.jpeg" width="640" height="920"/>
         <image name="info.png" width="24" height="24"/>
-        <image name="test.jpeg" width="225" height="225"/>
     </resources>
 </document>

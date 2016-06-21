@@ -41,10 +41,12 @@
 		B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */; };
 		B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA0D1D12DC8E007CA9CB /* info.png */; };
 		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
-		B32ABA151D12E978007CA9CB /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA121D12E978007CA9CB /* test.jpeg */; };
-		B32ABA161D12E978007CA9CB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA131D12E978007CA9CB /* test.png */; };
-		B32ABA171D12E978007CA9CB /* Unknown-person.gif in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA141D12E978007CA9CB /* Unknown-person.gif */; };
 		B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */; };
+		B32ABA641D194A15007CA9CB /* help1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA5F1D194A15007CA9CB /* help1.jpeg */; };
+		B32ABA651D194A15007CA9CB /* help2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA601D194A15007CA9CB /* help2.jpeg */; };
+		B32ABA661D194A15007CA9CB /* help3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA611D194A15007CA9CB /* help3.jpeg */; };
+		B32ABA671D194A15007CA9CB /* help4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA621D194A15007CA9CB /* help4.jpeg */; };
+		B32ABA681D194A15007CA9CB /* help5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA631D194A15007CA9CB /* help5.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,11 +132,13 @@
 		B32ABA0D1D12DC8E007CA9CB /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageVC.h; sourceTree = "<group>"; };
 		B32ABA101D12E04D007CA9CB /* HelpPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageVC.m; sourceTree = "<group>"; };
-		B32ABA121D12E978007CA9CB /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
-		B32ABA131D12E978007CA9CB /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
-		B32ABA141D12E978007CA9CB /* Unknown-person.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Unknown-person.gif"; sourceTree = "<group>"; };
 		B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLoadImages.h; sourceTree = "<group>"; };
 		B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveLoadImages.m; sourceTree = "<group>"; };
+		B32ABA5F1D194A15007CA9CB /* help1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help1.jpeg; sourceTree = "<group>"; };
+		B32ABA601D194A15007CA9CB /* help2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help2.jpeg; sourceTree = "<group>"; };
+		B32ABA611D194A15007CA9CB /* help3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help3.jpeg; sourceTree = "<group>"; };
+		B32ABA621D194A15007CA9CB /* help4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help4.jpeg; sourceTree = "<group>"; };
+		B32ABA631D194A15007CA9CB /* help5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,9 +317,11 @@
 		B32ABA001D0E98D3007CA9CB /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				B32ABA121D12E978007CA9CB /* test.jpeg */,
-				B32ABA131D12E978007CA9CB /* test.png */,
-				B32ABA141D12E978007CA9CB /* Unknown-person.gif */,
+				B32ABA5F1D194A15007CA9CB /* help1.jpeg */,
+				B32ABA601D194A15007CA9CB /* help2.jpeg */,
+				B32ABA611D194A15007CA9CB /* help3.jpeg */,
+				B32ABA621D194A15007CA9CB /* help4.jpeg */,
+				B32ABA631D194A15007CA9CB /* help5.jpeg */,
 				B32ABA0D1D12DC8E007CA9CB /* info.png */,
 				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
 			);
@@ -445,14 +451,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B32ABA151D12E978007CA9CB /* test.jpeg in Resources */,
 				B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */,
+				B32ABA661D194A15007CA9CB /* help3.jpeg in Resources */,
+				B32ABA641D194A15007CA9CB /* help1.jpeg in Resources */,
 				B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */,
-				B32ABA161D12E978007CA9CB /* test.png in Resources */,
+				B32ABA651D194A15007CA9CB /* help2.jpeg in Resources */,
 				B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */,
 				B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */,
+				B32ABA671D194A15007CA9CB /* help4.jpeg in Resources */,
+				B32ABA681D194A15007CA9CB /* help5.jpeg in Resources */,
 				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,
-				B32ABA171D12E978007CA9CB /* Unknown-person.gif in Resources */,
 				B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

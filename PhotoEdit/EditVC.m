@@ -17,7 +17,6 @@
     CGFloat lastScale;
     BOOL doublePhoto;
 }
-
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added because of (posible)backround opacity
 
