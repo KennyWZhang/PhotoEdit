@@ -62,8 +62,8 @@ static NSString * const reuseIdentifier = @"Cell";
     sli = [SaveLoadImages new];
     
     photos = [sli loadImages];
-    [self.collectionView reloadData];
     
+    [self.collectionView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

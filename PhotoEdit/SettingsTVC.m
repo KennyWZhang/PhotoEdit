@@ -14,6 +14,7 @@
 
 @interface SettingsTVC () <LGPickerActionSheetDelegate> {
     Text *text;
+    NSMutableArray *fontNames;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *fontButton;
@@ -21,10 +22,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *colorButton;
 @property (strong, nonatomic) IBOutlet UIButton *backroundColorButton;
+
 @property (strong, nonatomic) DRColorPickerColor *color;
 @property (weak, nonatomic) DRColorPickerViewController *colorPickerVC;
-//@property (strong, nonatomic) NSMutableDictionary *text;
-@property (strong, nonatomic) NSMutableArray *fontNames;
 
 @end
 
@@ -34,26 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.fontButton setExclusiveTouch:YES];
     [self.colorButton setExclusiveTouch:YES];
     [self.backroundColorButton setExclusiveTouch:YES];
-    text = [Text new];
-    self.fontNames = [NSMutableArray new];
     
-    NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
-    NSArray *fontNames;
-    NSInteger indFamily, indFont;
-    [self.fontNames addObject:@"Default"];
-    for (indFamily=0; indFamily<[familyNames count]; ++indFamily)
-    {
-        fontNames = [[NSArray alloc] initWithArray:
-                     [UIFont fontNamesForFamilyName:
-                      [familyNames objectAtIndex:indFamily]]];
-        for (indFont=0; indFont<[fontNames count]; ++indFont)
-        {
-            [self.fontNames addObject:[fontNames objectAtIndex:indFont]];
-        }
-    }
+    text = [Text new];
+    fontNames = [text getNonSystemFontNames];
     [text load];
     if([text.style isEqualToString:@"Default"]) {
         self.fontButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -94,10 +81,10 @@
 #pragma mark - LGPickerActionSheetDelegate methods -
 
 - (IBAction)pickerTapped:(UIButton *)sender {
-    if(self.fontNames)
+    if(fontNames)
     {
         LGPickerActionSheet *pickerView = [[LGPickerActionSheet alloc]
-                                           initWithData:@[self.fontNames]
+                                           initWithData:@[fontNames]
                                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                            okButtonTitle:NSLocalizedString(@"Done", nil)];
         pickerView.delegate = self;

@@ -17,5 +17,6 @@
 
 - (void)save;
 - (void)load;
+- (NSMutableArray *)getNonSystemFontNames;
 
 @end
