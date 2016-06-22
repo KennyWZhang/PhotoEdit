@@ -14,7 +14,6 @@
 
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate> {
     Text *text;
-    UIImage *imageToReplace;
     CGFloat lastScale;
     BOOL doublePhoto;
 }
@@ -33,7 +32,6 @@
     }
     [super viewDidLoad];
     text = [Text new];
-    imageToReplace = self.photo;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.imageView.image = self.photo;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
@@ -177,9 +175,8 @@
 - (IBAction)goBack:(UIBarButtonItem *)sender {
     if(self.imageView.image != self.photo) {
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
-        pcvc.imageToReplace = imageToReplace;
+        pcvc.imageToReplace = self.photo;
         pcvc.generatedImage = self.imageView.image;
-        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);

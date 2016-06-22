@@ -48,6 +48,7 @@
 		B32ABA671D194A15007CA9CB /* help4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA621D194A15007CA9CB /* help4.jpeg */; };
 		B32ABA681D194A15007CA9CB /* help5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA631D194A15007CA9CB /* help5.jpeg */; };
 		B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
+		B32ABA6E1D1AA9CE007CA9CB /* SupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B32AB9841D09ADC6007CA9CB /* CPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9881D09ADC6007CA9CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,10 +77,10 @@
 		B32AB9931D09ADC6007CA9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B32AB9961D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B32AB99D1D09ADC6007CA9CB /* CPM.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPM.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEdit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditTests.m; sourceTree = "<group>"; };
 		B32AB9A31D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B32AB9A81D09ADC6007CA9CB /* CPM.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPM.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32AB9A81D09ADC6007CA9CB /* PhotoEdit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEdit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9AC1D09ADC6007CA9CB /* PhotoEditUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditUITests.m; sourceTree = "<group>"; };
 		B32AB9AE1D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B32AB9BC1D09AE67007CA9CB /* PhotosCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCVC.h; sourceTree = "<group>"; };
@@ -142,6 +143,8 @@
 		B32ABA631D194A15007CA9CB /* help5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpeg; sourceTree = "<group>"; };
 		B32ABA691D196DE5007CA9CB /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 		B32ABA6A1D196DE5007CA9CB /* Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Text.m; sourceTree = "<group>"; };
+		B32ABA6C1D1AA9CE007CA9CB /* SupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportVC.h; sourceTree = "<group>"; };
+		B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,9 +185,9 @@
 		B32AB9851D09ADC6007CA9CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B32AB9841D09ADC6007CA9CB /* CPM.app */,
-				B32AB99D1D09ADC6007CA9CB /* CPM.xctest */,
-				B32AB9A81D09ADC6007CA9CB /* CPM.xctest */,
+				B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */,
+				B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */,
+				B32AB9A81D09ADC6007CA9CB /* PhotoEdit.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +247,8 @@
 				B32AB9C71D09C04C007CA9CB /* SettingsTVC.m */,
 				B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */,
 				B32ABA101D12E04D007CA9CB /* HelpPageVC.m */,
+				B32ABA6C1D1AA9CE007CA9CB /* SupportVC.h */,
+				B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -356,9 +361,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B32AB9831D09ADC6007CA9CB /* CPM */ = {
+		B32AB9831D09ADC6007CA9CB /* PhotoEdit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPM" */;
+			buildConfigurationList = B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEdit" */;
 			buildPhases = (
 				B32AB9801D09ADC6007CA9CB /* Sources */,
 				B32AB9811D09ADC6007CA9CB /* Frameworks */,
@@ -368,14 +373,14 @@
 			);
 			dependencies = (
 			);
-			name = CPM;
+			name = PhotoEdit;
 			productName = PhotoEdit;
-			productReference = B32AB9841D09ADC6007CA9CB /* CPM.app */;
+			productReference = B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B32AB99C1D09ADC6007CA9CB /* CPMTests */ = {
+		B32AB99C1D09ADC6007CA9CB /* PhotoEditTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPMTests" */;
+			buildConfigurationList = B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditTests" */;
 			buildPhases = (
 				B32AB9991D09ADC6007CA9CB /* Sources */,
 				B32AB99A1D09ADC6007CA9CB /* Frameworks */,
@@ -386,14 +391,14 @@
 			dependencies = (
 				B32AB99F1D09ADC6007CA9CB /* PBXTargetDependency */,
 			);
-			name = CPMTests;
+			name = PhotoEditTests;
 			productName = PhotoEditTests;
-			productReference = B32AB99D1D09ADC6007CA9CB /* CPM.xctest */;
+			productReference = B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B32AB9A71D09ADC6007CA9CB /* CPMUITests */ = {
+		B32AB9A71D09ADC6007CA9CB /* PhotoEditUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPMUITests" */;
+			buildConfigurationList = B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditUITests" */;
 			buildPhases = (
 				B32AB9A41D09ADC6007CA9CB /* Sources */,
 				B32AB9A51D09ADC6007CA9CB /* Frameworks */,
@@ -404,9 +409,9 @@
 			dependencies = (
 				B32AB9AA1D09ADC6007CA9CB /* PBXTargetDependency */,
 			);
-			name = CPMUITests;
+			name = PhotoEditUITests;
 			productName = PhotoEditUITests;
-			productReference = B32AB9A81D09ADC6007CA9CB /* CPM.xctest */;
+			productReference = B32AB9A81D09ADC6007CA9CB /* PhotoEdit.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -431,7 +436,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "CPM" */;
+			buildConfigurationList = B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "PhotoEdit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -444,9 +449,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B32AB9831D09ADC6007CA9CB /* CPM */,
-				B32AB99C1D09ADC6007CA9CB /* CPMTests */,
-				B32AB9A71D09ADC6007CA9CB /* CPMUITests */,
+				B32AB9831D09ADC6007CA9CB /* PhotoEdit */,
+				B32AB99C1D09ADC6007CA9CB /* PhotoEditTests */,
+				B32AB9A71D09ADC6007CA9CB /* PhotoEditUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -509,6 +514,7 @@
 				B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */,
 				B32AB9FB1D0A9E41007CA9CB /* DRColorPickerHueViewController.m in Sources */,
 				B32AB9F21D0A9E41007CA9CB /* DRColorPickerColor.m in Sources */,
+				B32ABA6E1D1AA9CE007CA9CB /* SupportVC.m in Sources */,
 				B32AB9C51D09BA10007CA9CB /* EditVC.m in Sources */,
 				B32AB9FE1D0A9E41007CA9CB /* DRColorPickerWheelView.m in Sources */,
 				B32AB9F01D0A9E41007CA9CB /* DRColorPicker.m in Sources */,
@@ -543,12 +549,12 @@
 /* Begin PBXTargetDependency section */
 		B32AB99F1D09ADC6007CA9CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B32AB9831D09ADC6007CA9CB /* CPM */;
+			target = B32AB9831D09ADC6007CA9CB /* PhotoEdit */;
 			targetProxy = B32AB99E1D09ADC6007CA9CB /* PBXContainerItemProxy */;
 		};
 		B32AB9AA1D09ADC6007CA9CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B32AB9831D09ADC6007CA9CB /* CPM */;
+			target = B32AB9831D09ADC6007CA9CB /* PhotoEdit */;
 			targetProxy = B32AB9A91D09ADC6007CA9CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -665,7 +671,7 @@
 				INFOPLIST_FILE = PhotoEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
-				PRODUCT_NAME = CPM;
+				PRODUCT_NAME = PhotoEdit;
 				PROVISIONING_PROFILE = "";
 				STRIP_PNG_TEXT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -683,7 +689,7 @@
 				INFOPLIST_FILE = PhotoEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
-				PRODUCT_NAME = CPM;
+				PRODUCT_NAME = PhotoEdit;
 				PROVISIONING_PROFILE = "";
 				STRIP_PNG_TEXT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -697,8 +703,8 @@
 				INFOPLIST_FILE = PhotoEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditTests;
-				PRODUCT_NAME = CPM;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPM.app/CPM";
+				PRODUCT_NAME = PhotoEdit;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoEdit.app/PhotoEdit";
 			};
 			name = Debug;
 		};
@@ -709,8 +715,8 @@
 				INFOPLIST_FILE = PhotoEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditTests;
-				PRODUCT_NAME = CPM;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPM.app/CPM";
+				PRODUCT_NAME = PhotoEdit;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoEdit.app/PhotoEdit";
 			};
 			name = Release;
 		};
@@ -720,7 +726,7 @@
 				INFOPLIST_FILE = PhotoEditUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditUITests;
-				PRODUCT_NAME = CPM;
+				PRODUCT_NAME = PhotoEdit;
 				TEST_TARGET_NAME = PhotoEdit;
 			};
 			name = Debug;
@@ -731,7 +737,7 @@
 				INFOPLIST_FILE = PhotoEditUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEditUITests;
-				PRODUCT_NAME = CPM;
+				PRODUCT_NAME = PhotoEdit;
 				TEST_TARGET_NAME = PhotoEdit;
 			};
 			name = Release;
@@ -739,7 +745,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "CPM" */ = {
+		B32AB97F1D09ADC6007CA9CB /* Build configuration list for PBXProject "PhotoEdit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B32AB9AF1D09ADC6007CA9CB /* Debug */,
@@ -748,7 +754,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPM" */ = {
+		B32AB9B11D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEdit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B32AB9B21D09ADC6007CA9CB /* Debug */,
@@ -757,7 +763,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPMTests" */ = {
+		B32AB9B41D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B32AB9B51D09ADC6007CA9CB /* Debug */,
@@ -766,7 +772,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "CPMUITests" */ = {
+		B32AB9B71D09ADC6007CA9CB /* Build configuration list for PBXNativeTarget "PhotoEditUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B32AB9B81D09ADC6007CA9CB /* Debug */,

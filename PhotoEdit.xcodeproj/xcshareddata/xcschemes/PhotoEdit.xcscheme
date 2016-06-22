@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B32AB9831D09ADC6007CA9CB"
                BuildableName = "CPM.app"
-               BlueprintName = "CPM"
-               ReferencedContainer = "container:CPM.xcodeproj">
+               BlueprintName = "PhotoEdit"
+               ReferencedContainer = "container:PhotoEdit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B32AB99C1D09ADC6007CA9CB"
-               BuildableName = "CPM.xctest"
-               BlueprintName = "CPMTests"
-               ReferencedContainer = "container:CPM.xcodeproj">
+               BuildableName = "PhotoEdit.xctest"
+               BlueprintName = "PhotoEditTests"
+               ReferencedContainer = "container:PhotoEdit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B32AB9A71D09ADC6007CA9CB"
-               BuildableName = "CPM.xctest"
-               BlueprintName = "CPMUITests"
-               ReferencedContainer = "container:CPM.xcodeproj">
+               BuildableName = "PhotoEdit.xctest"
+               BlueprintName = "PhotoEditUITests"
+               ReferencedContainer = "container:PhotoEdit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,8 +54,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B32AB9831D09ADC6007CA9CB"
             BuildableName = "CPM.app"
-            BlueprintName = "CPM"
-            ReferencedContainer = "container:CPM.xcodeproj">
+            BlueprintName = "PhotoEdit"
+            ReferencedContainer = "container:PhotoEdit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -77,8 +77,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B32AB9831D09ADC6007CA9CB"
             BuildableName = "CPM.app"
-            BlueprintName = "CPM"
-            ReferencedContainer = "container:CPM.xcodeproj">
+            BlueprintName = "PhotoEdit"
+            ReferencedContainer = "container:PhotoEdit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,8 +96,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B32AB9831D09ADC6007CA9CB"
             BuildableName = "CPM.app"
-            BlueprintName = "CPM"
-            ReferencedContainer = "container:CPM.xcodeproj">
+            BlueprintName = "PhotoEdit"
+            ReferencedContainer = "container:PhotoEdit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

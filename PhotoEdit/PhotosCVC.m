@@ -24,6 +24,7 @@
     BOOL deleteTapped;
     BOOL notFirstTimeinApp;
 }
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
@@ -62,8 +63,8 @@ static NSString * const reuseIdentifier = @"Cell";
     sli = [SaveLoadImages new];
     
     photos = [sli loadImages];
-    
     [self.collectionView reloadData];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,12 +79,13 @@ static NSString * const reuseIdentifier = @"Cell";
         lastIndex = (int)photos.count - 1;
         [sli addImageToDocuments:photos ByIndex:lastIndex];
         add = NO;
-    } else if(!firstAppear && self.imageToReplace) {
+    } else if(!firstAppear) {
         [sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:rewriteIndex];
     }
     firstAppear = NO;
     [self.collectionView reloadData];
 }
+
 
 #pragma mark - Actions -
 
