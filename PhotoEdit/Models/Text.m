@@ -21,7 +21,7 @@
 
 - (void)load {
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"text"]) {
-        NSDictionary *text = [NSDictionary new];
+        NSDictionary *text = nil;
         NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"text"];
         text = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         self.size = text[@"size"];

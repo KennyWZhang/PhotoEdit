@@ -75,7 +75,7 @@
 		B32AB9911D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B32AB9931D09ADC6007CA9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B32AB9961D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEdit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditTests.m; sourceTree = "<group>"; };
 		B32AB9A31D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 				B32AB9981D09ADC6007CA9CB /* Info.plist */,
 				B32AB9881D09ADC6007CA9CB /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B32AB9A01D09ADC6007CA9CB /* PhotoEditTests */ = {
@@ -248,7 +248,7 @@
 				B32ABA6C1D1AA9CE007CA9CB /* SupportVC.h */,
 				B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		B32AB9BB1D09ADEC007CA9CB /* AppDelegate */ = {
@@ -257,7 +257,7 @@
 				B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */,
 				B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */,
 			);
-			name = AppDelegate;
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		B32AB9C21D09B23B007CA9CB /* Views */ = {
@@ -266,7 +266,7 @@
 				B32AB9BF1D09B233007CA9CB /* PhotosCVCell.h */,
 				B32AB9C01D09B233007CA9CB /* PhotosCVCell.m */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B32AB9C91D0A9E41007CA9CB /* External */ = {
@@ -348,7 +348,7 @@
 				B32ABA691D196DE5007CA9CB /* Text.h */,
 				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B32ABA731D1BDB17007CA9CB /* helpImages */ = {
@@ -570,6 +570,7 @@
 				B32AB9911D09ADC6007CA9CB /* Base */,
 			);
 			name = Main.storyboard;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */ = {

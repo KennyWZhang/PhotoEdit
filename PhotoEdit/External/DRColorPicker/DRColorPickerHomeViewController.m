@@ -130,8 +130,10 @@
     if (image == nil)
     {
         view.userInteractionEnabled = NO;
-        [button addSubview:view];
-        [button sendSubviewToBack:view];
+        if(view) {
+            [button addSubview:view];
+            [button sendSubviewToBack:view];
+        }
     }
     else
     {

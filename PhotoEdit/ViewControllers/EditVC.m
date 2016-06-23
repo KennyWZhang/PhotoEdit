@@ -12,7 +12,7 @@
 #import "SettingsTVC.h"
 #import "Text.h"
 
-@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate , UIGestureRecognizerDelegate> {
+@interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UIGestureRecognizerDelegate> {
     Text *text;
     CGFloat lastScale;
     BOOL doublePhoto;
