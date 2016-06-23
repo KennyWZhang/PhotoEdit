@@ -51,7 +51,7 @@
     if(generatedImage) {
         data = [NSData dataWithData:UIImageJPEGRepresentation(generatedImage, 1.0f)];
     } else {
-        data = [NSData dataWithData:UIImageJPEGRepresentation(imageToReplace, 1.0f)];
+        return;
     }
     [data writeToFile:imagePath atomically:YES];
 }

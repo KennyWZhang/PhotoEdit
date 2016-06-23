@@ -39,7 +39,6 @@
 		B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA011D0E98D3007CA9CB /* dismiss.png */; };
 		B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */; };
 		B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */; };
-		B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA0D1D12DC8E007CA9CB /* info.png */; };
 		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
 		B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */; };
 		B32ABA641D194A15007CA9CB /* help1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B32ABA5F1D194A15007CA9CB /* help1.jpeg */; };
@@ -131,7 +130,6 @@
 		B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDatePickerActionSheet.m; sourceTree = "<group>"; };
 		B32ABA091D12AA3E007CA9CB /* LGPickerActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGPickerActionSheet.h; sourceTree = "<group>"; };
 		B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGPickerActionSheet.m; sourceTree = "<group>"; };
-		B32ABA0D1D12DC8E007CA9CB /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageVC.h; sourceTree = "<group>"; };
 		B32ABA101D12E04D007CA9CB /* HelpPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageVC.m; sourceTree = "<group>"; };
 		B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLoadImages.h; sourceTree = "<group>"; };
@@ -325,12 +323,7 @@
 		B32ABA001D0E98D3007CA9CB /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				B32ABA5F1D194A15007CA9CB /* help1.jpeg */,
-				B32ABA601D194A15007CA9CB /* help2.jpeg */,
-				B32ABA611D194A15007CA9CB /* help3.jpeg */,
-				B32ABA621D194A15007CA9CB /* help4.jpeg */,
-				B32ABA631D194A15007CA9CB /* help5.jpeg */,
-				B32ABA0D1D12DC8E007CA9CB /* info.png */,
+				B32ABA731D1BDB17007CA9CB /* helpImages */,
 				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
 			);
 			path = Photos;
@@ -356,6 +349,18 @@
 				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		B32ABA731D1BDB17007CA9CB /* helpImages */ = {
+			isa = PBXGroup;
+			children = (
+				B32ABA5F1D194A15007CA9CB /* help1.jpeg */,
+				B32ABA601D194A15007CA9CB /* help2.jpeg */,
+				B32ABA611D194A15007CA9CB /* help3.jpeg */,
+				B32ABA621D194A15007CA9CB /* help4.jpeg */,
+				B32ABA631D194A15007CA9CB /* help5.jpeg */,
+			);
+			name = helpImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,7 +476,6 @@
 				B32ABA671D194A15007CA9CB /* help4.jpeg in Resources */,
 				B32ABA681D194A15007CA9CB /* help5.jpeg in Resources */,
 				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,
-				B32ABA0E1D12DC8E007CA9CB /* info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

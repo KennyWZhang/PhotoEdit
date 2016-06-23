@@ -26,6 +26,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *helpButton;
 
 @end
 
@@ -37,6 +38,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.helpButton setImage:[[UIImage imageNamed:@"help-button"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     lastIndex = (int)photos.count;
     for(UIView *temp in self.navigationController.navigationBar.subviews) {
         [temp setExclusiveTouch:YES];

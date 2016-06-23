@@ -15,8 +15,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.11460765993944055" green="0.27471918952431906" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.11460765990000001" green="0.27471918950000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="oyA-ra-yeg">
                         <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -142,7 +147,7 @@
                                     <action selector="editButtontapped:" destination="hLL-Xf-8Pw" id="jYb-bm-mH6"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="info.png" id="vIS-1U-rfi">
+                            <barButtonItem id="vIS-1U-rfi">
                                 <connections>
                                     <segue destination="gbL-GY-Fzd" kind="show" id="KFy-YR-Tno"/>
                                 </connections>
@@ -159,6 +164,7 @@
                     <connections>
                         <outlet property="addButton" destination="Uij-pb-ia6" id="dij-oT-4Tf"/>
                         <outlet property="editButton" destination="qDC-yh-OIw" id="yUL-8W-I30"/>
+                        <outlet property="helpButton" destination="vIS-1U-rfi" id="zla-LU-Gu1"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jp-2G-LdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -499,6 +505,5 @@
     <resources>
         <image name="dismiss.png" width="32" height="32"/>
         <image name="help1.jpeg" width="640" height="920"/>
-        <image name="info.png" width="24" height="24"/>
     </resources>
 </document>
