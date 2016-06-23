@@ -24,7 +24,6 @@
     BOOL deleteTapped;
     BOOL notFirstTimeinApp;
 }
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
@@ -85,7 +84,6 @@ static NSString * const reuseIdentifier = @"Cell";
     firstAppear = NO;
     [self.collectionView reloadData];
 }
-
 
 #pragma mark - Actions -
 
@@ -199,8 +197,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake (self.view.bounds.size.width / 2.03 , self.view.bounds.size.width /1.93 );
 }
 
