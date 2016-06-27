@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import "Text.h"
+#import "SaveLoadImages.h"
+
 @interface PhotoEditTests : XCTestCase
 
 @end
@@ -16,24 +19,34 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testTextMethods {
+    Text *text = [Text new];
+    text.size = @"13";
+    text.style = @"Default";
+    text.backround = [UIColor whiteColor];
+    text.color = [UIColor blackColor];
+    [text save];
+    [text load];
+    NSDictionary *dic1 = @{@"size": @"13", @"style": @"Default" , @"backround" : [UIColor whiteColor] , @"color": [UIColor blackColor]};
+    NSDictionary *dic2 = @{@"size": text.size, @"style": text.style , @"backround":text.backround , @"color": text.color};
+    XCTAssertEqualObjects(dic1, dic2, @"Should saved and loaded dics be equal");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testSavingImages {
+    SaveLoadImages *sli = [SaveLoadImages new];
+    UIImage *testImage1 = [UIImage imageNamed:@"help1.jpeg"];
+    NSMutableArray *arr1 = [NSMutableArray new];
+    
+    [arr1 addObject:testImage1];
+    [sli saveImages:arr1];
+    XCTAssertNotNil([sli loadImages],@"Should load saved images");
+
 }
 
 @end
