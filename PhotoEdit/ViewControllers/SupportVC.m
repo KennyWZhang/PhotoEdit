@@ -8,9 +8,9 @@
 
 #import "SupportVC.h"
 
-#import <MessageUI/MessageUI.h>
+@interface SupportVC ()
 
-@interface SupportVC () <MFMailComposeViewControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -18,39 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (IBAction)hereTapped:(UIButton *)sender {
-    NSString *emailTitle = @"Feedback";
-    NSString *messageBody = @"";
-    NSArray *toRecipents = [NSArray arrayWithObject:@"feghaldev@gmail.com"];
-    
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
-
-    [self presentViewController:mc animated:YES completion:NULL];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Your email sent" message:@"Thanks for feedback" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *done = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:nil];
-    
-    switch (result) {
-        case MFMailComposeResultSent:
-            [alert addAction:done];
-            [self.navigationController presentViewController:alert animated:YES completion:nil];
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
+    NSString *string = @"We always work to introduce new features and also improve the performance of the app.\n<br/>\n<br/>\nWe would be grateful if you could send us your feedback, suggestions and comments via email by clicking <a href=\"mailto:feghaldev@gmail.com\">here</a>.";
+    [self.webView loadHTMLString:string baseURL:nil];
 }
 
 @end

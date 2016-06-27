@@ -463,39 +463,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="16" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-8T-csu">
-                                <rect key="frame" x="20" y="72" width="560" height="60"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">We always work to introduce new features and also improve the performance of the app. We would be grateful if you could send us your feedback,suggestions and comments via email by clicking</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0c-gK-6j5">
-                                <rect key="frame" x="467" y="108" width="35" height="30"/>
-                                <state key="normal" title="here."/>
-                                <connections>
-                                    <action selector="hereTapped:" destination="TOk-fw-WCK" eventType="touchUpInside" id="MoT-vt-be1"/>
-                                </connections>
-                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLA-Md-ULO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="J1c-8T-csu" firstAttribute="centerX" secondItem="C7L-nx-hji" secondAttribute="centerX" id="DCB-rf-mb5"/>
-                            <constraint firstItem="J1c-8T-csu" firstAttribute="top" secondItem="qcY-j4-I3d" secondAttribute="bottom" constant="8" id="ZJL-Ra-RF0"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="J1c-8T-csu" secondAttribute="leading" id="aFQ-F9-b8a"/>
-                            <constraint firstItem="F0c-gK-6j5" firstAttribute="baseline" secondItem="J1c-8T-csu" secondAttribute="baseline" id="bgH-nF-wo8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="F0c-gK-6j5" secondAttribute="trailing" constant="78" id="iqU-SC-e88"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="J1c-8T-csu" secondAttribute="trailing" id="ubr-jK-xJq"/>
+                            <constraint firstItem="XLA-Md-ULO" firstAttribute="width" secondItem="C7L-nx-hji" secondAttribute="width" id="KGu-lD-0en"/>
+                            <constraint firstItem="XLA-Md-ULO" firstAttribute="centerX" secondItem="C7L-nx-hji" secondAttribute="centerX" id="QP9-Zg-VVC"/>
+                            <constraint firstItem="XLA-Md-ULO" firstAttribute="height" secondItem="C7L-nx-hji" secondAttribute="height" id="X9R-Oy-Pci"/>
+                            <constraint firstItem="XLA-Md-ULO" firstAttribute="centerY" secondItem="C7L-nx-hji" secondAttribute="centerY" id="ls3-Yz-KTf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Support" id="P9d-wy-Zpk"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="XLA-Md-ULO" id="2n7-zZ-kNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNK-cY-dmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

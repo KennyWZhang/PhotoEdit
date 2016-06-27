@@ -31,8 +31,10 @@
     text.style = @"Default";
     text.backround = [UIColor whiteColor];
     text.color = [UIColor blackColor];
+    
     [text save];
     [text load];
+    
     NSDictionary *dic1 = @{@"size": @"13", @"style": @"Default" , @"backround" : [UIColor whiteColor] , @"color": [UIColor blackColor]};
     NSDictionary *dic2 = @{@"size": text.size, @"style": text.style , @"backround":text.backround , @"color": text.color};
     XCTAssertEqualObjects(dic1, dic2, @"Should saved and loaded dics be equal");
@@ -46,7 +48,6 @@
     [arr1 addObject:testImage1];
     [sli saveImages:arr1];
     XCTAssertNotNil([sli loadImages],@"Should load saved images");
-
 }
 
 @end
