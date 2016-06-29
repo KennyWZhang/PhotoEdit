@@ -18,7 +18,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.11460765990000001" green="0.27471918950000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -26,7 +26,7 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="oyA-ra-yeg">
                         <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.1132443568" green="0.76674000050000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.11460765990000001" green="0.27471918950000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="hLL-Xf-8Pw" kind="relationship" relationship="rootViewController" id="TPs-lT-8sp"/>
@@ -55,7 +55,7 @@
                                     <action selector="pageChanged:" destination="gbL-GY-Fzd" eventType="valueChanged" id="9rZ-Fm-zMf"/>
                                 </connections>
                             </pageControl>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help1.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-XQ-w72">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-XQ-w72">
                                 <rect key="frame" x="0.0" y="64" width="600" height="499"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="280" y="-256"/>
         </scene>
-        <!--PhotoEdit-->
+        <!--CPM-->
         <scene sceneID="Cl7-ZZ-lil">
             <objects>
                 <collectionViewController id="hLL-Xf-8Pw" customClass="PhotosCVC" sceneMemberID="viewController">
@@ -139,7 +139,7 @@
                             <outlet property="delegate" destination="hLL-Xf-8Pw" id="snT-gK-uBg"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="PhotoEdit" id="d8E-Te-7y1">
+                    <navigationItem key="navigationItem" title="CPM" id="d8E-Te-7y1">
                         <leftBarButtonItems>
                             <barButtonItem title="Edit" id="qDC-yh-OIw">
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -209,16 +209,16 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Fix" id="yvb-wo-F03">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="fixTapped:" destination="5BB-nk-wdM" id="3ma-zb-HTt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="urO-kK-hAk">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem title="Remove Text" id="i85-bu-vIu">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="removeTextTapped:" destination="5BB-nk-wdM" id="5it-C7-CLh"/>
                             </connections>
@@ -280,6 +280,11 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDE-ej-ucc">
                                                     <rect key="frame" x="8" y="8" width="584" height="28"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="colorButton:" destination="pFt-gj-1oy" eventType="touchUpInside" id="uDp-jx-0S7"/>
                                                     </connections>
@@ -292,7 +297,7 @@
                                                 <constraint firstItem="EDE-ej-ucc" firstAttribute="height" secondItem="6ES-UL-98G" secondAttribute="height" constant="-16" id="jUB-Sx-SfE"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -305,17 +310,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="13" borderStyle="roundedRect" textAlignment="right" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="F04-fy-Bcc">
-                                                    <rect key="frame" x="503" y="8" width="97" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="0Nw-GL-uY3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="JxE-2M-HJY">
-                                                    <rect key="frame" x="393" y="8" width="94" height="29"/>
-                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="435" y="8" width="94" height="29"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.1019607843" green="0.40784313729999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="stepperTapped:" destination="pFt-gj-1oy" eventType="valueChanged" id="Uih-O1-Vnv"/>
                                                     </connections>
@@ -326,17 +324,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="13" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="F04-fy-Bcc">
+                                                    <rect key="frame" x="537" y="4" width="55" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="55" id="0Nw-GL-uY3"/>
+                                                        <constraint firstAttribute="height" constant="37" id="mtj-C8-QSk"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.10143141780000001" green="0.40902894299999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="F04-fy-Bcc" secondAttribute="trailing" id="453-OL-SF6"/>
-                                                <constraint firstItem="F04-fy-Bcc" firstAttribute="leading" secondItem="JxE-2M-HJY" secondAttribute="trailing" constant="16" id="7FC-c8-2DU"/>
+                                                <constraint firstAttribute="trailing" secondItem="F04-fy-Bcc" secondAttribute="trailing" constant="8" id="453-OL-SF6"/>
+                                                <constraint firstItem="F04-fy-Bcc" firstAttribute="leading" secondItem="JxE-2M-HJY" secondAttribute="trailing" constant="8" id="7FC-c8-2DU"/>
                                                 <constraint firstItem="7zj-7K-tgp" firstAttribute="leading" secondItem="0sW-Uz-j70" secondAttribute="leadingMargin" id="HIk-l2-W2w"/>
-                                                <constraint firstItem="JxE-2M-HJY" firstAttribute="top" secondItem="F04-fy-Bcc" secondAttribute="top" id="KFn-Jo-UX6"/>
+                                                <constraint firstItem="JxE-2M-HJY" firstAttribute="top" secondItem="F04-fy-Bcc" secondAttribute="top" constant="4" id="KFn-Jo-UX6"/>
                                                 <constraint firstItem="JxE-2M-HJY" firstAttribute="top" secondItem="0sW-Uz-j70" secondAttribute="topMargin" id="Ukw-Dx-XGR"/>
                                                 <constraint firstItem="7zj-7K-tgp" firstAttribute="centerY" secondItem="JxE-2M-HJY" secondAttribute="centerY" id="gvp-8U-Dq3"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ebG-BX-zpL">
                                         <rect key="frame" x="0.0" y="253" width="600" height="44"/>
@@ -364,6 +372,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="GAB-nB-2ec" firstAttribute="trailing" secondItem="mB7-SB-knB" secondAttribute="trailingMargin" id="WsQ-ty-ksT"/>
                                                 <constraint firstItem="UNn-Wx-1Qq" firstAttribute="leading" secondItem="mB7-SB-knB" secondAttribute="leadingMargin" id="bhf-WE-q7L"/>
@@ -387,6 +396,11 @@
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUB-Sc-nZU">
                                                     <rect key="frame" x="8" y="8" width="584" height="29"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="colorButton:" destination="pFt-gj-1oy" eventType="touchUpInside" id="2ol-wF-abH"/>
                                                     </connections>
@@ -399,7 +413,7 @@
                                                 <constraint firstItem="nUB-Sc-nZU" firstAttribute="width" secondItem="cgf-5A-Zpy" secondAttribute="width" constant="-16" id="afk-zm-itD"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -477,7 +491,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Support" id="P9d-wy-Zpk"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="XLA-Md-ULO" id="2n7-zZ-kNX"/>
                     </connections>
@@ -489,6 +502,6 @@
     </scenes>
     <resources>
         <image name="dismiss.png" width="32" height="32"/>
-        <image name="help1.jpeg" width="640" height="920"/>
+        <image name="help1.jpg" width="1242" height="2208"/>
     </resources>
 </document>

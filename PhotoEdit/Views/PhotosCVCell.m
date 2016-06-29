@@ -10,14 +10,10 @@
 
 @implementation PhotosCVCell
 
-- (void)setSelected:(BOOL)selected
-{
-    if(selected && self.deleteImageView.isHidden)
-    {
+- (void)setSelected:(BOOL)selected {
+    if(selected && self.deleteImageView.isHidden) {
         self.alpha = 0.5;
-    }
-    else
-    {
+    } else {
         [UIView beginAnimations:NULL context:NULL];
         [UIView setAnimationDuration:0.5];
         [self setAlpha:0.5];

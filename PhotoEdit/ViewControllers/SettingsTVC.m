@@ -16,7 +16,6 @@
     Text *text;
     NSMutableArray *fontNames;
 }
-
 @property (strong, nonatomic) IBOutlet UIButton *fontButton;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -48,12 +47,15 @@
         self.fontButton.titleLabel.font = [UIFont fontWithName:text.style size:15];
     }
     [self.fontButton setTitle:@"Default" forState:UIControlStateNormal];
+    
     self.textField.font = [UIFont systemFontOfSize:13];
     self.textField.text = @"13";
     self.colorButton.backgroundColor = [UIColor blackColor];
     self.backroundColorButton.backgroundColor = [UIColor whiteColor];
+    
     if(text.size || text.color || text.backround || text.style) {
         [self.fontButton setTitle:text.style forState:UIControlStateNormal];
+        
         self.textField.font = [UIFont systemFontOfSize:[text.size intValue]];
         self.textField.text = text.size;
         self.colorButton.backgroundColor = text.color;
@@ -62,18 +64,21 @@
     self.stepper.minimumValue = 5;
     self.stepper.maximumValue = 40;
     self.stepper.value = [self.textField.text intValue];
+    
     self.color = [[DRColorPickerColor alloc] initWithColor:UIColor.blueColor];
-    [self.navigationController.toolbar setHidden: YES];
+    [self.navigationController.toolbar setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         [self.navigationController.toolbar setHidden:NO];
+        
         text.size = self.textField.text;
         text.color = self.colorButton.backgroundColor;
         text.backround = self.backroundColorButton.backgroundColor;
         text.style = self.fontButton.titleLabel.text;
+        
         [text save];
     }
 }
@@ -81,8 +86,7 @@
 #pragma mark - LGPickerActionSheetDelegate methods -
 
 - (IBAction)pickerTapped:(UIButton *)sender {
-    if(fontNames)
-    {
+    if(fontNames) {
         LGPickerActionSheet *pickerView = [[LGPickerActionSheet alloc]
                                            initWithData:@[fontNames]
                                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
@@ -92,8 +96,7 @@
     }
 }
 
-- (void)pickerActionSheetDone:(NSArray *)selectedRows fromData:(NSArray *)data
-{
+- (void)pickerActionSheetDone:(NSArray *)selectedRows fromData:(NSArray *)data {
     [self.fontButton setTitle: data[0][[selectedRows[0] intValue]] forState:UIControlStateNormal];
     self.fontButton.titleLabel.font = [UIFont fontWithName:data[0][[selectedRows[0] intValue]]
                                                       size:15];

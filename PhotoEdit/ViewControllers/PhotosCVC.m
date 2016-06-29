@@ -65,7 +65,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     photos = [sli loadImages];
     [self.collectionView reloadData];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -94,7 +93,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if(self.collectionView.backgroundColor == [UIColor whiteColor]) {
         self.navigationItem.rightBarButtonItem = nil;
         [self.editButton setTitle: @"Cancel"];
-        self.collectionView.backgroundColor = [UIColor colorWithRed:200.f/255.f green:100.f/255.f blue:150.f/255.f alpha:1];
+        self.collectionView.backgroundColor = [UIColor colorWithRed:29.f/255.f green:155.f/255.f blue:255.f/255.f alpha:1];
     } else {
         if(deleteTapped) {
             UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];

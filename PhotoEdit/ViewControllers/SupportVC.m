@@ -17,7 +17,7 @@
 @implementation SupportVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     NSString *string = @"We always work to introduce new features and also improve the performance of the app.\n<br/>\n<br/>\nWe would be grateful if you could send us your feedback, suggestions and comments via email by clicking <a href=\"mailto:feghaldev@gmail.com\">here</a>.";
     [self.webView loadHTMLString:string baseURL:nil];
 }

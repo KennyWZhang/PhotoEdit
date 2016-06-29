@@ -60,15 +60,15 @@
 
 - (void)changePages {
     if(self.pageController.currentPage == 0) {
-        self.imageView.image = [UIImage imageNamed:@"help1.jpeg"];
+        self.imageView.image = [UIImage imageNamed:@"help1.jpg"];
     } else if(self.pageController.currentPage == 1) {
-        self.imageView.image = [UIImage imageNamed:@"help2.jpeg"];
+        self.imageView.image = [UIImage imageNamed:@"help2.jpg"];
     } else if(self.pageController.currentPage == 2) {
-        self.imageView.image = [UIImage imageNamed:@"help3.jpeg"];
+        self.imageView.image = [UIImage imageNamed:@"help3.jpg"];
     } else if(self.pageController.currentPage == 3) {
-        self.imageView.image = [UIImage imageNamed:@"help4.jpeg"];
+        self.imageView.image = [UIImage imageNamed:@"help4.jpg"];
     } else if(self.pageController.currentPage == 4) {
-        self.imageView.image = [UIImage imageNamed:@"help5.jpeg"];
+        self.imageView.image = [UIImage imageNamed:@"help5.jpg"];
     }
 }
 

@@ -9,7 +9,6 @@
 #import "EditVC.h"
 
 #import "PhotosCVC.h"
-#import "SettingsTVC.h"
 #import "Text.h"
 
 @interface EditVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UIGestureRecognizerDelegate> {
@@ -38,7 +37,7 @@
     [self.imageView addGestureRecognizer:tap];
     
     self.navigationController.toolbarHidden = NO;
-    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:196.f/255.f blue:255.f/255.f alpha:1];
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:29.f/255.f green:79.f/255.f blue:255.f/255.f alpha:1];
     for(UIView *temp in self.navigationController.toolbar.subviews) {
         [temp setExclusiveTouch:YES];
     }
@@ -62,7 +61,7 @@
     }
 }
 
-///------------
+///--------------------------\\\
 
 - (void)addCPMToImage {
     CGRect frame = self.wView.frame;
@@ -88,9 +87,9 @@
     for(UITextField *textField in self.imageView.subviews) {
         [textField removeFromSuperview];
     }
-    for(UIView *textField in self.wView.subviews) {
-        if([textField isKindOfClass:[UITextField class]] || [textField isKindOfClass:[UILabel class]]) {
-            [textField removeFromSuperview];
+    for(UIView *view in self.wView.subviews) {
+        if([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UILabel class]]) {
+            [view removeFromSuperview];
         }
     }
 }
@@ -249,7 +248,7 @@
     [textField setBorderStyle:UITextBorderStyleNone];
     textField.placeholder = @"Type here";
     textField.backgroundColor = [UIColor clearColor];
-    if(text) {
+    if(text.color) {
         textField.tintColor = text.color;
         textField.textColor = text.color;
         if([text.style  isEqualToString:@"Default"]) {
