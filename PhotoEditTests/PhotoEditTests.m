@@ -42,7 +42,7 @@
 
 - (void)testSavingImages {
     SaveLoadImages *sli = [SaveLoadImages new];
-    UIImage *testImage1 = [UIImage imageNamed:@"help1.jpeg"];
+    UIImage *testImage1 = [UIImage imageNamed:@"help1.jpg"];
     NSMutableArray *arr1 = [NSMutableArray new];
     
     [arr1 addObject:testImage1];
