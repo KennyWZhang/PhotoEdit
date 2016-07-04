@@ -32,20 +32,20 @@
 
 /**
  * Saving all properties by NSUserDefaults
- * @return void
+ *
  */
 - (void)save;
 
 /**
- * Load values from NSuserDefaults , and set propertyes
- * @return void
+ * Load values from NSUserDefaults , and set properties
+ * 
  */
 - (void)load;
 
 /**
- * Getting all non-system font names
- * @return NSMutableArray
+ * Get all non-system font names
+ * @return font names
  */
-- (NSMutableArray *)getNonSystemFontNames;
+- (NSArray *)getNonSystemFontNames;
 
 @end

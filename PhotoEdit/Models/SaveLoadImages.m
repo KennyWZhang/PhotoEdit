@@ -8,33 +8,43 @@
 
 #import "SaveLoadImages.h"
 
-@implementation SaveLoadImages 
+@implementation SaveLoadImages
 
 - (void)saveImages:(NSMutableArray *)photos {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSFileManager *fileMgr = [NSFileManager defaultManager];
-        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-        for (NSString *filename in fileArray) {
-            [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
-        }
-        int i = 0;
-        for(UIImage *image in photos) {
-            NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
-            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
-            NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
-            [data writeToFile:imagePath atomically:YES];
-            i++;
-        }
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if (![fileMgr fileExistsAtPath:dataPath]) {
+        [fileMgr createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    
+    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
+    for (NSString *filename in fileArray) {
+        [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
+    }
+    int i = 0;
+    for(UIImage *image in photos) {
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
+        NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
+        NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+        [data writeToFile:imagePath atomically:YES];
+        i++;
+    }
 }
 
 - (void)addImageToDocuments:(NSMutableArray *)photos ByIndex:(int)i {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
     NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
+    NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
     NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(photos.lastObject, 1.0f)];
     [data writeToFile:imagePath atomically:YES];
 }
@@ -45,8 +55,9 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
     NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", rewriteIndex];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName];
+    NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
     NSData *data;
     if(generatedImage) {
         data = [NSData dataWithData:UIImageJPEGRepresentation(generatedImage, 1.0f)];
@@ -56,15 +67,16 @@
     [data writeToFile:imagePath atomically:YES];
 }
 
-- (NSMutableArray *)loadImages {
+- (NSArray *)fetchImages {
     NSMutableArray *photos = [NSMutableArray new];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:documentsDirectory error:NULL];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
     for (NSString *fileName in docFiles) {
         if([fileName hasSuffix:@".jpeg"]) {
-            NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+            NSString *fullPath = [dataPath stringByAppendingPathComponent:fileName];
             NSData *imgData = [NSData dataWithContentsOfFile:fullPath];
             UIImage *loadedImage = [[UIImage alloc] initWithData:imgData];
             if(loadedImage) {

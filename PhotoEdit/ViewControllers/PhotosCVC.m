@@ -63,7 +63,7 @@ static NSString * const reuseIdentifier = @"Cell";
     photos = [NSMutableArray new];
     sli = [SaveLoadImages new];
     
-    photos = [sli loadImages];
+    photos = [[sli fetchImages] mutableCopy];
     [self.collectionView reloadData];
 }
 

@@ -14,7 +14,7 @@
 
 @interface SettingsTVC () <LGPickerActionSheetDelegate> {
     Text *text;
-    NSMutableArray *fontNames;
+    NSArray *fontNames;
 }
 @property (strong, nonatomic) IBOutlet UIButton *fontButton;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;

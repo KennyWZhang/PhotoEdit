@@ -31,7 +31,7 @@
     }
 }
 
-- (NSMutableArray *)getNonSystemFontNames {
+- (NSArray *)getNonSystemFontNames {
     NSMutableArray *names = [NSMutableArray new];
     NSArray *familyNames = [[NSArray alloc] initWithArray:[UIFont familyNames]];
     NSArray *fontNames;
