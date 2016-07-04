@@ -11,13 +11,41 @@
 
 @interface Text : NSObject
 
+/**
+ * The color of text
+ */
 @property (strong, nonatomic) UIColor *color;
+
+/**
+ * The background color of workspace
+ */
 @property (strong, nonatomic) UIColor *backround;
+
+/**
+ * Size of text
+ */
 @property (strong, nonatomic) NSString *size;
+/**
+ * Font name of text
+ */
 @property (strong, nonatomic) NSString *style;
 
+/**
+ * Saving all properties by NSUserDefaults
+ * @return void
+ */
 - (void)save;
+
+/**
+ * Load values from NSuserDefaults , and set propertyes
+ * @return void
+ */
 - (void)load;
+
+/**
+ * Getting all non-system font names
+ * @return NSMutableArray
+ */
 - (NSMutableArray *)getNonSystemFontNames;
 
 @end
