@@ -47,7 +47,7 @@
     
     [arr1 addObject:testImage1];
     [sli saveImages:arr1];
-    XCTAssertNotNil([sli loadImages],@"Should load saved images");
+    XCTAssertNotNil([sli fetchImages],@"Should load saved images");
 }
 
 @end

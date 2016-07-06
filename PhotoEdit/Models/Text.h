@@ -31,7 +31,7 @@
 @property (strong, nonatomic) NSString *style;
 
 /**
- * Saving all properties by NSUserDefaults
+ * Save all properties by NSUserDefaults
  *
  */
 - (void)save;
