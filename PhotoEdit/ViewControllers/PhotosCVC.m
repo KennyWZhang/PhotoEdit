@@ -101,7 +101,6 @@ static NSString * const reuseIdentifier = @"Cell";
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 [self.editButton setEnabled:NO];
                 [self.addButton setEnabled:NO];
-                [sli saveImages:photos];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.addButton setEnabled:YES];
                     [self.editButton setEnabled:YES];
@@ -184,6 +183,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if(showDelete) {
         deleteTapped = YES;
         [photos removeObjectAtIndex:indexPath.row];
+        [sli removeImageAtIndex:(int)indexPath.row];
         [collectionView reloadData];
     } else {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];

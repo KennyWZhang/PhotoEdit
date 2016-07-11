@@ -17,11 +17,42 @@
     BOOL doublePhoto;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View ,added because of (posible)backround opacity
+@property (strong, nonatomic) IBOutlet UIView *wView; // workspace View, added because of (posible)backround opacity
 
 @end
 
 @implementation EditVC
+
+- (void)addCPMToImage {
+    CGRect frame = self.wView.frame;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - 90, frame.size.height - 20, 90, 20)];
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor grayColor];
+    label.text = @"Made by CPM";
+    [self.wView addSubview:label];
+}
+
+- (void)shareWhenFixed {
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
+    NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
+    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
+        activityViewController.popoverPresentationController.sourceView =
+        self.wView;
+    }
+    activityViewController.excludedActivityTypes = excludedActivities;
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (void)removeSubviewsFromImageView {
+    for(UITextField *textField in self.imageView.subviews) {
+        [textField removeFromSuperview];
+    }
+    for(UIView *view in self.wView.subviews) {
+        if([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UILabel class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
 
 #pragma mark - ViewController lifecycle -
 
@@ -58,39 +89,6 @@
     [super viewDidAppear:animated];
     for(UIView *temp in self.navigationController.navigationBar.subviews) {
         [temp setExclusiveTouch:YES];
-    }
-}
-
-///--------------------------\\\
-
-- (void)addCPMToImage {
-    CGRect frame = self.wView.frame;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width - 90, frame.size.height - 20, 90, 20)];
-    label.font = [UIFont systemFontOfSize:13];
-    label.textColor = [UIColor grayColor];
-    label.text = @"Made by CPM";
-    [self.wView addSubview:label];
-}
-
-- (void)shareWhenFixed {
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
-    NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
-    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
-        activityViewController.popoverPresentationController.sourceView =
-        self.wView;
-    }
-    activityViewController.excludedActivityTypes = excludedActivities;
-    [self presentViewController:activityViewController animated:YES completion:nil];
-}
-
-- (void)removeSubviewsFromImageView {
-    for(UITextField *textField in self.imageView.subviews) {
-        [textField removeFromSuperview];
-    }
-    for(UIView *view in self.wView.subviews) {
-        if([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UILabel class]]) {
-            [view removeFromSuperview];
-        }
     }
 }
 

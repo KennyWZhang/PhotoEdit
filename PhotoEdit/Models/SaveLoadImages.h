@@ -20,7 +20,7 @@
  * @param photos must be array of images
  *
  * @warning this method removing all images from folder and add new array that wise use this method if you don't have
- * other choise in case you want t remave one object
+ * other choise , at first take a look to other methods of class
  *
  * @warning this method can block main queue for long time
  */
@@ -40,6 +40,14 @@
  * @param  rewriteIndex index of photo that must be replaced
  */
 - (void)rewriteImage:(UIImage *)generatedImage ByIndex:(int)rewriteIndex;
+
+/**
+ * Remove image from "Images" folder in documents directory
+ *
+ *  @param removeIndex image index that must be removed
+ */
+- (void)removeImageAtIndex:(int)removeIndex;
+
 /**
  * Load all images from "Images" folder in documents directory
  * @return fetched Images

@@ -85,4 +85,21 @@
     }
     return photos;
 }
+
+- (void)removeImageAtIndex:(int)removeIndex {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
+    NSString *name = [NSString stringWithFormat:@"%d.jpeg",removeIndex];
+    for (NSString *filename in fileArray) {
+        if(name == filename) {
+            [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
+        }
+    }
+}
+
 @end
