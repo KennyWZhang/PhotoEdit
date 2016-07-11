@@ -10,7 +10,14 @@
 
 @interface PhotosCVC : UICollectionViewController
 
+/**
+ *  must be original unchanged image
+ */
 @property (strong, nonatomic) UIImage *imageToReplace;
+
+/**
+ *  must be changed image , that was generated after tapping fix button
+ */
 @property (strong, nonatomic) UIImage *generatedImage;
 
 @end

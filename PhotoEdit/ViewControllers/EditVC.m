@@ -72,7 +72,7 @@
     [self.wView addSubview:label];
 }
 
-- (void)shareIfFixed {
+- (void)shareWhenFixed {
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
     NSArray *excludedActivities = @[UIActivityTypePostToFacebook, UIActivityTypePostToWeibo, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeAssignToContact];
     if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
@@ -119,7 +119,7 @@
                                (UIAlertAction * _Nonnull action) {
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        if(!sender) {
-                                           [self shareIfFixed];
+                                           [self shareWhenFixed];
                                        }
                                    });
                                }];
@@ -149,7 +149,7 @@
                                (UIAlertAction * _Nonnull action) {
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        if(!sender) {
-                                           [self shareIfFixed];
+                                           [self shareWhenFixed];
                                        }
                                    });
                                }];
@@ -226,7 +226,7 @@
         [alert addAction:cancel];
         [self.navigationController presentViewController:alert animated:YES completion:nil];
     } else {
-        [self shareIfFixed];
+        [self shareWhenFixed];
     }
 }
 

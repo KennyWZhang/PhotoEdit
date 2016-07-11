@@ -9,12 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * SaveLoadImages is class to save, add, replace, and remove images in/from "Images" folder in documents directory
+ * also methods crate folder if not exist
+ */
 @interface SaveLoadImages : NSObject
 
 /**
  * Delete all images and save an array of images in "Images" folder in documents directory
  * @param photos must be array of images
  *
+ * @warning this method removing all images from folder and add new array that wise use this method if you don't have
+ * other choise in case you want t remave one object
+ *
+ * @warning this method can block main queue for long time
  */
 - (void)saveImages:(NSMutableArray *)photos;
 

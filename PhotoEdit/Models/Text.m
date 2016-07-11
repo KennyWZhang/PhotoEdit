@@ -37,13 +37,11 @@
     NSArray *fontNames;
     NSInteger indFamily, indFont;
     [names addObject:@"Default"];
-    for (indFamily=0; indFamily<[familyNames count]; ++indFamily)
-    {
+    for (indFamily=0; indFamily<[familyNames count]; ++indFamily) {
         fontNames = [[NSArray alloc] initWithArray:
                      [UIFont fontNamesForFamilyName:
                       [familyNames objectAtIndex:indFamily]]];
-        for (indFont=0; indFont<[fontNames count]; ++indFont)
-        {
+        for (indFont=0; indFont<[fontNames count]; ++indFont) {
             [names addObject:[fontNames objectAtIndex:indFont]];
         }
     }

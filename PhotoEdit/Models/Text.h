@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * Text class is for save text color, backround color, size, style(fontName) in NSUserDefaults
+ * and load them
+ * @warning you must set properties and then call "save" method to save them
+ *
+ * @warning when you call "load" method properies will be setted, and you can access them 
+ */
 @interface Text : NSObject
 
 /**
@@ -25,6 +32,7 @@
  * Size of text
  */
 @property (strong, nonatomic) NSString *size;
+
 /**
  * Font name of text
  */

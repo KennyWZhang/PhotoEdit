@@ -10,6 +10,9 @@
 
 @interface EditVC : UIViewController
 
+/**
+ *  photo that must be showen to user at first
+ */
 @property (strong, nonatomic) UIImage *photo;
 
 @end
