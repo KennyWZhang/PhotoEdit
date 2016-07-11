@@ -35,7 +35,7 @@
     }
 }
 
-- (void)addImageToDocuments:(NSMutableArray *)photos ByIndex:(int)i {
+- (void)addImageToDocuments:(UIImage *)photo ByIndex:(int)i {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -45,12 +45,11 @@
     }
     NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
     NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
-    NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(photos.lastObject, 1.0f)];
+    NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(photo, 1.0f)];
     [data writeToFile:imagePath atomically:YES];
 }
 
 - (void)rewriteImage:(UIImage *)generatedImage
-      imageToReplace:(UIImage *)imageToReplace
              ByIndex:(int)rewriteIndex {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);

@@ -174,7 +174,6 @@
 - (IBAction)goBack:(UIBarButtonItem *)sender {
     if(self.imageView.image != self.photo) {
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
-        pcvc.imageToReplace = self.photo;
         pcvc.generatedImage = self.imageView.image;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

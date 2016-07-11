@@ -70,17 +70,15 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES];
-    for(int i = 0; i < photos.count; i++) {
-        if([photos[i] isEqual:self.imageToReplace] && self.generatedImage) {
-            photos[i] = self.generatedImage;
-        }
+    if(self.generatedImage) {
+        photos[rewriteIndex] = self.generatedImage;
     }
     if(add) {
         lastIndex = (int)photos.count - 1;
-        [sli addImageToDocuments:photos ByIndex:lastIndex];
+        [sli addImageToDocuments:photos.lastObject ByIndex:lastIndex];
         add = NO;
     } else if(!firstAppear) {
-        [sli rewriteImage:self.generatedImage imageToReplace:self.imageToReplace ByIndex:rewriteIndex];
+        [sli rewriteImage:self.generatedImage ByIndex:rewriteIndex];
     }
     firstAppear = NO;
     [self.collectionView reloadData];
