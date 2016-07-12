@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B32AB9891D09ADC6007CA9CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9881D09ADC6007CA9CB /* main.m */; };
 		B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */; };
 		B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9931D09ADC6007CA9CB /* Assets.xcassets */; };
 		B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */; };
@@ -48,6 +47,7 @@
 		B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
 		B3BB886A1D34EC2300988311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB88691D34EC2300988311 /* Main.storyboard */; };
 		B3BB886C1D34EC3500988311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */; };
+		B3BB88701D34F11B00988311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB886F1D34F11B00988311 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,11 +69,10 @@
 
 /* Begin PBXFileReference section */
 		B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B32AB9881D09ADC6007CA9CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B32AB9931D09ADC6007CA9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = PhotoEdit/Info.plist; sourceTree = "<group>"; };
 		B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEdit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditTests.m; sourceTree = "<group>"; };
 		B32AB9A31D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +142,7 @@
 		B3BB88671D34E5AB00988311 /* FGSaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSaveImage.m; sourceTree = "<group>"; };
 		B3BB88691D34EC2300988311 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B3BB886F1D34F11B00988311 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PhotoEdit/main.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,8 +207,8 @@
 		B32AB9871D09ADC6007CA9CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3BB886F1D34F11B00988311 /* main.m */,
 				B32AB9981D09ADC6007CA9CB /* Info.plist */,
-				B32AB9881D09ADC6007CA9CB /* main.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -513,6 +513,7 @@
 				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
 				B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */,
 				B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */,
+				B3BB88701D34F11B00988311 /* main.m in Sources */,
 				B32AB9F51D0A9E41007CA9CB /* DRColorPickerGridViewCell.m in Sources */,
 				B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */,
 				B32AB9F81D0A9E41007CA9CB /* DRColorPickerHomeViewController.m in Sources */,
@@ -521,7 +522,6 @@
 				B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */,
 				B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */,
 				B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */,
-				B32AB9891D09ADC6007CA9CB /* main.m in Sources */,
 				B32AB9FA1D0A9E41007CA9CB /* DRColorPickerHueView.m in Sources */,
 				B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */,
 				B32AB9FB1D0A9E41007CA9CB /* DRColorPickerHueViewController.m in Sources */,

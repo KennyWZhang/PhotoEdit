@@ -10,7 +10,6 @@
 
 @implementation Text
 
-
 - (void)save {
     NSDictionary *text = @{@"size":self.size,@"color":self.color,@"backround":self.backround,@"style":self.style};
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
