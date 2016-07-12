@@ -71,8 +71,8 @@
 }
 
 - (void)addImageToDocuments:(UIImage *)photo {
+    photo = [self rotateImage:photo];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -136,11 +136,14 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
+    NSString *fullPath;
+    NSData *imgData;
+    UIImage *loadedImage;
     for (NSString *fileName in docFiles) {
         if([fileName hasSuffix:@".png"]) {
-            NSString *fullPath = [dataPath stringByAppendingPathComponent:fileName];
-            NSData *imgData = [NSData dataWithContentsOfFile:fullPath];
-            UIImage *loadedImage = [[UIImage alloc] initWithData:imgData];
+            fullPath = [dataPath stringByAppendingPathComponent:fileName];
+            imgData = [NSData dataWithContentsOfFile:fullPath];
+            loadedImage = [UIImage imageWithData:imgData];
             if(loadedImage) {
                 [photos addObject:loadedImage];
             }
@@ -204,6 +207,21 @@
         [fileMgr moveItemAtPath:[dataPath stringByAppendingPathComponent:filename] toPath:[dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png" , i]] error:nil];
         i++;
     }
+}
+
+- (UIImage *)rotateImage:(UIImage *)image {
+    if (image.imageOrientation == UIImageOrientationUp) {
+        return image;
+    }
+    
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(CGPointZero.x, CGPointZero.y, image.size.width, image.size.height)];
+    UIImage *copy = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return copy;
+
 }
 
 @end
