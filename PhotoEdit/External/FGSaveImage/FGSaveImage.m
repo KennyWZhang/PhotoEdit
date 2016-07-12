@@ -25,13 +25,31 @@
 
 #import "FGSaveImage.h"
 
+@interface FGSaveImage() {
+    NSString *customName;
+}
+
+@end
+
 @implementation FGSaveImage
+
+- (instancetype)init {
+    return [self initWithFolderName:@"/Images"];
+}
+
+- (instancetype)initWithFolderName:(NSString *)name {
+    self = [super init];
+    if(self) {
+        customName = [NSString stringWithFormat:@"/%@", name];
+    }
+    return self;
+}
 
 - (void)saveImages:(NSMutableArray *)photos {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:dataPath]) {
@@ -56,7 +74,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
     }
@@ -71,7 +89,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", rewriteIndex];
     NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
     NSData *data;
@@ -88,7 +106,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
     for (NSString *fileName in docFiles) {
         if([fileName hasSuffix:@".jpeg"]) {
@@ -107,7 +125,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];

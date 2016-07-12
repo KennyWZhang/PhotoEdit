@@ -60,7 +60,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController.toolbar setHidden: YES];
     
     photos = [NSMutableArray new];
-    sli = [FGSaveImage new];
+    sli = [[FGSaveImage alloc] initWithFolderName:@"Photos"];
     
     photos = [[sli fetchImages] mutableCopy];
     [self.collectionView reloadData];

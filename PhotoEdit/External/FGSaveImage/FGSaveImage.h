@@ -71,4 +71,11 @@
  */
 - (NSArray *)fetchImages;
 
+/**
+ *  Customize folder name in documents directory, if you use init folder name will be "Images" by default
+ *
+ *  @param name name of the folder that will be crated in documents directory
+ */
+- (instancetype)initWithFolderName:(NSString *)name;
+
 @end
