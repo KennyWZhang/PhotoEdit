@@ -15,24 +15,26 @@
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
-
+    
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:dataPath]) {
         [fileMgr createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
     }
-    
     NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
-    for (NSString *filename in fileArray) {
-        [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
-    }
-    int i = 0;
-    for(UIImage *image in photos) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
-        NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
-        NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
-        [data writeToFile:imagePath atomically:YES];
-        i++;
-    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        for (NSString *filename in fileArray) {
+            [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
+        }
+        int i = 0;
+        for(UIImage *image in photos) {
+            NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
+            NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
+            NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+            [data writeToFile:imagePath atomically:YES];
+            i++;
+        }
+    });
 }
 
 - (void)addImageToDocuments:(UIImage *)photo ByIndex:(int)i {
@@ -99,6 +101,12 @@
         if(name == filename) {
             [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
         }
+    }
+    fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
+    int i =0;
+    for(NSString *filename in fileArray) {
+        [fileMgr moveItemAtPath:[dataPath stringByAppendingPathComponent:filename] toPath:[dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg" , i]] error:nil];
+        i++;
     }
 }
 

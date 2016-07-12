@@ -21,7 +21,6 @@
     BOOL showDelete;
     BOOL add;
     BOOL firstAppear;
-    BOOL deleteTapped;
     BOOL notFirstTimeinApp;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -93,23 +92,6 @@ static NSString * const reuseIdentifier = @"Cell";
         [self.editButton setTitle: @"Cancel"];
         self.collectionView.backgroundColor = [UIColor colorWithRed:29.f/255.f green:155.f/255.f blue:255.f/255.f alpha:1];
     } else {
-        if(deleteTapped) {
-            UIView *opacityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.collectionView.contentSize.width,self.collectionView.contentSize.height)];
-            opacityView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.6];
-            [self.collectionView addSubview:opacityView];
-            self.collectionView.userInteractionEnabled = NO;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                [self.editButton setEnabled:NO];
-                [self.addButton setEnabled:NO];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.addButton setEnabled:YES];
-                    [self.editButton setEnabled:YES];
-                    self.collectionView.userInteractionEnabled = YES;
-                    [opacityView removeFromSuperview];
-                });
-            });
-            deleteTapped = NO;
-        }
         self.navigationItem.rightBarButtonItem = self.addButton;
         [self.editButton setTitle: @"Edit"];
         self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -181,7 +163,6 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if(showDelete) {
-        deleteTapped = YES;
         [photos removeObjectAtIndex:indexPath.row];
         [sli removeImageAtIndex:(int)indexPath.row];
         [collectionView reloadData];

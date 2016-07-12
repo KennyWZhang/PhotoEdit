@@ -35,7 +35,7 @@
 - (void)addImageToDocuments:(UIImage *)photo ByIndex:(int)i;
 
 /**
- * Replaacing image in "Images" folder in documents directory
+ * Replace image in "Images" folder in documents directory
  * @param generatedPhoto new photo to replace
  * @param  rewriteIndex index of photo that must be replaced
  */
