@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		B32AB9891D09ADC6007CA9CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9881D09ADC6007CA9CB /* main.m */; };
 		B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */; };
-		B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9901D09ADC6007CA9CB /* Main.storyboard */; };
 		B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9931D09ADC6007CA9CB /* Assets.xcassets */; };
-		B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */; };
 		B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */; };
 		B32AB9AD1D09ADC6007CA9CB /* PhotoEditUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9AC1D09ADC6007CA9CB /* PhotoEditUITests.m */; };
 		B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32AB9BD1D09AE67007CA9CB /* PhotosCVC.m */; };
@@ -48,6 +46,8 @@
 		B39F92731D23C149008CF520 /* help4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926E1D23C149008CF520 /* help4.jpg */; };
 		B39F92741D23C149008CF520 /* help5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926F1D23C149008CF520 /* help5.jpg */; };
 		B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
+		B3BB886A1D34EC2300988311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB88691D34EC2300988311 /* Main.storyboard */; };
+		B3BB886C1D34EC3500988311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,12 +69,10 @@
 
 /* Begin PBXFileReference section */
 		B32AB9841D09ADC6007CA9CB /* PhotoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B32AB9881D09ADC6007CA9CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B32AB9881D09ADC6007CA9CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B32AB9911D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B32AB9931D09ADC6007CA9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B32AB9961D09ADC6007CA9CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B32AB9981D09ADC6007CA9CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		B32AB99D1D09ADC6007CA9CB /* PhotoEdit.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEdit.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32AB9A11D09ADC6007CA9CB /* PhotoEditTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditTests.m; sourceTree = "<group>"; };
@@ -143,6 +141,8 @@
 		B39F926F1D23C149008CF520 /* help5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpg; sourceTree = "<group>"; };
 		B3BB88661D34E5AB00988311 /* FGSaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGSaveImage.h; sourceTree = "<group>"; };
 		B3BB88671D34E5AB00988311 /* FGSaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSaveImage.m; sourceTree = "<group>"; };
+		B3BB88691D34EC2300988311 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,12 +193,12 @@
 		B32AB9861D09ADC6007CA9CB /* PhotoEdit */ = {
 			isa = PBXGroup;
 			children = (
-				B32AB9BB1D09ADEC007CA9CB /* AppDelegate */,
-				B32ABA5B1D192633007CA9CB /* Models */,
-				B32AB9BA1D09ADDA007CA9CB /* ViewControllers */,
-				B32AB9C21D09B23B007CA9CB /* Views */,
-				B32AB9901D09ADC6007CA9CB /* Main.storyboard */,
+				B32AB9BB1D09ADEC007CA9CB /* Common */,
+				B32ABA5B1D192633007CA9CB /* Model */,
+				B32AB9BA1D09ADDA007CA9CB /* Controllers */,
+				B32AB9C21D09B23B007CA9CB /* View */,
 				B32AB9C91D0A9E41007CA9CB /* External */,
+				B32ABA001D0E98D3007CA9CB /* Resouce */,
 				B32AB9871D09ADC6007CA9CB /* Supporting Files */,
 			);
 			path = PhotoEdit;
@@ -207,9 +207,6 @@
 		B32AB9871D09ADC6007CA9CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B32ABA001D0E98D3007CA9CB /* Photos */,
-				B32AB9931D09ADC6007CA9CB /* Assets.xcassets */,
-				B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */,
 				B32AB9981D09ADC6007CA9CB /* Info.plist */,
 				B32AB9881D09ADC6007CA9CB /* main.m */,
 			);
@@ -234,7 +231,7 @@
 			path = PhotoEditUITests;
 			sourceTree = "<group>";
 		};
-		B32AB9BA1D09ADDA007CA9CB /* ViewControllers */ = {
+		B32AB9BA1D09ADDA007CA9CB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B32AB9BC1D09AE67007CA9CB /* PhotosCVC.h */,
@@ -248,25 +245,25 @@
 				B32ABA6C1D1AA9CE007CA9CB /* SupportVC.h */,
 				B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B32AB9BB1D09ADEC007CA9CB /* AppDelegate */ = {
+		B32AB9BB1D09ADEC007CA9CB /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				B32AB98A1D09ADC6007CA9CB /* AppDelegate.h */,
 				B32AB98B1D09ADC6007CA9CB /* AppDelegate.m */,
 			);
-			path = AppDelegate;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		B32AB9C21D09B23B007CA9CB /* Views */ = {
+		B32AB9C21D09B23B007CA9CB /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B32AB9BF1D09B233007CA9CB /* PhotosCVCell.h */,
 				B32AB9C01D09B233007CA9CB /* PhotosCVCell.m */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		B32AB9C91D0A9E41007CA9CB /* External */ = {
@@ -321,13 +318,16 @@
 			path = DRColorPicker;
 			sourceTree = "<group>";
 		};
-		B32ABA001D0E98D3007CA9CB /* Photos */ = {
+		B32ABA001D0E98D3007CA9CB /* Resouce */ = {
 			isa = PBXGroup;
 			children = (
+				B3BB88691D34EC2300988311 /* Main.storyboard */,
+				B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */,
+				B32AB9931D09ADC6007CA9CB /* Assets.xcassets */,
 				B32ABA731D1BDB17007CA9CB /* helpImages */,
 				B32ABA011D0E98D3007CA9CB /* dismiss.png */,
 			);
-			path = Photos;
+			path = Resouce;
 			sourceTree = "<group>";
 		};
 		B32ABA061D12AA3E007CA9CB /* LGPickerView */ = {
@@ -341,13 +341,13 @@
 			path = LGPickerView;
 			sourceTree = "<group>";
 		};
-		B32ABA5B1D192633007CA9CB /* Models */ = {
+		B32ABA5B1D192633007CA9CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				B32ABA691D196DE5007CA9CB /* Text.h */,
 				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B32ABA731D1BDB17007CA9CB /* helpImages */ = {
@@ -474,15 +474,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B32AB9971D09ADC6007CA9CB /* LaunchScreen.storyboard in Resources */,
 				B39F92731D23C149008CF520 /* help4.jpg in Resources */,
 				B32ABA021D0E98D3007CA9CB /* dismiss.png in Resources */,
 				B32AB9941D09ADC6007CA9CB /* Assets.xcassets in Resources */,
 				B39F92711D23C149008CF520 /* help2.jpg in Resources */,
+				B3BB886A1D34EC2300988311 /* Main.storyboard in Resources */,
 				B39F92721D23C149008CF520 /* help3.jpg in Resources */,
-				B32AB9921D09ADC6007CA9CB /* Main.storyboard in Resources */,
 				B39F92701D23C149008CF520 /* help1.jpg in Resources */,
 				B39F92741D23C149008CF520 /* help5.jpg in Resources */,
+				B3BB886C1D34EC3500988311 /* LaunchScreen.storyboard in Resources */,
 				B32AB9EF1D0A9E41007CA9CB /* DRColorPicker.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,26 +570,6 @@
 			targetProxy = B32AB9A91D09ADC6007CA9CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B32AB9901D09ADC6007CA9CB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B32AB9911D09ADC6007CA9CB /* Base */,
-			);
-			name = Main.storyboard;
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B32AB9951D09ADC6007CA9CB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B32AB9961D09ADC6007CA9CB /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B32AB9AF1D09ADC6007CA9CB /* Debug */ = {
