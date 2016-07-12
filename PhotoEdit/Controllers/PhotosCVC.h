@@ -14,5 +14,6 @@
  *  must be edited image, that was generated after tapping fix button
  */
 @property (strong, nonatomic) UIImage *generatedImage;
+@property (strong, nonatomic) UIImage *imageToReplace;
 
 @end

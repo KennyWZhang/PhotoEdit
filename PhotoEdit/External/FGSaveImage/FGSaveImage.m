@@ -62,39 +62,67 @@
     }
     int i = 0;
     for(UIImage *image in photos) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
+        NSString *imageName = [NSString stringWithFormat:@"%d.png", i];
         NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
-        NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+        NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
         [data writeToFile:imagePath atomically:YES];
         i++;
     }
 }
 
-- (void)addImageToDocuments:(UIImage *)photo ByIndex:(int)i {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
-    }
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", i];
-    NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
-    NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(photo, 1.0f)];
-    [data writeToFile:imagePath atomically:YES];
+- (void)addImageToDocuments:(UIImage *)photo {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
+        }
+        NSFileManager *fileMgr = [NSFileManager defaultManager];
+        NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
+        NSString *lastImageName = [fileArray.lastObject stringByReplacingOccurrencesOfString:@".png" withString:@""];
+        int i = [lastImageName intValue];
+        if(fileArray.count > 0) {
+            i++;
+        }
+        NSString *imageName = [NSString stringWithFormat:@"%d.png", i];
+        NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
+        NSData *data = [NSData dataWithData:UIImagePNGRepresentation(photo)];
+        [data writeToFile:imagePath atomically:YES];
+    });
 }
 
-- (void)rewriteImage:(UIImage *)generatedImage
-             ByIndex:(int)rewriteIndex {
+- (void)replace:(UIImage *)imageToRelace withImage:(UIImage *)generatedImage {
+    if(!imageToRelace || !generatedImage) {
+        return;
+    }
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
-    NSString *imageName = [NSString stringWithFormat:@"%d.jpeg", rewriteIndex];
+    
+    NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
+    int rewriteIndex = 0;
+    NSString *fullPath;
+    NSData *imgData;
+    UIImage *loadedImage;
+    for (NSString *fileName in docFiles) {
+        if([fileName hasSuffix:@".png"]) {
+            fullPath = [dataPath stringByAppendingPathComponent:fileName];
+            imgData = [NSData dataWithContentsOfFile:fullPath];
+            loadedImage = [UIImage imageWithData:imgData];
+            if([UIImagePNGRepresentation(imageToRelace) isEqualToData:UIImagePNGRepresentation(loadedImage)]) {
+                rewriteIndex = [[fileName stringByReplacingOccurrencesOfString:@".png" withString:@""] intValue];
+            }
+        }
+    }
+    NSString *imageName = [NSString stringWithFormat:@"%d.png", rewriteIndex];
     NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
     NSData *data;
     if(generatedImage) {
-        data = [NSData dataWithData:UIImageJPEGRepresentation(generatedImage, 1.0f)];
+        data = [NSData dataWithData:UIImagePNGRepresentation(generatedImage)];
     } else {
         return;
     }
@@ -109,7 +137,7 @@
     NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
     NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
     for (NSString *fileName in docFiles) {
-        if([fileName hasSuffix:@".jpeg"]) {
+        if([fileName hasSuffix:@".png"]) {
             NSString *fullPath = [dataPath stringByAppendingPathComponent:fileName];
             NSData *imgData = [NSData dataWithContentsOfFile:fullPath];
             UIImage *loadedImage = [[UIImage alloc] initWithData:imgData];
@@ -121,6 +149,41 @@
     return photos;
 }
 
+- (void)removeImage:(UIImage *)removeImage {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+        
+        NSFileManager *fileMgr = [NSFileManager defaultManager];
+        NSMutableArray *fileArray = [[fileMgr contentsOfDirectoryAtPath:dataPath error:nil] mutableCopy];
+        
+        int removeIndex = 0;
+        UIImage *loadedImage;
+        NSData *imgData;
+        NSString *fullPath;
+        for (NSString *fileName in fileArray) {
+            if([fileName hasSuffix:@".png"]) {
+                fullPath = [dataPath stringByAppendingPathComponent:fileName];
+                imgData = [NSData dataWithContentsOfFile:fullPath];
+                loadedImage = [UIImage imageWithData:imgData];
+                if([UIImagePNGRepresentation(removeImage) isEqualToData:UIImagePNGRepresentation(loadedImage)]) {
+                    removeIndex = [[fileName stringByReplacingOccurrencesOfString:@".png" withString:@""] intValue];
+                }
+            }
+        }
+        NSString *name = [NSString stringWithFormat:@"%d.png",removeIndex];
+        [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:name] error:NULL];
+        [fileArray removeObject:name];
+        int i =0;
+        for(NSString *filename in fileArray) {
+            [fileMgr moveItemAtPath:[dataPath stringByAppendingPathComponent:filename] toPath:[dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png" , i]] error:nil];
+            i++;
+        }
+    });
+}
+
 - (void)removeImageAtIndex:(int)removeIndex {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
@@ -129,7 +192,7 @@
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
-    NSString *name = [NSString stringWithFormat:@"%d.jpeg",removeIndex];
+    NSString *name = [NSString stringWithFormat:@"%d.png",removeIndex];
     for (NSString *filename in fileArray) {
         if(name == filename) {
             [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
@@ -138,7 +201,7 @@
     fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
     int i =0;
     for(NSString *filename in fileArray) {
-        [fileMgr moveItemAtPath:[dataPath stringByAppendingPathComponent:filename] toPath:[dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg" , i]] error:nil];
+        [fileMgr moveItemAtPath:[dataPath stringByAppendingPathComponent:filename] toPath:[dataPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.png" , i]] error:nil];
         i++;
     }
 }

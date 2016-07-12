@@ -36,27 +36,31 @@
  * Delete all images and save an array of images in "Images" folder in documents directory
  * @param photos must be array of images
  *
- * @warning this method removing all images from folder and add new array that wise use this method if you don't have
- * other choise in case you want t remave one object
+ * @warning this method removing all images from folder and add new array that (not recommended)
  *
- * @warning this method can block main queue for long time
  */
 - (void)saveImages:(NSMutableArray *)photos;
 
 /**
  * Add image to "Images" folder in documents directory
  * @param photo is image that must be added
- * @param  i last index of array
  *
  */
-- (void)addImageToDocuments:(UIImage *)photo ByIndex:(int)i;
+- (void)addImageToDocuments:(UIImage *)photo;
 
 /**
  * Replaacing image in "Images" folder in documents directory
  * @param generatedPhoto new photo to replace
- * @param  rewriteIndex index of photo that must be replaced
+ * @param  imageToReplace image that will be replaced
  */
-- (void)rewriteImage:(UIImage *)generatedImage ByIndex:(int)rewriteIndex;
+- (void)replace:(UIImage *)imageToRelace withImage:(UIImage *)generatedImage;
+
+/**
+ * Remove image from "Images" folder in documents directory
+ *
+ *  @param removeImage image that must be removed
+ */
+- (void)removeImage:(UIImage *)removeImage;
 
 /**
  * Remove image from "Images" folder in documents directory
@@ -66,7 +70,7 @@
 - (void)removeImageAtIndex:(int)removeIndex;
 
 /**
- * Load all images from "Images" folder in documents directory
+ * fetch all images from "Images" folder in documents directory
  * @return fetched Images
  */
 - (NSArray *)fetchImages;

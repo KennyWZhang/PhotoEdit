@@ -74,10 +74,11 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     if(add) {
         lastIndex = (int)photos.count - 1;
-        [sli addImageToDocuments:photos.lastObject ByIndex:lastIndex];
+        [sli addImageToDocuments:photos.lastObject];
         add = NO;
     } else if(!firstAppear) {
-        [sli rewriteImage:self.generatedImage ByIndex:rewriteIndex];
+//        [sli rewriteImage:self.generatedImage ByIndex:rewriteIndex];
+        [sli replace:self.imageToReplace withImage:self.generatedImage];
     }
     firstAppear = NO;
     [self.collectionView reloadData];

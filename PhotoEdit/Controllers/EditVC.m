@@ -173,6 +173,7 @@
     if(self.imageView.image != self.photo) {
         PhotosCVC *pcvc = self.navigationController.viewControllers.firstObject;
         pcvc.generatedImage = self.imageView.image;
+        pcvc.imageToReplace = self.photo;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Save changes in Photos album ?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
