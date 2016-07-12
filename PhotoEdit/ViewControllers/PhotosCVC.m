@@ -11,10 +11,10 @@
 #import "PhotosCVCell.h"
 #import "EditVC.h"
 #import "HelpPageVC.h"
-#import "SaveLoadImages.h"
+#import "FGSaveImage.h"
 
 @interface PhotosCVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
-    SaveLoadImages *sli;
+    FGSaveImage *sli;
     NSMutableArray *photos;
     int lastIndex;
     int rewriteIndex;
@@ -60,7 +60,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController.toolbar setHidden: YES];
     
     photos = [NSMutableArray new];
-    sli = [SaveLoadImages new];
+    sli = [FGSaveImage new];
     
     photos = [[sli fetchImages] mutableCopy];
     [self.collectionView reloadData];

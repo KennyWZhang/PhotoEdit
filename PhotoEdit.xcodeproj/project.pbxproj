@@ -40,7 +40,6 @@
 		B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA081D12AA3E007CA9CB /* LGDatePickerActionSheet.m */; };
 		B32ABA0C1D12AA3E007CA9CB /* LGPickerActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */; };
 		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
-		B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */; };
 		B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 		B32ABA6E1D1AA9CE007CA9CB /* SupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */; };
 		B39F92701D23C149008CF520 /* help1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926B1D23C149008CF520 /* help1.jpg */; };
@@ -48,6 +47,7 @@
 		B39F92721D23C149008CF520 /* help3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926D1D23C149008CF520 /* help3.jpg */; };
 		B39F92731D23C149008CF520 /* help4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926E1D23C149008CF520 /* help4.jpg */; };
 		B39F92741D23C149008CF520 /* help5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926F1D23C149008CF520 /* help5.jpg */; };
+		B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,8 +132,6 @@
 		B32ABA0A1D12AA3E007CA9CB /* LGPickerActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGPickerActionSheet.m; sourceTree = "<group>"; };
 		B32ABA0F1D12E04D007CA9CB /* HelpPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageVC.h; sourceTree = "<group>"; };
 		B32ABA101D12E04D007CA9CB /* HelpPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageVC.m; sourceTree = "<group>"; };
-		B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLoadImages.h; sourceTree = "<group>"; };
-		B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveLoadImages.m; sourceTree = "<group>"; };
 		B32ABA691D196DE5007CA9CB /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 		B32ABA6A1D196DE5007CA9CB /* Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Text.m; sourceTree = "<group>"; };
 		B32ABA6C1D1AA9CE007CA9CB /* SupportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportVC.h; sourceTree = "<group>"; };
@@ -143,6 +141,8 @@
 		B39F926D1D23C149008CF520 /* help3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help3.jpg; sourceTree = "<group>"; };
 		B39F926E1D23C149008CF520 /* help4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help4.jpg; sourceTree = "<group>"; };
 		B39F926F1D23C149008CF520 /* help5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpg; sourceTree = "<group>"; };
+		B3BB88661D34E5AB00988311 /* FGSaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGSaveImage.h; sourceTree = "<group>"; };
+		B3BB88671D34E5AB00988311 /* FGSaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSaveImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +272,7 @@
 		B32AB9C91D0A9E41007CA9CB /* External */ = {
 			isa = PBXGroup;
 			children = (
+				B3BB88651D34E5AB00988311 /* FGSaveImage */,
 				B32ABA061D12AA3E007CA9CB /* LGPickerView */,
 				B32AB9CA1D0A9E41007CA9CB /* DRColorPicker */,
 			);
@@ -343,8 +344,6 @@
 		B32ABA5B1D192633007CA9CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B32ABA5C1D192A43007CA9CB /* SaveLoadImages.h */,
-				B32ABA5D1D192A43007CA9CB /* SaveLoadImages.m */,
 				B32ABA691D196DE5007CA9CB /* Text.h */,
 				B32ABA6A1D196DE5007CA9CB /* Text.m */,
 			);
@@ -361,6 +360,15 @@
 				B39F926F1D23C149008CF520 /* help5.jpg */,
 			);
 			name = helpImages;
+			sourceTree = "<group>";
+		};
+		B3BB88651D34E5AB00988311 /* FGSaveImage */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB88661D34E5AB00988311 /* FGSaveImage.h */,
+				B3BB88671D34E5AB00988311 /* FGSaveImage.m */,
+			);
+			path = FGSaveImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,7 +510,6 @@
 			files = (
 				B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */,
 				B32AB9BE1D09AE67007CA9CB /* PhotosCVC.m in Sources */,
-				B32ABA5E1D192A43007CA9CB /* SaveLoadImages.m in Sources */,
 				B32AB9F11D0A9E41007CA9CB /* DRColorPickerBaseViewController.m in Sources */,
 				B32ABA0B1D12AA3E007CA9CB /* LGDatePickerActionSheet.m in Sources */,
 				B32AB9F41D0A9E41007CA9CB /* DRColorPickerGridView.m in Sources */,
@@ -511,6 +518,7 @@
 				B32AB9F81D0A9E41007CA9CB /* DRColorPickerHomeViewController.m in Sources */,
 				B32AB9FD1D0A9E41007CA9CB /* DRColorPickerViewController.m in Sources */,
 				B32AB9C81D09C04C007CA9CB /* SettingsTVC.m in Sources */,
+				B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */,
 				B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */,
 				B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */,
 				B32AB9891D09ADC6007CA9CB /* main.m in Sources */,
