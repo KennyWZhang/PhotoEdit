@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "Text.h"
-#import "SaveLoadImages.h"
+#import "FGSaveImage.h"
 
 @interface PhotoEditTests : XCTestCase
 
@@ -41,7 +41,7 @@
 }
 
 - (void)testSavingImages {
-    SaveLoadImages *sli = [SaveLoadImages new];
+    FGSaveImage *sli = [FGSaveImage new];
     UIImage *testImage1 = [UIImage imageNamed:@"help1.jpg"];
     NSMutableArray *arr1 = [NSMutableArray new];
     
