@@ -39,6 +39,8 @@
 		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
 		B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 		B32ABA6E1D1AA9CE007CA9CB /* SupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */; };
+		B342B55B1D3641FB000F1EA7 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
+		B342B55C1D364216000F1EA7 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 		B39F92701D23C149008CF520 /* help1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926B1D23C149008CF520 /* help1.jpg */; };
 		B39F92711D23C149008CF520 /* help2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926C1D23C149008CF520 /* help2.jpg */; };
 		B39F92721D23C149008CF520 /* help3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926D1D23C149008CF520 /* help3.jpg */; };
@@ -545,6 +547,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */,
+				B342B55B1D3641FB000F1EA7 /* FGSaveImage.m in Sources */,
+				B342B55C1D364216000F1EA7 /* Text.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
