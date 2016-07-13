@@ -50,4 +50,14 @@
     XCTAssertNotNil([sli fetchImages],@"Should load saved images");
 }
 
+- (void)testGetImage {
+    FGSaveImage *sli = [FGSaveImage new];
+    UIImage *testImage1 = [UIImage imageNamed:@"help1.jpg"];
+    NSMutableArray *arr1 = [NSMutableArray new];
+    
+    [arr1 addObject:testImage1];
+    [sli saveImages:arr1];
+    XCTAssertNotNil([sli getImageAtIndex:0],@"Should load first image");
+}
+
 @end

@@ -27,19 +27,10 @@
 #import <UIKit/UIKit.h>
 
 /**
- * FGSaveImage is class to save, add, replace, and remove images in/from "Images" folder in documents directory
+ * FGSaveImage is class to save, add, replace, and remove images in/from folder in documents directory
  * also methods crate folder if not exist
  */
 @interface FGSaveImage : NSObject
-
-/**
- * Delete all images and save an array of images in "Images" folder in documents directory
- * @param photos must be array of images
- *
- * @warning this method removing all images from folder and add new array that (not recommended)
- *
- */
-- (void)saveImages:(NSMutableArray *)photos;
 
 /**
  * Add image to "Images" folder in documents directory
@@ -49,31 +40,51 @@
 - (void)addImageToDocuments:(UIImage *)photo;
 
 /**
- * Replaacing image in "Images" folder in documents directory
+ * Replaacing image in folder in documents directory
  * @param generatedPhoto new photo to replace
  * @param  imageToReplace image that will be replaced
  */
 - (void)replace:(UIImage *)imageToRelace withImage:(UIImage *)generatedImage;
 
 /**
- * Remove image from "Images" folder in documents directory
+ * Remove image from folder in documents directory
  *
  *  @param removeImage image that must be removed
  */
 - (void)removeImage:(UIImage *)removeImage;
 
 /**
- * Remove image from "Images" folder in documents directory
+ * fetch all images from  folder in documents directory
+ * @return fetched Images
+ */
+- (NSArray *)fetchImages;
+
+/**
+ * Delete all images and save an array of images in "Images" folder in documents directory
+ * @param photos must be array of images
  *
- *  @param removeIndex image index that must be removed
+ * @warning this method removing all images from folder and add new array.(not recommended)
+ *
+ */
+- (void)saveImages:(NSArray *)photos;
+
+/**
+ * Remove image from  folder in documents directory
+ *
+ *  @param removeIndex image index that must be removed , if you used "saveImages" method, must be index of image in
+ * array
  */
 - (void)removeImageAtIndex:(int)removeIndex;
 
 /**
- * fetch all images from "Images" folder in documents directory
- * @return fetched Images
+ *  get image from folder in documents directory
+ *
+ *  @param index image index that must be returned , if you used "saveImages" method, must be index of image in
+ * that array
+ *
+ *  @return getted image
  */
-- (NSArray *)fetchImages;
+- (UIImage *)getImageAtIndex:(int)index;
 
 /**
  *  Customize folder name in documents directory, if you use init folder name will be "Images" by default
