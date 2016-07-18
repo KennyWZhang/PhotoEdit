@@ -46,8 +46,8 @@
     NSMutableArray *arr1 = [NSMutableArray new];
     
     [arr1 addObject:testImage1];
-    [sli saveImages:arr1];
-    XCTAssertNotNil([sli fetchImages],@"Should load saved images");
+    [sli saveImages:arr1 inFolder:nil];
+    XCTAssertNotNil([sli fetchImagesFromFolder:nil],@"Should load saved images");
 }
 
 - (void)testGetImage {
@@ -56,8 +56,8 @@
     NSMutableArray *arr1 = [NSMutableArray new];
     
     [arr1 addObject:testImage1];
-    [sli saveImages:arr1];
-    XCTAssertNotNil([sli getImageAtIndex:0],@"Should load first image");
+    [sli saveImages:arr1 inFolder:nil];
+    XCTAssertNotNil([sli getImageAtIndex:0 fromFolder:nil],@"Should load first image");
 }
 
 @end
