@@ -45,23 +45,58 @@
     return self;
 }
 
-- (void)saveImages:(NSArray *)photos {
+- (void)crateFolderNamed:(NSString *)name {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:name];
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:dataPath]) {
         [fileMgr createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
     }
-    
-    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
-    for (NSString *filename in fileArray) {
-        [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
+}
+
+- (void)removeFolderNamed:(NSString *)name {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSArray *folders = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:NULL];
+    for(NSString *folder in folders) {
+        if([folder isEqualToString:name]) {
+            [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:name] error:NULL];
+        }
     }
+}
+- (void)removeAllFolders {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSArray *folders = [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:NULL];
+    for(NSString *folder in folders) {
+        [fileMgr removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:folder] error:NULL];
+    }
+}
+
+- (void)saveImages:(NSArray *)photos inFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
+    
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if (![fileMgr fileExistsAtPath:dataPath]) {
+        [fileMgr createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+
     int i = 0;
-    for(UIImage *image in photos) {
+    for(__strong UIImage *image in photos) {
+        image = [self rotateImage:image];
         NSString *imageName = [NSString stringWithFormat:@"%d.png", i];
         NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
         NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
@@ -70,13 +105,16 @@
     }
 }
 
-- (void)addImageToDocuments:(UIImage *)photo {
+- (void)addImage:(UIImage *)photo toFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     photo = [self rotateImage:photo];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
         if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]) {
             [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:nil];
         }
@@ -94,7 +132,12 @@
     });
 }
 
-- (void)replace:(UIImage *)imageToRelace withImage:(UIImage *)generatedImage {
+- (void)replace:(UIImage *)imageToRelace
+      withImage:(UIImage *)generatedImage
+       inFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     if(!imageToRelace || !generatedImage) {
         return;
     }
@@ -102,7 +145,7 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
         NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
         
         int rewriteIndex = 0;
@@ -128,12 +171,15 @@
     });
 }
 
-- (NSArray *)fetchImages {
+- (NSArray *)fetchImagesFromFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     NSMutableArray *photos = [NSMutableArray new];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
     NSArray *docFiles = [[NSFileManager defaultManager]contentsOfDirectoryAtPath:dataPath error:NULL];
     
     NSString *fullPath;
@@ -152,12 +198,15 @@
     return photos;
 }
 
-- (void)removeImage:(UIImage *)removeImage {
+- (void)removeImage:(UIImage *)removeImage fromFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+        NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
         
         NSFileManager *fileMgr = [NSFileManager defaultManager];
         NSMutableArray *fileArray = [[fileMgr contentsOfDirectoryAtPath:dataPath error:nil] mutableCopy];
@@ -188,11 +237,14 @@
     });
 }
 
-- (void)removeImageAtIndex:(int)removeIndex {
+- (void)removeImageAtIndex:(int)removeIndex fromFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
@@ -211,16 +263,36 @@
     }
 }
 
-- (UIImage *)getImageAtIndex:(int)index {
+- (UIImage *)getImageAtIndex:(int)index fromFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
     UIImage *image;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:customName];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
     NSString *imageName = [NSString stringWithFormat:@"%d.png", index];
     NSString *imagePath = [dataPath stringByAppendingPathComponent:imageName];
     image = [UIImage imageWithContentsOfFile:imagePath];
     return image;
+}
+
+- (void)removeAllImagesFromFolder:(NSString *)folderName {
+    if(!folderName) {
+        folderName = customName;
+    }
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:folderName];
+    
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSArray *fileArray = [fileMgr contentsOfDirectoryAtPath:dataPath error:nil];
+    
+    for (NSString *filename in fileArray) {
+        [fileMgr removeItemAtPath:[dataPath stringByAppendingPathComponent:filename] error:NULL];
+    }
 }
 
 - (UIImage *)rotateImage:(UIImage *)image {
@@ -234,5 +306,6 @@
     
     return copy;
 }
+
 
 @end

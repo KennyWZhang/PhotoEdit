@@ -62,7 +62,7 @@ static NSString * const reuseIdentifier = @"Cell";
     photos = [NSMutableArray new];
     sli = [[FGSaveImage alloc] initWithFolderName:@"Photos"];
     
-    photos = [[sli fetchImages] mutableCopy];
+    photos = [[sli fetchImagesFromFolder:nil] mutableCopy];
     [self.collectionView reloadData];
 }
 
@@ -74,10 +74,10 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     if(add) {
         lastIndex = (int)photos.count - 1;
-        [sli addImageToDocuments:photos.lastObject];
+        [sli addImage:photos.lastObject toFolder:nil];
         add = NO;
     } else if(!firstAppear) {
-        [sli replace:self.imageToReplace withImage:self.generatedImage];
+        [sli replace:self.imageToReplace withImage:self.generatedImage inFolder:nil];
         self.imageToReplace = nil;
         self.generatedImage = nil;
     }
@@ -166,7 +166,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if(showDelete) {
         [photos removeObjectAtIndex:indexPath.row];
-        [sli removeImageAtIndex:(int)indexPath.row];
+        [sli removeImageAtIndex:(int)indexPath.row fromFolder:nil];
         [collectionView reloadData];
     } else {
         EditVC *evc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"EditVC"];

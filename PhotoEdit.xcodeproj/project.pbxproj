@@ -39,17 +39,16 @@
 		B32ABA111D12E04D007CA9CB /* HelpPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA101D12E04D007CA9CB /* HelpPageVC.m */; };
 		B32ABA6B1D196DE5007CA9CB /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 		B32ABA6E1D1AA9CE007CA9CB /* SupportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6D1D1AA9CE007CA9CB /* SupportVC.m */; };
-		B342B55B1D3641FB000F1EA7 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
 		B342B55C1D364216000F1EA7 /* Text.m in Sources */ = {isa = PBXBuildFile; fileRef = B32ABA6A1D196DE5007CA9CB /* Text.m */; };
 		B39F92701D23C149008CF520 /* help1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926B1D23C149008CF520 /* help1.jpg */; };
 		B39F92711D23C149008CF520 /* help2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926C1D23C149008CF520 /* help2.jpg */; };
 		B39F92721D23C149008CF520 /* help3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926D1D23C149008CF520 /* help3.jpg */; };
 		B39F92731D23C149008CF520 /* help4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926E1D23C149008CF520 /* help4.jpg */; };
 		B39F92741D23C149008CF520 /* help5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B39F926F1D23C149008CF520 /* help5.jpg */; };
-		B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB88671D34E5AB00988311 /* FGSaveImage.m */; };
 		B3BB886A1D34EC2300988311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB88691D34EC2300988311 /* Main.storyboard */; };
 		B3BB886C1D34EC3500988311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */; };
 		B3BB88701D34F11B00988311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB886F1D34F11B00988311 /* main.m */; };
+		B3DC7F621D3CDF59002BBD36 /* FGSaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DC7F611D3CDF59002BBD36 /* FGSaveImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,11 +139,11 @@
 		B39F926D1D23C149008CF520 /* help3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help3.jpg; sourceTree = "<group>"; };
 		B39F926E1D23C149008CF520 /* help4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help4.jpg; sourceTree = "<group>"; };
 		B39F926F1D23C149008CF520 /* help5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = help5.jpg; sourceTree = "<group>"; };
-		B3BB88661D34E5AB00988311 /* FGSaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGSaveImage.h; sourceTree = "<group>"; };
-		B3BB88671D34E5AB00988311 /* FGSaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSaveImage.m; sourceTree = "<group>"; };
 		B3BB88691D34EC2300988311 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3BB886B1D34EC3500988311 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3BB886F1D34F11B00988311 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PhotoEdit/main.m; sourceTree = SOURCE_ROOT; };
+		B3DC7F601D3CDF59002BBD36 /* FGSaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGSaveImage.h; sourceTree = "<group>"; };
+		B3DC7F611D3CDF59002BBD36 /* FGSaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSaveImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,7 +270,7 @@
 		B32AB9C91D0A9E41007CA9CB /* External */ = {
 			isa = PBXGroup;
 			children = (
-				B3BB88651D34E5AB00988311 /* FGSaveImage */,
+				B3DC7F5F1D3CDF59002BBD36 /* FGSaveImage */,
 				B32ABA061D12AA3E007CA9CB /* LGPickerView */,
 				B32AB9CA1D0A9E41007CA9CB /* DRColorPicker */,
 			);
@@ -364,11 +363,11 @@
 			name = helpImages;
 			sourceTree = "<group>";
 		};
-		B3BB88651D34E5AB00988311 /* FGSaveImage */ = {
+		B3DC7F5F1D3CDF59002BBD36 /* FGSaveImage */ = {
 			isa = PBXGroup;
 			children = (
-				B3BB88661D34E5AB00988311 /* FGSaveImage.h */,
-				B3BB88671D34E5AB00988311 /* FGSaveImage.m */,
+				B3DC7F601D3CDF59002BBD36 /* FGSaveImage.h */,
+				B3DC7F611D3CDF59002BBD36 /* FGSaveImage.m */,
 			);
 			path = FGSaveImage;
 			sourceTree = "<group>";
@@ -520,8 +519,8 @@
 				B32AB98C1D09ADC6007CA9CB /* AppDelegate.m in Sources */,
 				B32AB9F81D0A9E41007CA9CB /* DRColorPickerHomeViewController.m in Sources */,
 				B32AB9FD1D0A9E41007CA9CB /* DRColorPickerViewController.m in Sources */,
+				B3DC7F621D3CDF59002BBD36 /* FGSaveImage.m in Sources */,
 				B32AB9C81D09C04C007CA9CB /* SettingsTVC.m in Sources */,
-				B3BB88681D34E5AB00988311 /* FGSaveImage.m in Sources */,
 				B32AB9FF1D0A9E41007CA9CB /* DRColorPickerWheelViewController.m in Sources */,
 				B32AB9F31D0A9E41007CA9CB /* DRColorPickerColorView.m in Sources */,
 				B32AB9FA1D0A9E41007CA9CB /* DRColorPickerHueView.m in Sources */,
@@ -547,7 +546,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B32AB9A21D09ADC6007CA9CB /* PhotoEditTests.m in Sources */,
-				B342B55B1D3641FB000F1EA7 /* FGSaveImage.m in Sources */,
 				B342B55C1D364216000F1EA7 /* Text.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,6 +664,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				INFOPLIST_FILE = PhotoEdit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
 				PRODUCT_NAME = PhotoEdit;
@@ -684,6 +683,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = PhotoEdit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Feghal.PhotoEdit;
 				PRODUCT_NAME = PhotoEdit;

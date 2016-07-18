@@ -35,62 +35,97 @@
 /**
  * Add image to "Images" folder in documents directory
  * @param photo is image that must be added
+ * @param folderName name of folder that you crate before, pass nil if you don't
  *
  */
-- (void)addImageToDocuments:(UIImage *)photo;
+- (void)addImage:(UIImage *)photo toFolder:(NSString *)folderName;
 
 /**
  * Replaacing image in folder in documents directory
  * @param generatedPhoto new photo to replace
+ * @param folderName name of folder that you crate before, pass nil if you don't
+ *
  * @param  imageToReplace image that will be replaced
  */
-- (void)replace:(UIImage *)imageToRelace withImage:(UIImage *)generatedImage;
+- (void)replace:(UIImage *)imageToRelace
+      withImage:(UIImage *)generatedImage
+       inFolder:(NSString *)folderName;
 
 /**
  * Remove image from folder in documents directory
  *
  *  @param removeImage image that must be removed
+ * @param folderName name of folder that you crate before, pass nil if you don't
+ *
  */
-- (void)removeImage:(UIImage *)removeImage;
+- (void)removeImage:(UIImage *)removeImage fromFolder:(NSString *)folderName;
 
 /**
  * fetch all images from  folder in documents directory
+ * @param folderName name of folder that you crate before, pass nil if you don't
+ *
  * @return fetched Images
  */
-- (NSArray *)fetchImages;
+- (NSArray *)fetchImagesFromFolder:(NSString *)folderName;
 
 /**
- * Delete all images and save an array of images in "Images" folder in documents directory
+ * remove All images from folder in documents directory
+ * @param folderName name of folder that you crate before, pass nil if you don't
+ */
+- (void)removeAllImagesFromFolder:(NSString *)folderName;
+
+/**
+ * Save an array of images in folder in documents directory
  * @param photos must be array of images
- *
- * @warning this method removing all images from folder and add new array.(not recommended)
+ * @param folderName name of folder that you crate before, pass nil if you don't
  *
  */
-- (void)saveImages:(NSArray *)photos;
+- (void)saveImages:(NSArray *)photos inFolder:(NSString *)folderName;
 
 /**
  * Remove image from  folder in documents directory
  *
  *  @param removeIndex image index that must be removed , if you used "saveImages" method, must be index of image in
  * array
+ * @param folderName name of folder that you crate before, pass nil if you don't
  */
-- (void)removeImageAtIndex:(int)removeIndex;
+- (void)removeImageAtIndex:(int)removeIndex fromFolder:(NSString *)folderName;
 
 /**
  *  get image from folder in documents directory
  *
  *  @param index image index that must be returned , if you used "saveImages" method, must be index of image in
  * that array
- *
+ * @param folderName name of folder that you crate before, pass nil if you don't
  *  @return getted image
  */
-- (UIImage *)getImageAtIndex:(int)index;
+- (UIImage *)getImageAtIndex:(int)index fromFolder:(NSString *)folderName;
 
 /**
- *  Customize folder name in documents directory, if you use init folder name will be "Images" by default
+ * Customize folder name in documents directory, if you use init folder name will be "Images" by default
  *
- *  @param name name of the folder that will be crated in documents directory
+ * @param name name of the folder that will be crated in documents directory
+ *
  */
 - (instancetype)initWithFolderName:(NSString *)name;
+
+/**
+ *  Crate folder in documents directory
+ *
+ *  @param name name of folder that will be crated
+ */
+- (void)crateFolderNamed:(NSString *)name;
+
+/**
+ *  Remove folder from documents directory ,that you crate before
+ *
+ *  @param name name of folder
+ */
+- (void)removeFolderNamed:(NSString *)name;
+
+/**
+ * Remove all folders from documents directory
+ */
+- (void)removeAllFolders;
 
 @end

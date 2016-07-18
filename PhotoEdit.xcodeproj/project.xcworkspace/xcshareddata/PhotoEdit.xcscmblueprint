@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "69A29441018A2CA941E6D2FC98A10BD1AF8927B9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6755B221E5828F4D6EB8CBC7626498D38C2D76D8" : 0,
+    "69A29441018A2CA941E6D2FC98A10BD1AF8927B9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0CD7EDC0-799C-42F2-811F-4D8D30659727",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6755B221E5828F4D6EB8CBC7626498D38C2D76D8" : "PhotoEdit\/PhotoEdit\/External\/FGSaveImage\/",
+    "69A29441018A2CA941E6D2FC98A10BD1AF8927B9" : "PhotoEdit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PhotoEdit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PhotoEdit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Feghal\/FGSaveImage.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6755B221E5828F4D6EB8CBC7626498D38C2D76D8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Feghal\/PhotoEdit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69A29441018A2CA941E6D2FC98A10BD1AF8927B9"
+    }
+  ]
+}
